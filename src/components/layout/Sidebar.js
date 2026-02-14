@@ -26,10 +26,10 @@ const Sidebar = () => {
             <div className = {`${sidebarIsOpen ? 'block' : 'hidden'} overlay w-screen h-screen absolute top-0 left-0 bg-black/15`}></div>
 
             <div className = {`max-w-fit h-screen z-10 absolute top-0 ${sidebarIsOpen ? 'right-0' : '-right-full'} flex flex-col justify-center items-center p-10 gap-10 rounded-tl-xl rounded-bl-xl bg-white transition-all`}>
-                <Link href = '/'>صفحه اصلی</Link>
-                <Link href = '/tour-services'>خدمات گردشگری</Link>
-                <Link href = '/about-us'>درباره ما</Link>
-                <Link href = '/contact-us'>تماس با ما</Link>
+                <Link href = '/' className = "hover:text-green-500 transition-all">صفحه اصلی</Link>
+                <Link href = '/tour-services' className = "hover:text-green-500 transition-all">خدمات گردشگری</Link>
+                <Link href = '/about-us' className = "hover:text-green-500 transition-all">درباره ما</Link>
+                <Link href = '/contact-us' className = "hover:text-green-500 transition-all">تماس با ما</Link>
             </div>
         </>
     );

@@ -2,14 +2,13 @@ import Link from "next/link";
 import UserIconComponent from "@/components/icons/userIcon";
 import LoginIcon from "../icons/loginIcon";
 import Sidebar from "./Sidebar";
+import TourinoLogo from "../tourinoLogo";
 
 const Navbar = () => {
     return (
         <>
             <nav className = "pt-2 max-xl:px-4 bg-white flex justify-between items-center max-w-[1200px] mx-auto">
-                <Link href = '/' className = "max-md:hidden block">
-                    <img src = "tourino-logo.png" alt = "tourino" width = {130}/>
-                </Link>
+                <TourinoLogo linkClasses = 'max-md:hidden block'/>
 
                 <div className = "max-md:hidden flex gap-4 w-7/12 justify-start items-center">
                     <Link href = '/' className = "hover:text-green-500 transition-all p-2 px-3">صفحه اصلی</Link>
