@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
 
 const yekan = localFont({
   src: "./fonts/yekanBakh-Regular.ttf",
@@ -17,7 +18,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang = "fa">
-      <body className = {`${yekan.className} antialiased`}> {children} </body>
+      <body className = {`${yekan.className} text-sm antialiased`}>
+        <Navbar/>
+        {children}
+
+      </body>
     </html>
   );
 }
