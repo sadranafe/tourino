@@ -12,9 +12,9 @@ const Footer = () => {
 
     return (
         <>
-            <div className = "max-w-[1200px] mx-auto flex flex-wrap justify-between items-center border-t py-3">
+            <div className = "max-w-[1200px] p-3 mx-auto max-md:gap-8 flex flex-wrap justify-between items-center border-t py-3">
                
-                <div className =  "w-1/2 flex justify-start items-baseline">
+                <div className =  "w-1/2 max-md:w-full max-md:justify-center flex justify-start items-baseline">
                     <div className = "flex justify-center items-center flex-wrap gap-2">
                         <h2 className = "w-full text-center text-xl font-semibold">تورینو</h2>
                         <div className = "flex flex-col justify-center items-center gap-2">
@@ -36,24 +36,24 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className = "w-1/2">
-                    <div className = "mb-5 flex flex-col flex-wrap justify-center items-end gap-5">
+                <div className = "w-1/2 max-md:w-full max-[400px]:block max-md:flex max-md:justify-between max-md:items-center max-md:flex-row-reverse">
+                    <div className = "max-md:min-w-fit mb-5 max-md:mb-0 flex flex-col flex-wrap justify-center items-end gap-5">
                         <div>
                             <TourinoLogo/>
                         </div>
 
                         <p>
                             <span>تلفن پشتیبانی : </span>
-                            <span dir = "ltr">021 - 8574</span>
+                            <span dir = "ltr" className = "font-semibold">021 - 8574</span>
                         </p>
                     </div>
                     
-                    <div className = "w-full flex flex-row-reverse justify-start items-end gap-10">
+                    <div className = "w-full flex flex-wrap flex-row-reverse justify-start items-end gap-10 max-md:gap-7 max-md:justify-end max-[400px]:justify-center">
                         {
                             trustLogos.map(img => {
                                 return(
                                     <Link href = {img.alt} key = {img.id}>
-                                        <img src = {img.src} alt = {img.alt} />
+                                        <img src = {img.src} alt = {img.alt} className = "trustLogo"/>
                                     </Link>
                                 )
                             })
