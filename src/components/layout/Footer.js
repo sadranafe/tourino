@@ -12,7 +12,7 @@ const Footer = () => {
 
     return (
         <>
-            <div className = "max-w-[1200px] p-3 mx-auto max-md:gap-8 flex flex-wrap justify-between items-center border-t py-3">
+            <div className = "max-w-[1200px] p-3 mx-auto flex flex-wrap justify-between items-center border-t max-md:border-dashed max-md:gap-8">
                
                 <div className =  "w-1/2 max-md:w-full max-md:justify-center flex justify-start items-baseline">
                     <div className = "flex justify-center items-center flex-wrap gap-2">
@@ -48,7 +48,7 @@ const Footer = () => {
                         </p>
                     </div>
                     
-                    <div className = "w-full flex flex-wrap flex-row-reverse justify-start items-end gap-10 max-md:gap-7 max-md:justify-end max-[400px]:justify-center">
+                    <div className = "w-full flex flex-wrap flex-row-reverse justify-start items-end gap-10 max-md:gap-7 max-md:justify-end max-[400px]:justify-center max-[400px]:mt-5">
                         {
                             trustLogos.map(img => {
                                 return(

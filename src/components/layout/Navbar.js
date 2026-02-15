@@ -7,7 +7,7 @@ import TourinoLogo from "../tourinoLogo";
 const Navbar = () => {
     return (
         <>
-            <nav className = "pt-2 max-xl:px-4 bg-white flex justify-between items-center max-w-[1200px] mx-auto">
+            <nav className = "pt-2 max-xl:px-4 flex justify-between items-center max-w-[1200px] mx-auto">
                 <TourinoLogo linkClasses = 'max-md:hidden block'/>
 
                 <div className = "max-md:hidden flex gap-4 w-7/12 justify-start items-center">
