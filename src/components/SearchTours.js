@@ -1,20 +1,34 @@
 'use client';
-import { useState } from "react";
+import { useState , useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import toast from "react-hot-toast";
+import DateObject from "react-date-object";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian"
 import persian_fa from "react-date-object/locales/persian_fa"
 import opacity from "react-element-popper/animations/opacity";
 import "react-multi-date-picker/styles/colors/green.css"
+import { CalendarDotIcon } from "@phosphor-icons/react";
 import GlobalIcon from "./icons/GlobalIcon";
 import MapPin from "./icons/MapPin";
-import { CalendarDotIcon } from "@phosphor-icons/react";
-import toast from "react-hot-toast";
 
 const SearchTours = ({ dummyCities }) => {
     const [origin , setOrigin] = useState('');
     const [destination , setDestination] = useState('');
     const [selectedDate , setSelectedDate] = useState('')
+    
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const hasFilters = searchParams.toString().length > 0
+    const originParam = searchParams.get('origin') || '';
+    const destinationParam = searchParams.get('destination') || '';
+    const dateParam = searchParams.get('date') || '';
+
+    const query = {};
+    if( origin && origin !== 'مبدا' ) query.origin = origin;
+    if(destination && destination !== 'مقصد') query.destination = destination;
+    if(selectedDate) query.date = selectedDate ? selectedDate.format('YYYY/MM/DD') : '';
 
     const searchLinkHandler = ev => {
         if(origin && destination && origin.toLowerCase() === destination.toLowerCase()) {
@@ -23,14 +37,31 @@ const SearchTours = ({ dummyCities }) => {
         }
     }
 
-    const query = {};
-    if( origin && origin !== 'مبدا' ) query.origin = origin;
-    if(destination && destination !== 'مقصد') query.destination = destination;
-    if(selectedDate) query.date = selectedDate ? selectedDate.format('YYYY/MM/DD') : '';
+    const clearFiltersHandler = () => {
+        setOrigin('');
+        setDestination('');
+        setSelectedDate('');
+        router.replace('/' , { scroll : false })
+    }
+
+    useEffect(() => {
+        if(originParam) setOrigin(originParam);
+        if(destinationParam) setDestination(destinationParam);
+        if(dateParam) {
+            setSelectedDate(
+                new DateObject({
+                    date : dateParam,
+                    format : 'YYYY/MM/DD',
+                    calendar : persian,
+                    locale : persian_fa,
+                })
+            )
+        }
+    },[originParam , destinationParam , dateParam])
 
     return (
         <>
-            <div className = "border border-dashed rounded-2xl p-1.5 flex justify-center items-center gap-5 mt-5">
+            <div className = "relative border border-dashed rounded-2xl p-1.5 flex justify-center items-center gap-5 mt-5">
                 
                 <div className = "flex justify-center items-center border-l pl-3">
                     <label htmlFor = "origin" className = "flex justify-center items-center">
@@ -76,6 +107,13 @@ const SearchTours = ({ dummyCities }) => {
                 <div>
                     <Link href = {{ pathname : '/' , query }} scroll = { false } onClick = {searchLinkHandler} className = "bg-green-500 hover:bg-green-600 transition-all p-3 block w-40 text-center outline-none text-white rounded-xl">جستوجو</Link>
                 </div>
+
+                {
+                    hasFilters ? 
+                    <div className = "absolute -left-28">
+                        <button onClick = {clearFiltersHandler} className = "border border-dashed border-red-400 hover:bg-red-50 transition-all p-3 px-4 text-center rounded-xl">حذف فیلتر ها</button>
+                    </div> : null
+                }
             </div>
         </>
     );
