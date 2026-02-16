@@ -17,7 +17,7 @@ const SearchTours = ({ dummyCities }) => {
     const [selectedDate , setSelectedDate] = useState('')
 
     const searchLinkHandler = ev => {
-        if(origin.toLowerCase() === destination.toLowerCase()) {
+        if(origin && destination && origin.toLowerCase() === destination.toLowerCase()) {
             ev.preventDefault();
             toast('مبدا و مقصد نمی تواند یکسان باشد' , { icon : '⚠️' })
         }
@@ -38,7 +38,7 @@ const SearchTours = ({ dummyCities }) => {
                     </label>
 
                     <select name = "origin" id = "origin" value = {origin} onChange = { ev => setOrigin(ev.target.value) } className = "outline-none text-center p-2 px-4 cursor-pointer">
-                        <option>مبدا</option>
+                        <option value = ''>مبدا</option>
                         {
                             dummyCities.map((city , index) => {
                                 return(
@@ -55,7 +55,7 @@ const SearchTours = ({ dummyCities }) => {
                     </label>
 
                     <select name = "destination" id = "destination" value = {destination} onChange = { ev => setDestination(ev.target.value) } className = "outline-none text-center p-2 px-4 cursor-pointer">
-                        <option>مقصد</option>
+                        <option value = ''>مقصد</option>
                         {
                             dummyCities.map((city , index) => {
                                 return(
