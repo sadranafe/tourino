@@ -1,5 +1,5 @@
 'use client';
-import { useState , useEffect } from "react";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
@@ -14,17 +14,23 @@ import GlobalIcon from "./icons/GlobalIcon";
 import MapPin from "./icons/MapPin";
 
 const SearchTours = ({ dummyCities }) => {
-    const [origin , setOrigin] = useState('');
-    const [destination , setDestination] = useState('');
-    const [selectedDate , setSelectedDate] = useState('')
-    
     const router = useRouter();
     const searchParams = useSearchParams();
-    const hasFilters = searchParams.toString().length > 0
-    const originParam = searchParams.get('origin') || '';
-    const destinationParam = searchParams.get('destination') || '';
-    const dateParam = searchParams.get('date') || '';
+    const hasFilters = searchParams.toString().length > 0;
 
+    const [origin , setOrigin] = useState(searchParams.get('origin') || '');
+    const [destination , setDestination] = useState(searchParams.get('destination') ||'');
+    const [selectedDate , setSelectedDate] = useState(() => {
+        const dateParam = searchParams.get('date');
+        if(!dateParam) return '';
+        return new DateObject({
+            date : dateParam,
+            format : 'YYYY/MM/DD',
+            calendar : persian,
+            locale : persian_fa,
+        })
+    })
+    
     const query = {};
     if( origin && origin !== 'مبدا' ) query.origin = origin;
     if(destination && destination !== 'مقصد') query.destination = destination;
@@ -43,21 +49,6 @@ const SearchTours = ({ dummyCities }) => {
         setSelectedDate('');
         router.replace('/' , { scroll : false })
     }
-
-    useEffect(() => {
-        if(originParam) setOrigin(originParam);
-        if(destinationParam) setDestination(destinationParam);
-        if(dateParam) {
-            setSelectedDate(
-                new DateObject({
-                    date : dateParam,
-                    format : 'YYYY/MM/DD',
-                    calendar : persian,
-                    locale : persian_fa,
-                })
-            )
-        }
-    },[originParam , destinationParam , dateParam])
 
     return (
         <>
