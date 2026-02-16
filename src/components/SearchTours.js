@@ -9,6 +9,7 @@ import "react-multi-date-picker/styles/colors/green.css"
 import GlobalIcon from "./icons/GlobalIcon";
 import MapPin from "./icons/MapPin";
 import { CalendarDotIcon } from "@phosphor-icons/react";
+import toast from "react-hot-toast";
 
 const SearchTours = ({ dummyCities }) => {
     const [origin , setOrigin] = useState('');
@@ -18,7 +19,7 @@ const SearchTours = ({ dummyCities }) => {
     const searchLinkHandler = ev => {
         if(origin.toLowerCase() === destination.toLowerCase()) {
             ev.preventDefault();
-            alert('مبدا و مقصد نمیتواند یکسان باشد')
+            toast('مبدا و مقصد نمی تواند یکسان باشد' , { icon : '⚠️' })
         }
     }
 
