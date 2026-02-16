@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     <html lang = "fa" dir = "rtl">
       <body className = {`${yekan.className} text-sm antialiased`}>
         <Navbar/>
-        {children}
+        <main className = "my-3">{ children }</main>
         <Footer/>
       </body>
     </html>
