@@ -15,7 +15,7 @@ const Page = () => {
           </div>
 
           <div>
-            <h1 className = "text-3xl">همه تور ها</h1>
+            <h1 className = "text-3xl max-xl:px-4">همه تور ها</h1>
             <ToursContainer/>
           </div>
         </div>
