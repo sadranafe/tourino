@@ -1,4 +1,5 @@
 import SearchToursContainer from "@/components/SearchToursContainer";
+import ToursContainer from "@/components/ToursListContainer";
 
 const Page = () => {
 
@@ -8,9 +9,17 @@ const Page = () => {
             <img src = "./banner.png" alt = "تورینو | خرید آنلاین بلیط های تور خارجی و داخلی" />
         </div>
 
-        <div className = "my-5">
-          <SearchToursContainer/>
+        <div className = "max-w-[1200px] mx-auto">
+          <div className = "my-5">
+            <SearchToursContainer/>
+          </div>
+
+          <div>
+            <h1 className = "text-3xl">همه تور ها</h1>
+            <ToursContainer/>
+          </div>
         </div>
+
     </>
   );
 };

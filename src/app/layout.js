@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang = "fa" dir = "rtl">
-      <body className = {`${yekan.className} text-sm antialiased`}>
+      <body className = {`${yekan.className} text-sm select-none antialiased`}>
         <Navbar/>
         <Toaster position = "top-left"/>
         <main className = "my-3">{ children }</main>
