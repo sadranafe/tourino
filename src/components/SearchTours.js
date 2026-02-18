@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import DateObject from "react-date-object";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian"
-import persian_fa from "react-date-object/locales/persian_fa"
+import persian_en from "react-date-object/locales/persian_en"
 import opacity from "react-element-popper/animations/opacity";
 import "react-multi-date-picker/styles/colors/green.css"
 import { CalendarDotIcon } from "@phosphor-icons/react";
@@ -27,7 +27,7 @@ const SearchTours = ({ dummyCities }) => {
             date : dateParam,
             format : 'YYYY/MM/DD',
             calendar : persian,
-            locale : persian_fa,
+            locale : persian_en,
         })
     })
     
@@ -93,7 +93,7 @@ const SearchTours = ({ dummyCities }) => {
                         <label htmlFor = "date">
                             <CalendarDotIcon className = "text-xl"/>
                         </label>
-                        <DatePicker name = "date" id = "date" value = {selectedDate} onChange = { ev => setSelectedDate(ev) } calendar = {persian} locale = {persian_fa} className = "green" animations = {[opacity()]} calendarPosition = "bottom-center" inputClass = "p-2.5 max-[400px]:px-0 bg-transparent outline-none rounded-xl max-md:text-center" placeholder = "تاریخ"/>
+                        <DatePicker name = "date" id = "date" value = {selectedDate} onChange = { ev => setSelectedDate(ev) } calendar = {persian} locale = {persian_en} className = "green" animations = {[opacity()]} calendarPosition = "bottom-center" inputClass = "p-2.5 max-[400px]:px-0 bg-transparent outline-none rounded-xl max-md:text-center" placeholder = "تاریخ"/>
                     </div>
                     
                     <div className = {`${hasFilters ? 'max-md:w-9/12' : 'max-md:w-full'} transition-all`}>
