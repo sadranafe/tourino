@@ -24,7 +24,7 @@ const TourCard = ( props ) => {
                 </Link>
 
                 <div className = 'flex justify-between items-center p-2'>
-                    <button className = 'bg-green-500 text-white p-1 px-5 rounded-md'>رزرو</button>
+                    <button className = 'bg-green-500 text-white p-1 px-5 rounded-md hover:bg-green-600 transition-all'>رزرو</button>
                     <p><span className = 'text-blue-500 ml-0.5'>{ price.toLocaleString() }</span> تومان</p>
                 </div>
             </div>
