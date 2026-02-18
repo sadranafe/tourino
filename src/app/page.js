@@ -1,5 +1,6 @@
 import SearchToursContainer from "@/components/SearchToursContainer";
 import ToursContainer from "@/components/ToursListContainer";
+import CTAbanner from "@/components/CTAbanner";
 
 const Page = () => {
 
@@ -17,6 +18,10 @@ const Page = () => {
           <div>
             <h1 className = "text-3xl max-xl:px-4">همه تور ها</h1>
             <ToursContainer/>
+          </div>
+
+          <div className = "p-3">
+            <CTAbanner/>
           </div>
         </div>
 
