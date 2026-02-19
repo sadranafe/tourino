@@ -1,6 +1,7 @@
 import SearchToursContainer from "@/components/SearchToursContainer";
 import ToursContainer from "@/components/ToursListContainer";
 import CTAbanner from "@/components/CTAbanner";
+export const dynamic = "force-dynamic";
 
 const Page = () => {
 
