@@ -5,3 +5,15 @@
 .trustLogo {
     width: clamp(40px, 15.3px + 7vw, 68px);;
 }
+
+.CTAheaderContainer > h2 {
+    font-size: clamp(20px, 11.1px + 3vw, 48px);
+}
+
+.CTAheaderContainer > p {
+    font-size: clamp(14px, 8.2px + 1.3vw, 24px);
+}
+
+.CTAheaderContainer + div > img {
+    width: clamp(200px, 180.8px + 9.6vw, 300px);
+}
