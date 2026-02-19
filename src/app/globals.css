@@ -17,3 +17,32 @@
 .CTAheaderContainer + div > img {
     width: clamp(200px, 180.8px + 9.6vw, 300px);
 }
+
+.swiper {
+    @apply w-[300px] min-h-fit overflow-hidden;
+}
+
+.swiper-button-prev {
+    transform: translate(10px , 220px);
+}
+
+.swiper-button-next {
+    transform: translate(-10px , 220px);
+}
+
+.swiper-button-prev , .swiper-button-next {
+    width: 10px !important;
+}
+
+.swiper-button-prev > svg , .swiper-button-next > svg {
+    color: #919191;
+}
+
+.swiper-pagination {
+    direction: ltr;
+    transform: translateY(45px) !important;
+}
+
+.swiper-slide-shadow {
+    background: transparent !important;
+}
