@@ -19,7 +19,7 @@
 }
 
 .swiper {
-    @apply w-[300px] min-h-fit overflow-hidden;
+    @apply w-[300px] max-md:w-[230px] max-[350px]:w-[180px] min-h-fit overflow-hidden;
 }
 
 .swiper-button-prev {
@@ -45,4 +45,24 @@
 
 .swiper-slide-shadow {
     background: transparent !important;
+}
+
+@media screen and (max-width : 768px) {
+    .swiper-button-prev {
+        transform: translate(10px , 190px);
+    }
+
+    .swiper-button-next {
+        transform: translate(-10px , 190px);
+    }
+}
+
+@media screen and (max-width : 350px) {
+    .swiper-button-prev {
+        transform: translate(10px , 165px);
+    }
+
+    .swiper-button-next {
+        transform: translate(-10px , 165px);
+    }
 }
