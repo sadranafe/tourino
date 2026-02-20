@@ -2,6 +2,7 @@ import SearchToursContainer from "@/components/SearchToursContainer";
 import ToursContainer from "@/components/ToursListContainer";
 import CTAbanner from "@/components/CTAbanner";
 import TourSlider from "@/components/TourSlider";
+import ServiceHighlights from "@/components/ServiceHighlights";
 export const dynamic = "force-dynamic";
 
 const Page = () => {
@@ -27,6 +28,8 @@ const Page = () => {
           </div>
 
           <TourSlider/>
+
+          <ServiceHighlights/>
         </div>
 
     </>
