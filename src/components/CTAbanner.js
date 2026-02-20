@@ -3,7 +3,7 @@ import Phone from "./icons/Phone";
 
 const CTAbanner = () => {
   return (
-    <div className = "border rounded-xl w-full flex max-[500px]:flex-wrap justify-between items-center">
+    <div className = "border rounded-xl w-full flex max-[500px]:flex-wrap justify-between items-center mt-10">
         <div className = "flex max-[350px]:flex-wrap max-[350px]:justify-center max-[350px]:gap-4 justify-between items-center w-9/12 max-[500px]:w-full bg-green-500 pr-10 max-[400px]:pr-3 max-[350px]:pr-0 pt-5 rounded-xl text-white">
             <div className = "CTAheaderContainer max-[350px]:order-2 max-[350px]:text-center">
                 <h2 className = "text-5xl font-extrabold">
