@@ -17,6 +17,8 @@ import AirplaneIconComponent from "@/components/icons/AirplaneIcon";
 import ShipIcon from "@/components/icons/ShipIcon";
 import CarIcon from "@/components/icons/CarIcon";
 import ChevronLeftIcon from "@/components/icons/ChevLeftIcon";
+import { Tooltip } from "@mui/material";
+import ReserveLink from "./ReserveLink";
 
 
 const HighlightedTour = props => {
@@ -74,7 +76,7 @@ const HighlightedTour = props => {
                                 <span className = "text-2xl text-blue-400 ml-1">{price?.toLocaleString()}</span> <span>تومان</span>
                             </p>
 
-                            <Link href = {`/basket/${id}`} className = "text-base bg-green-500 hover:bg-green-600 max-[500px]:px-3 max-[500px]:text-sm transition-all text-white p-2.5 px-5 rounded-md">رزرو و خرید</Link>
+                            <ReserveLink tourId = {id} availableSeats = {availableSeats}/>
                         </div>
                     </div>
                 </div>
