@@ -21,7 +21,7 @@ import ChevronLeftIcon from "@/components/icons/ChevLeftIcon";
 
 const HighlightedTour = props => {
     const { id , image : img , title , startDate , endDate , origin , fleetVehicle , price , availableSeats , capacity , insurance , options } = props;
-    const { night , day } = calclateTourDuration(startDate , endDate);
+    const tourDuration = calclateTourDuration(startDate , endDate);
 
     const tourKeyFeatures = [
         { icon : <UserIconComponent/> , title : 'تورلیدر از مبدا' },
@@ -30,7 +30,7 @@ const HighlightedTour = props => {
     ]
 
     const tourInfo = [
-        { title : 'مبدا' , value : origin.name , icon : <PathIconComponent customClasses = 'text-xl'/> },
+        { title : 'مبدا' , value : origin?.name , icon : <PathIconComponent customClasses = 'text-xl'/> },
         { title : 'تاریخ رفت' , value : new DateObject({ date : startDate , format : 'YYYY/MM/DD' , calendar : persian , locale : persian_fa }).format('DD  MMMM YYYY') , icon : <CalendarDots customClasses = 'text-xl'/> },
         { title : 'تاریخ برگشت' , value : new DateObject({ date : endDate , format : 'YYYY/MM/DD' , calendar : persian , locale : persian_fa }).format('DD  MMMM YYYY') , icon : <CalendarDots customClasses = 'text-xl'/> },
         { title : 'حمل و نقل' , value : vehicleTypeTranslate[fleetVehicle] , icon : fleetVehicle === 'bus' ? <BusIconComponent customClasses = 'text-xl'/> : fleetVehicle === 'train' ? <TrainIconComponent customClasses = 'text-xl'/> :  fleetVehicle === 'ship' ? <ShipIcon customClasses = 'text-xl'/> :  fleetVehicle === 'SUV' ? <CarIcon customClasses = 'text-xl'/> : <AirplaneIconComponent customClasses = 'text-xl'/> },
@@ -53,7 +53,7 @@ const HighlightedTour = props => {
                         <div className = "max-md:flex max-md:justify-between max-md:items-center">
                             <h1 className = "text-3xl font-bold">{`${title}`}</h1>
                             
-                            <p className = "my-4 text-base">{`${night} شب  و ${day} روز`}</p>
+                            <p className = "my-4 text-base">{`${tourDuration?.night} شب  و ${tourDuration?.day} روز`}</p>
                         </div>
                         
                         <div className = "flex max-[500px]:flex-wrap justify-between items-center max-[500px]:gap-5 max-[500px]:justify-center w-7/12 max-lg:w-10/12 max-md:w-full px-5 max-md:mb-10 max-md:my-5">
@@ -71,7 +71,7 @@ const HighlightedTour = props => {
 
                         <div className = "flex justify-between items-center mt-5 max-md:mb-5">
                             <p>
-                                <span className = "text-2xl text-blue-400 ml-1">{price.toLocaleString()}</span> <span>تومان</span>
+                                <span className = "text-2xl text-blue-400 ml-1">{price?.toLocaleString()}</span> <span>تومان</span>
                             </p>
 
                             <Link href = {`/basket/${id}`} className = "text-base bg-green-500 hover:bg-green-600 max-[500px]:px-3 max-[500px]:text-sm transition-all text-white p-2.5 px-5 rounded-md">رزرو و خرید</Link>
