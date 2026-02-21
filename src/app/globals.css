@@ -74,3 +74,15 @@
 .notFoundBtn {
     font-size: clamp(12px, 8.2px + 1.2vw, 18px);
 }
+
+@media screen and (min-width : 408px) {
+    .tourInfoWrapper > div:first-child {
+        @apply border-none;
+    }
+}
+
+@media screen and (max-width : 407px) {
+    .tourInfoWrapper > div:first-child {
+        @apply border-r border-green-300;
+    }
+}
