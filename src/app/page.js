@@ -3,6 +3,8 @@ import ToursContainer from "@/components/ToursListContainer";
 import CTAbanner from "@/components/CTAbanner";
 import TourSlider from "@/components/TourSlider";
 import ServiceHighlights from "@/components/ServiceHighlights";
+import { Suspense } from "react";
+import ToursLoading from "@/components/ToursLoading";
 export const dynamic = "force-dynamic";
 
 const Page = () => {
@@ -20,7 +22,9 @@ const Page = () => {
 
           <div>
             <h1 className = "text-3xl max-xl:px-4">همه تور ها</h1>
-            <ToursContainer/>
+            <Suspense fallback = {<ToursLoading/>}>
+              <ToursContainer/>
+            </Suspense>
           </div>
 
           <div className = "p-3">
