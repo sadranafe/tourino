@@ -1,13 +1,14 @@
 import Link from "next/link";
 import TourinoLogo from "../tourinoLogo";
+import Image from "next/image";
 
 const Footer = () => {
     const trustLogos = [
-        { id : 1 , src : './aira.png' , alt : 'https://www.aira.ir' },
-        { id : 2 , src : './samandehi.png' , alt : 'https://samandehi.ir' },
-        { id : 3 , src : './ecunion-qrcode.png' , alt : 'https://ecunion.ir' },
-        { id : 4 , src : './passenger-rights.png' , alt : 'https://www.cao.ir/paxrights' },
-        { id : 5 , src : './state-airline.png' , alt : 'https://caa.gov.ir' },
+        { id : 1 , src : '/aira.png' , alt : 'https://www.aira.ir' },
+        { id : 2 , src : '/samandehi.png' , alt : 'https://samandehi.ir' },
+        { id : 3 , src : '/ecunion-qrcode.png' , alt : 'https://ecunion.ir' },
+        { id : 4 , src : '/passenger-rights.png' , alt : 'https://www.cao.ir/paxrights' },
+        { id : 5 , src : '/state-airline.png' , alt : 'https://caa.gov.ir' },
     ]
 
     return (
@@ -53,7 +54,7 @@ const Footer = () => {
                             trustLogos.map(img => {
                                 return(
                                     <Link href = {img.alt} key = {img.id}>
-                                        <img src = {img.src} alt = {img.alt} className = "trustLogo"/>
+                                        <Image src = {img.src} alt = {img.alt} className = "trustLogo object-contain" width = {70} height = {70}/>
                                     </Link>
                                 )
                             })

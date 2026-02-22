@@ -1,10 +1,11 @@
+import Image from 'next/image';
 import React from 'react';
 
 const ServiceHighlights = () => {
     const DummyServices = [
-        { title : 'بصرفه ترین قیمت' , img : 'discount-ticket-vector.png' , desc : 'بصرفه ترین و ارزان ترین قیمت تور را از ما بخواهید.' },
-        { title : 'پشتیبانی' , img : 'message-vector.png' , desc : 'پشتیبانی و همراهی 24 ساعته در تمامی مراحل سفر شما.' },
-        { title : 'رضایت کاربران' , img : 'heart-vector.png' , desc : 'رضایت بیش از 10هزار کاربر از تور های ما. ' },
+        { title : 'بصرفه ترین قیمت' , img : '/discount-ticket-vector.png' , desc : 'بصرفه ترین و ارزان ترین قیمت تور را از ما بخواهید.' },
+        { title : 'پشتیبانی' , img : '/message-vector.png' , desc : 'پشتیبانی و همراهی 24 ساعته در تمامی مراحل سفر شما.' },
+        { title : 'رضایت کاربران' , img : '/heart-vector.png' , desc : 'رضایت بیش از 10هزار کاربر از تور های ما. ' },
     ]
     return (
         <>
@@ -13,8 +14,8 @@ const ServiceHighlights = () => {
                     DummyServices.map((item , index) => {
                         return(
                             <div key = {index} className = 'flex justify-start items-center gap-3 max-md:gap-5 max-md:w-96'>
-                                <div className = 'max-md:w-28 max-[400px]:w-32'>
-                                    <img src = { item.img } className = 'w-full' alt = {` tourino | تورینو | ${item.title} `} />
+                                <div className = 'relative w-24 h-24 max-md:w-28 max-md:h-28 max-[400px]:w-32 max-[400px]:h-32'>
+                                    <Image src = { item.img } alt = {` tourino | تورینو | ${item.title} `} fill sizes = "(max-width: 768px) 120px, 96px" className = 'object-contain'/>
                                 </div>
 
                                 <div>

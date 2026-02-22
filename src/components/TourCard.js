@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { DateObject } from 'react-multi-date-picker';
 import { vehicleTypeTranslate } from '@/helper/helper';
 import persian from "react-date-object/calendars/persian"
@@ -13,8 +14,8 @@ const TourCard = ( props ) => {
         <>
             <div className = 'border rounded-xl'>
                 <Link href = {`/tour/${id}`}>
-                    <div>
-                        <img src = { img } alt = { title } className = 'w-full'/>
+                    <div className = 'relative w-full aspect-[4/3] sm:aspect-[16/9]'>
+                        <Image src = {img} alt = {title} fill className = 'object-contain rounded-t-xl' sizes = "(max-width: 768px) 100vw, 25vw"/>
                     </div>
 
                     <div className = 'border-b p-2'>

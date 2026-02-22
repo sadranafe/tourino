@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Phone from "./icons/Phone";
 
 const CTAbanner = () => {
@@ -13,7 +14,7 @@ const CTAbanner = () => {
             </div>
 
             <div className = "max-[350px]:w-full max-[350px]:flex max-[350px]:justify-center max-[350px]:order-1">
-                <img src = "./professional-cartoon-man-talking-phone-icon-illustration.png" alt = "tourino تورینو | خرید انلاین تور " />
+                <Image src = '/professional-cartoon-man-talking-phone-icon-illustration.png' alt = "تورینو | خرید آنلاین تور" width = {260} height = {260} priority = {false} className = "h-auto w-auto max-w-[260px]"/>
             </div>
         </div>
 

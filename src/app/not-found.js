@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const NotFound = () => {
@@ -9,8 +10,8 @@ const NotFound = () => {
                     <Link href = '/' className = 'notFoundBtn bg-green-200 rounded-xl text-lg p-3 px-10 max-md:px-5 text-green-600 hover:bg-green-300 hover:text-green-700 transition-all'>بازگشت به صفحه اصلی</Link>
                 </div>
 
-                <div className = "max-md:order-1">
-                    <img src = "Error_TV.png" alt = "tourino | تورینو | محمد صدرا نافع" className = "max-md:w-full" />
+                <div className = "max-md:order-1 relative w-[550px] h-[450px] max-md:w-full max-md:h-[300px]">
+                    <Image src = '/Error_TV.png' alt = "tourino 404 page illustration" fill sizes = "(max-width: 768px) 100vw, 450px" className = "object-contain" priority/>
                 </div>
             </div>
         </>

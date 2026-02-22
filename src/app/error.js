@@ -1,6 +1,8 @@
 'use client';
-const Error = ({ error , reset }) => {
-    console.dir(error)
+
+import Image from "next/image";
+
+const Error = () => {
     return (
         <>
             <div className = 'flex max-md:flex-wrap justify-between max-md:justify-center max-md:gap-5 items-center p-10 max-md:px-5'>
@@ -10,7 +12,7 @@ const Error = ({ error , reset }) => {
                 </div>
 
                 <div className = "max-md:order-1">
-                    <img src = "ErrorLampRobot.png" alt = "tourino | تورینو | محمد صدرا نافع" className = "max-md:w-full" />
+                    <Image src = '/ErrorLampRobot.png' alt = "tourino error page illustration" width = {500} height = {400} className = "max-md:w-full h-auto" priority/>
                 </div>
             </div>
         </>

@@ -1,10 +1,11 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 const TourinoLogo = ({ linkClasses }) => {
     return (
         <>
             <Link href = '/' className = {linkClasses}>
-                <img src = "./tourino-logo.png" alt = "tourino log" width = {130} height = {40} />
+                <Image src = '/tourino-logo.png' alt = "tourino logo | تورینو" width = {130} height = {40} priority/>
             </Link>
         </>
     );

@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import { calclateTourDuration, vehicleTypeTranslate } from "@/helper/helper";
 import { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
+import ReserveLink from "./ReserveLink";
 
 import MapIcon from "@/components/icons/MapIcon";
 import MedalIconComponent from "@/components/icons/MedalIcon";
@@ -17,8 +19,6 @@ import AirplaneIconComponent from "@/components/icons/AirplaneIcon";
 import ShipIcon from "@/components/icons/ShipIcon";
 import CarIcon from "@/components/icons/CarIcon";
 import ChevronLeftIcon from "@/components/icons/ChevLeftIcon";
-import { Tooltip } from "@mui/material";
-import ReserveLink from "./ReserveLink";
 
 
 const HighlightedTour = props => {
@@ -47,9 +47,13 @@ const HighlightedTour = props => {
                 </Link>
 
                 <div className = "flex max-md:flex-wrap justify-start items-center gap-6">
-                    <div className = "overflow-hidden max-md:w-full">
-                        <img src = {img} alt = { title } className = "w-[300px] h-[200px] rounded-3xl min-h-fit max-md:w-[94%] mx-auto"/>
-                    </div>
+                    {
+                        img && (
+                            <div className = "overflow-hidden max-md:w-[94%] max-md:h-[350px] max-md:mx-auto max-sm:h-[300px] max-[400px]:h-[250px] relative w-[300px] h-[200px]">
+                                <Image src = {img} alt = {title} className = "object-cover rounded-3xl"  sizes = "(max-width: 768px) 94vw, 300px" priority fill/>
+                            </div>
+                        )
+                    }
 
                     <div className = "w-8/12 max-md:w-full">
                         <div className = "max-md:flex max-md:justify-between max-md:items-center">

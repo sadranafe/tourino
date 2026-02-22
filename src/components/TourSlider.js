@@ -1,4 +1,5 @@
 'use client';
+import Image from "next/image";
 import { Swiper  , SwiperSlide } from "swiper/react";
 import { EffectCards , Pagination , Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -10,10 +11,10 @@ import QuestionMark from "./icons/QuestionMark";
 
 const TourSlider = () => {
     const sliderImgs = [
-        { src : 'tour_slider_pic4.png' , alt : 'tourino | تورینو' },
-        { src : 'tour_slider_pic3.png' , alt : 'tourino | تورینو' },
-        { src : 'tour_slider_pic1.png' , alt : 'tourino | تورینو' },
-        { src : 'tour_slider_pic2.png' , alt : 'tourino | تورینو' },
+        { src : '/tour_slider_pic4.png' , alt : 'tourino | تورینو' },
+        { src : '/tour_slider_pic3.png' , alt : 'tourino | تورینو' },
+        { src : '/tour_slider_pic1.png' , alt : 'tourino | تورینو' },
+        { src : '/tour_slider_pic2.png' , alt : 'tourino | تورینو' },
     ]
     return (
         <>
@@ -38,7 +39,9 @@ const TourSlider = () => {
                             sliderImgs.map((img , index) => {
                                 return(
                                     <SwiperSlide key = {index}>
-                                        <img src = {img.src} alt = {img.alt} className = "w-full h-[400px] max-md:h-[330px] max-[350px]:h-[280px] object-cover rounded-[40px] overflow-hidden"/>
+                                        <div className = "relative w-full h-[400px] max-md:h-[330px] max-[350px]:h-[280px]">
+                                            <Image src = {img.src} alt = {img.alt} className = "object-cover rounded-[40px]"  fill priority = { index === 0 } sizes = "(max-width: 768px) 100vw, 50vw"/>
+                                        </div>
                                     </SwiperSlide>
                                 )
                             })
