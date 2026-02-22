@@ -1,8 +1,7 @@
 import Link from "next/link";
-import UserIconComponent from "@/components/icons/userIcon";
-import LoginIcon from "../icons/loginIcon";
 import Sidebar from "./Sidebar";
 import TourinoLogo from "../tourinoLogo";
+import LoginBtn from "../LoginBtn";
 
 const Navbar = () => {
     return (
@@ -19,12 +18,7 @@ const Navbar = () => {
 
                 <Sidebar/>
 
-                <Link href = '/login' className = "border border-green-500 p-2 gap-2 text-green-500 transition-all hover:bg-green-500 hover:text-white rounded-lg flex justify-center items-center">
-                    <p className = "max-md:hidden block">ورود | ثبت‌ نام</p>
-                    <UserIconComponent weight = 'bold' customClassName = "max-md:hidden block"/>
-
-                    <LoginIcon customClasses = 'max-md:inline-block hidden'/>
-                </Link>
+                <LoginBtn/>
             </nav>
         </>
     );
