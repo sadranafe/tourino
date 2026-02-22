@@ -11,7 +11,7 @@ const yekan = localFont({
 export const metadata = {
   title : {
     template : '%s tourino',
-    default : 'welcome | tourino'
+    default : 'welcome | Tourino'
   },
   description: "Your gateway to exclusive online tours. From local hidden gems to international wonders, enjoy curated travel experiences, expert guides, and seamless booking—all online",
   author : 'sadra nafe',
