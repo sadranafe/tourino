@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Sidebar from "./Sidebar";
 import TourinoLogo from "../tourinoLogo";
-import LoginBtn from "../LoginBtn";
+import LoginSection from "../LoginSection";
 
 const Navbar = () => {
     return (
@@ -18,7 +18,7 @@ const Navbar = () => {
 
                 <Sidebar/>
 
-                <LoginBtn/>
+                <LoginSection/>
             </nav>
         </>
     );
