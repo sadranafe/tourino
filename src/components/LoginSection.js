@@ -1,19 +1,33 @@
 'use client';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { UserSchema } from "@/utils/UserSchema";
+import api from "@/lib/api";
 import ModalComponent from "./layout/Modal";
-import LoginIcon from "./icons/loginIcon";
-import ErrorMessage from "./ErrorMessage";
-import UserIconComponent from "./icons/userIcon";
-import axios from "axios";
 import LoginForm from "./LoginForm";
+import OTPForm from "./OTPForm";
+import LoginIcon from "./icons/loginIcon";
+import UserIconComponent from "./icons/userIcon";
 
 const LoginSection = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [formStep , setFormStep] = useState('phone')
+    const [phoneNum , setPhoneNum] = useState('');
+    const [timer , setTimer] = useState(12);
     const handleOpen = () => setModalIsOpen(true);
-    const handleClose = () => setModalIsOpen(false);
+    const handleClose = () => {
+        setModalIsOpen(false);
+        setFormStep('phone')
+    }
+
+    useEffect(() => {
+        if(timer === 0) return;
+        const interval = setInterval(() => {
+            setTimer(prev => prev - 1);
+        },1000)
+
+        return () => clearInterval(interval)
+    },[timer]);
 
     const formik = useFormik({
         initialValues : {
@@ -23,10 +37,10 @@ const LoginSection = () => {
         validateOnMount : true,
         onSubmit : async (val , { setSubmitting }) => {
             try{
-                await axios.post('http://localhost:6500/auth/send-otp', {
-                    mobile : val.phoneNumber
-                })
+                await api.post('/auth/send-otp' , { mobile : val.phoneNumber });
                 setFormStep('otp');
+                setPhoneNum(val.phoneNumber);
+                setTimer(12);
             } catch (err){
                 console.log(err)
             } finally {
@@ -45,9 +59,9 @@ const LoginSection = () => {
             </button>
 
             <ModalComponent modalIsOpen = {modalIsOpen} handleClose = {handleClose}>
-                <div className = "flex flex-wrap justify-center items-center content-center gap-10 w-10/12 h-full mx-auto">
+                <div className = {`flex flex-wrap justify-center items-center content-center ${formStep === 'otp' ? 'gap-3' : 'gap-10'} w-10/12 h-full mx-auto`}>
                     {
-                        formStep === 'otp' ? <p>this is step 2</p> : <LoginForm formik = {formik}/>
+                        formStep === 'otp' ? <OTPForm formStepHandler = {setFormStep} timer = {timer} setTimer = {setTimer} phoneNum = {phoneNum}/> : <LoginForm setTimer = {setTimer} formik = {formik}/>
                     }
                 </div>
             </ModalComponent>
