@@ -1,6 +1,6 @@
 import ErrorMessage from './ErrorMessage';
 
-const LoginForm = ({ formik }) => {
+const LoginForm = ({ formik , timer }) => {
     return (
         <>
             <h1 className = "text-2xl font-bold text-center">ورود به تورینو</h1>
@@ -16,16 +16,14 @@ const LoginForm = ({ formik }) => {
                 </div>
 
                 <div className = "w-9/12 max-[500px]:w-full mx-auto">
-                    <button type = "submit" onClick = {formik.handleSubmit} disabled = {!formik.dirty || !formik.isValid || formik.isSubmitting} className = "disabled:bg-green-400 disabled:cursor-not-allowed outline-none w-full bg-green-500 hover:bg-green-600 transition-all rounded-md p-2.5 text-white">
+                    <button type = "submit" onClick = {formik.handleSubmit} disabled = {!formik.dirty || !formik.isValid || formik.isSubmitting || timer > 0} className = "disabled:bg-green-400 disabled:cursor-not-allowed outline-none w-full bg-green-500 hover:bg-green-600 transition-all rounded-md p-2.5 text-white">
                         {
                             formik.isSubmitting ? (
                                 <>
                                     درحال ارسال کد . . .
                                     <span className = "inline-block animate-spin h-4 w-4 mr-3 border-2 border-white border-t-transparent rounded-full"></span>
                                 </>
-                            ) : (
-                                'ارسال کد تایید'
-                            )
+                            ) : timer > 0 ? `ارسال مجدد کد تا ${timer} ثانیه دیگر` : 'دریافت کد تایید'
                         }
                     </button>
                 </div>

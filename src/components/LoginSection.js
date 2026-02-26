@@ -11,9 +11,9 @@ import UserIconComponent from "./icons/userIcon";
 
 const LoginSection = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [formStep , setFormStep] = useState('phone')
+    const [formStep , setFormStep] = useState('phone');
     const [phoneNum , setPhoneNum] = useState('');
-    const [timer , setTimer] = useState(12);
+    const [timer , setTimer] = useState(0);
     const handleOpen = () => setModalIsOpen(true);
     const handleClose = () => {
         setModalIsOpen(false);
@@ -21,7 +21,7 @@ const LoginSection = () => {
     }
 
     useEffect(() => {
-        if(timer === 0) return;
+        if(timer <= 0) return;
         const interval = setInterval(() => {
             setTimer(prev => prev - 1);
         },1000)
@@ -61,7 +61,7 @@ const LoginSection = () => {
             <ModalComponent modalIsOpen = {modalIsOpen} handleClose = {handleClose}>
                 <div className = {`flex flex-wrap justify-center items-center content-center ${formStep === 'otp' ? 'gap-3' : 'gap-10'} w-10/12 h-full mx-auto`}>
                     {
-                        formStep === 'otp' ? <OTPForm formStepHandler = {setFormStep} timer = {timer} setTimer = {setTimer} phoneNum = {phoneNum}/> : <LoginForm setTimer = {setTimer} formik = {formik}/>
+                        formStep === 'otp' ? <OTPForm formStepHandler = {setFormStep} setModalIsOpen = {setModalIsOpen} timer = {timer} setTimer = {setTimer} phoneNum = {phoneNum}/> : <LoginForm timer = {timer} formik = {formik}/>
                     }
                 </div>
             </ModalComponent>
