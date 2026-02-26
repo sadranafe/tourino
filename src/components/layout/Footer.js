@@ -1,5 +1,5 @@
 import Link from "next/link";
-import TourinoLogo from "../tourinoLogo";
+import TourinoLogo from "../TourinoLogo";
 import Image from "next/image";
 
 const Footer = () => {

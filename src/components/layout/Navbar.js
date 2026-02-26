@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Sidebar from "./Sidebar";
-import TourinoLogo from "../tourinoLogo";
+import TourinoLogo from "../TourinoLogo";
 import LoginSection from "../LoginSection";
 
 const Navbar = () => {
