@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const Loading = () => {
   return (
-    <Card className = "w-full max-w-xs">
+    <Card className = "w-10/12 mx-auto my-5">
         <CardHeader>
             <Skeleton className = "h-4 w-2/3" />
             <Skeleton className = "h-4 w-1/2" />

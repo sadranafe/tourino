@@ -1,22 +1,22 @@
-'use client';
-
-import { Box, Grid, Skeleton } from "@mui/material";
+"use client";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const ToursLoading = () => {
-    return (
-        <>
-            <Grid container>
-                <Box sx = {{ width : 210 , height : 120 }}>
-                    <Skeleton className = "w-full h-full" variant = "rectangular"/>
-                </Box>
-                <Box>
-                    <Skeleton width = {210} height = {50} variant = "rounded"/>
-                    <Skeleton width = {210} height = {50} variant = "rounded"/>
-                    <Skeleton width = {210} height = {50} variant = "rounded"/>
-                </Box>
-            </Grid>
-        </>
-    );
+  return (
+    <>
+      <Card className = "w-full max-w-xs">
+        <CardHeader>
+            <Skeleton className = "h-4 w-2/3" />
+            <Skeleton className = "h-4 w-1/2" />
+        </CardHeader>
+
+        <CardContent>
+            <Skeleton className = "aspect-video w-full" />
+        </CardContent>
+      </Card>
+    </>
+  );
 };
 
 export default ToursLoading;
