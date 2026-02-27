@@ -60,7 +60,7 @@ const LoginSection = () => {
                             <LoginIcon customClasses = 'max-md:inline-block hidden'/>
                         </button>
                     </DialogTrigger>
-                    <DialogContent className = 'rounded-3xl w-[500px] h-[350px] max-sm:w-9/12 outline-none'>
+                    <DialogContent className = 'bg-neutral-50 rounded-3xl w-[500px] h-[350px] max-sm:w-9/12 outline-none'>
                         {
                             formStep === 'otp' ? <OTPForm timer = {timer} setTimer = {setTimer} phoneNum = {phoneNum}/> : <LoginForm timer = {timer} formik = {formik}/>
                         }
