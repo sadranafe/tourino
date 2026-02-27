@@ -1,7 +1,7 @@
-const Page = () => {
+const Page = ({ user }) => {
     return (
         <>
-            this is the profile of the user
+            
         </>
     );
 };

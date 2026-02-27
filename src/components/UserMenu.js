@@ -28,7 +28,7 @@ const UserMenu = () => {
                     </DropdownMenuItem>
 
                     <DropdownMenuItem className = 'p-0'>
-                        <Link href = '/' className = 'px-2 py-1.5 gap-2 w-full flex justify-start items-center'>
+                        <Link href = '/profile/setting' className = 'px-2 py-1.5 gap-2 w-full flex justify-start items-center'>
                             <span className = 'w-[26px] flex justify-center items-center'>
                                 <UserIcon width = {16}/>
                             </span>
