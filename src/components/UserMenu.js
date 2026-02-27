@@ -2,9 +2,10 @@
 import Link from 'next/link';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { LogOutIcon, UserIcon } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
 
 const UserMenu = () => {
-
+    const { isAuthenticated , logout , user } = useAuth();
     return (
         <div>
             
@@ -12,7 +13,7 @@ const UserMenu = () => {
                 <DropdownMenuTrigger asChild>
                     <button className = 'text-green-600 border p-2 px-3 rounded-lg text-[15px] outline-none flex justify-between items-center gap-1'>
                         <UserIcon width = {18}/>
-                        <span>09109919520</span>
+                        <span>{user?.mobile}</span>
                     </button>
                 </DropdownMenuTrigger>
                     
@@ -38,12 +39,12 @@ const UserMenu = () => {
                     <DropdownMenuSeparator/>
                     
                     <DropdownMenuItem className = 'p-0'>
-                        <Link href = '' className = 'px-2 py-1.5 gap-2 w-full flex justify-start text-red-500 items-center'>
+                        <button onClick = {() => logout()} className = 'px-2 py-1.5 gap-2 w-full flex justify-start text-red-500 items-center'>
                             <span className = 'w-[26px] flex justify-center items-center'>
                                 <LogOutIcon width = {18}/>
                             </span>
                             خروج
-                        </Link>
+                        </button>
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

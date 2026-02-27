@@ -7,8 +7,10 @@ import { DialogDescription , DialogTitle } from "@/components/ui/dialog";
 import api from "@/lib/api";
 import { setCookie } from "@/utils/cookie";
 import { getHttpErrorMessage } from "@/helper/helper";
+import { useAuth } from "@/context/AuthContext";
 
 const OTPForm = ({ phoneNum , timer , setTimer }) => {
+    const { login } = useAuth();
     const [otp , setOtp] = useState('');
     const [error , setError] = useState('')
     const router = useRouter();
@@ -21,8 +23,10 @@ const OTPForm = ({ phoneNum , timer , setTimer }) => {
     const loginBtnHandler = async () => {
         await api.post('/auth/check-otp' , { mobile : phoneNum , code : otp })
         .then(res => {
-            setCookie('accessToken' , res.data.accessToken , 30);
-            setCookie('refreshToken' , res.data.refreshToken , 365);
+            const { accessToken , refreshToken , user } = res.data
+            setCookie('accessToken' , accessToken , 1);
+            setCookie('refreshToken' , refreshToken , 7);
+            login(user);
             router.replace('/profile');
             setError('')
         })
