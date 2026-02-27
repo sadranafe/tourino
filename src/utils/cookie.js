@@ -14,4 +14,8 @@ const getCookie = (name) => {
   if (parts?.length === 2) return parts?.pop()?.split(";")?.shift();
 }
 
-export { setCookie, getCookie };
+const deleteCookie = name => {
+  document.cookie = `${name}=; path=/; max-age=0`;
+}
+
+export { setCookie, getCookie , deleteCookie };
