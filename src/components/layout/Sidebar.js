@@ -7,7 +7,7 @@ const Sidebar = () => {
 
     return (
         <>
-            <button onClick = {() => setSidebarIsOpen(!sidebarIsOpen)} className = "max-md:inline-block hidden z-20 outline-none">
+            <button onClick = {() => setSidebarIsOpen(!sidebarIsOpen)} className = "max-md:inline-block hidden z-30 outline-none">
                 {
                     sidebarIsOpen ? 
                     <>
@@ -23,9 +23,9 @@ const Sidebar = () => {
                 }
             </button>
 
-            <div className = {`${sidebarIsOpen ? 'block' : 'hidden'} overlay w-screen h-screen absolute top-0 left-0 bg-black/15`}></div>
+            <div className = {`${sidebarIsOpen ? 'block' : 'hidden'} overlay w-screen h-screen z-10 absolute top-0 left-0 bg-black/15`}></div>
 
-            <div className = {`max-w-fit h-screen z-10 absolute top-0 ${sidebarIsOpen ? 'right-0' : '-right-full'} flex flex-col justify-center items-center p-10 gap-10 rounded-tl-xl rounded-bl-xl bg-white transition-all`}>
+            <div className = {`max-w-fit h-screen z-10 absolute top-0 ${sidebarIsOpen ? 'right-0' : '-right-full'} flex flex-col justify-center z-20 items-center p-10 gap-10 rounded-tl-xl rounded-bl-xl bg-white transition-all`}>
                 <Link href = '/' className = "hover:text-green-500 transition-all">صفحه اصلی</Link>
                 <Link href = '/tour-services' className = "hover:text-green-500 transition-all">خدمات گردشگری</Link>
                 <Link href = '/about-us' className = "hover:text-green-500 transition-all">درباره ما</Link>
