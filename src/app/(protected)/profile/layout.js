@@ -9,7 +9,7 @@ const ProfileLayout = ({ children }) => {
     const router = useRouter();
     useEffect(() => {
         if(!user?.firstName || !user?.lastName){
-            router.replace('/profile/complete-profile')
+            router.replace('/profile/account')
         }
     },[user])
 
