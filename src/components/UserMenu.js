@@ -8,7 +8,6 @@ const UserMenu = () => {
     const { isAuthenticated , logout , user } = useAuth();
     return (
         <div>
-            
             <DropdownMenu dir = 'rtl'>
                 <DropdownMenuTrigger asChild>
                     <button className = 'text-green-600 border p-2 px-3 rounded-lg text-[15px] outline-none flex justify-between items-center gap-1'>
@@ -17,7 +16,7 @@ const UserMenu = () => {
                     </button>
                 </DropdownMenuTrigger>
                     
-                <DropdownMenuContent className = 'rounded-2xl p-1.5'>
+                <DropdownMenuContent className = 'rounded-2xl p-1.5 mx-3'>
                     <DropdownMenuItem className = 'p-0'>
                         <Link href = '/profile' className = 'px-2 py-1.5 gap-2 w-full flex justify-start items-center'>
                             <span className = 'border w-[26px] h-[26px] text-neutral-600 flex justify-center items-center rounded-full'>
