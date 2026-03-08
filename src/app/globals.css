@@ -92,6 +92,28 @@ input::-webkit-inner-spin-button {
     }
 }
 
+@media (max-width: 830px) {
+    .account-card > div > div:nth-child(1) {
+        @apply col-span-2;
+    }
+}
+
+@media (max-width: 530px) {
+    .account-card > div > div:nth-child(2) {
+        @apply col-span-2;
+    }
+
+    .account-card:nth-child(2) > div > div:nth-child(3) {
+        @apply col-span-2;
+    }
+}
+
+@media (max-width: 430px) {
+    .account-card > div > div:last-child {
+        @apply col-span-2;
+    }
+}
+
 
 
 @layer base {
