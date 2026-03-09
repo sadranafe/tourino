@@ -16,7 +16,7 @@ const UserMenu = () => {
                     </button>
                 </DropdownMenuTrigger>
                     
-                <DropdownMenuContent className = 'rounded-2xl p-1.5 mx-3'>
+                <DropdownMenuContent className = 'rounded-xl p-1.5 mx-3'>
                     <DropdownMenuItem className = 'p-0'>
                         <Link href = '/profile' className = 'px-2 py-1.5 gap-2 w-full flex justify-start items-center'>
                             <span className = 'border w-[26px] h-[26px] text-neutral-600 flex justify-center items-center rounded-full'>

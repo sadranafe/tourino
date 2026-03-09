@@ -41,17 +41,22 @@ const AccountProfilePage = () => {
                     return (
                         <div key = {index} className = "account-card border rounded-xl p-5 my-3">
                             <h1 className = "text-xl">{card.title}</h1>
-                            <div className = "grid grid-cols-2 max-[400px]:grid-cols-1 max-[400px]:gap-3 max-[400px]:my-3 gap-y-3 max-[830px]:gap-x-3 w-full items-center">
+                            <div className = "relative w-full grid grid-cols-2 max-[400px]:grid-cols-1 max-[400px]:gap-3 max-[400px]:my-3 gap-y-3 max-[830px]:gap-x-3 items-center">
                                 {
                                     card?.inputs?.map((input , index) => {
                                         return (
                                             <div key = {index}>
-                                                <label htmlFor = {input.name}>{input.label}</label>
+                                                <label htmlFor = {input.name} className = "text-neutral-400">{input.label}</label>
                                                 <input type = {input.type} name = {input.name} placeholder = {input.placeholder} value = {input.value || '-'} disabled = { true } className = "outline-none p-2 mr-2 border border-neutral-50 bg-neutral-500/20 rounded-lg shadow-[0_5px_10px_rgba(0,0,0,0.03)] disabled:shadow-none disabled:bg-transparent disabled:border-transparent"/>
                                             </div>
                                         )
                                     })
                                 }
+                                <div className = "absolute max-[830px]:bottom-full min-[831px]:top-1/2 min-[831px]:-translate-y-1/2 left-0">
+                                    <button className = "flex justify-center items-center p-2 text-sky-500 hover:text-sky-700 gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                                        <PencilSimpleLineIcon weight = "light"/> ویرایش
+                                    </button>
+                                </div>
                                 {/* <div className = "grid grid-cols-2 max-[400px]:grid-cols-1 max-[400px]:gap-3 max-[400px]:my-3 w-full items-center">
                                     <div>
                                         <label htmlFor = "debtCardCode" className = "text-neutral-500">شماره کارت : </label>

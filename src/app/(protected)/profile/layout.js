@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 
 const ProfileLayout = ({ children }) => {
     const { user } = useAuth();
-    console.log(user)
     const router = useRouter();
     useEffect(() => {
         if(!user?.firstName || !user?.lastName){
