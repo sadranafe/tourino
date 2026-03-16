@@ -2,19 +2,27 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 import { getCookie } from "@/utils/cookie";
+import toast from "react-hot-toast";
 import UserIconComponent from "@/components/icons/userIcon";
 import { SunHorizonIcon, SwapIcon } from "@phosphor-icons/react";
 
 const ProtectedLayout = ({ children }) => {
+    const { user } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
         const token = getCookie('accessToken');
         if(!token) {
             router.replace('/');
+        } else {
+            if(!user?.firstName || !user?.lastName || !user?.nationalCode){
+                router.replace('/profile/account');
+                toast.error('برای ادامه فرایند باید اطلاعات  خود را کامل کنید')
+            }
         }
-    },[])
+    },[ user ])
 
     return(
         <div className = "flex justify-between max-[700px]:flex-wrap gap-5 p-5 px-10 max-lg:px-5 xl:w-[1280px] mx-auto">
