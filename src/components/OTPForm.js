@@ -7,7 +7,8 @@ import { DialogDescription , DialogTitle } from "@/components/ui/dialog";
 import api from "@/lib/api";
 import { setCookie } from "@/utils/cookie";
 import { getHttpErrorMessage } from "@/helper/helper";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/provider/AuthProvider";
+// import { useAuth } from "@/context/AuthContext";
 
 const OTPForm = ({ phoneNum , timer , setTimer }) => {
     const { login } = useAuth();

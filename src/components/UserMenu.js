@@ -1,8 +1,9 @@
 'use client';
 import Link from 'next/link';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { useAuth } from '@/provider/AuthProvider';
 import { LogOutIcon, UserIcon } from 'lucide-react';
-import { useAuth } from '@/context/AuthContext';
+// import { useAuth } from '@/context/AuthContext';
 
 const UserMenu = () => {
     const { isAuthenticated , logout , user } = useAuth();

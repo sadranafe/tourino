@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { UserSchema } from "@/utils/UserSchema";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/provider/AuthProvider";
 import api from "@/lib/api";
 import { Dialog , DialogContent , DialogTrigger } from "@/components/ui/dialog";
 import UserMenu from "./UserMenu";
