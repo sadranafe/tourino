@@ -1,9 +1,9 @@
 'use client';
-import { AuthContext } from "@/context/AuthContext";
+import { createContext, useContext, useEffect, useState } from "react";
 import api from "@/lib/api";
 import { deleteCookie, getCookie } from "@/utils/cookie";
-import { useEffect, useState } from "react";
 
+const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
     const [user , setUser] = useState(null);
@@ -45,9 +45,22 @@ const AuthProvider = ({ children }) => {
         window.location.href = '/';
     }
 
+    const userSetter = userData => {
+        setUser(prev => {
+            return {prev , ...userData}
+        })
+    }
+
     return (
-        <AuthContext.Provider value = {{ user , isAuthenticated , login , logout , loading }}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value = {{ user , userSetter , isAuthenticated , login , logout , loading }}>{children}</AuthContext.Provider>
     )
 };
 
+const useAuth = () => {
+    const context = useContext(AuthContext);
+    if(context === undefined) throw new Error('Context was used outside provider');
+    return context
+}
+
+export { useAuth };
 export default AuthProvider;
