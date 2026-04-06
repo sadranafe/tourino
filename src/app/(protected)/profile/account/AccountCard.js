@@ -8,15 +8,28 @@ import { CheckIcon, PencilSimpleLineIcon } from "@phosphor-icons/react";
 import { UserAccountSchema } from "@/utils/UserAccountSchema";
 import ErrorMessage from "@/components/ErrorMessage";
 
-const AccountCard = ({ card , formik , user }) => {
+const AccountCard = ({ card , formik , user , onSave }) => {
     const [isEditing , setIsEditing] = useState(false);
-    const [selectedDate , setSelectedDate] = useState(user?.birthDate || new DateObject({ calendar : persian , locale : persian_en }));
-    const [fieldHasError , setFieldHasError] = useState(false);
+    const [selectedDate , setSelectedDate] = useState(user?.birthDate || null);
+    const [gender , setGender] = useState(user?.gender || 'male');
 
-    const toggleEdit = (ev) => {
-        setIsEditing(!isEditing)
-        if(ev.target.name === 'saveDataBtn' && !fieldHasError){
-            formik.handleSubmit();
+    const dateChangeHandler = date => {
+        setSelectedDate(date);
+        if(date) formik.setFieldValue('birthDate' , date.toString());
+    }
+
+    const genderChangeHandler = ev => {
+        const value = ev.target.value;
+        setGender(value);
+        formik.setFieldValue('gender' , value);
+    }
+
+    const toggleEdit = async (ev) => {
+        if(ev.target.name === 'saveDataBtn'){
+            const isValid = await onSave();
+            if(isValid) setIsEditing(false)
+        } else {
+            setIsEditing(!isEditing)
         }
     }
     return (
@@ -42,11 +55,14 @@ const AccountCard = ({ card , formik , user }) => {
                         <>
                             <div className = "relative">
                                 <label htmlFor = "birthDate" className = "text-neutral-400 ml-2">تاریخ تولد : </label>
-                                <DatePicker name = "birthDate" id = 'birthDate' placeholder = "تاریخ تولد" value = {selectedDate} disabled = {!isEditing} calendarPosition = "bottom-center" calendar = {persian} locale = {persian_en} inputClass = "bg-transparent outline-none cursor-pointer disabled:cursor-default disabled:border-transparent outline-none border p-2 rounded-lg"/>
+                                <DatePicker name = "birthDate" id = 'birthDate' placeholder = "تاریخ تولد" value = {selectedDate} onChange = {dateChangeHandler} disabled = {!isEditing} calendarPosition = "bottom-center" calendar = {persian} locale = {persian_en} inputClass = "bg-transparent outline-none cursor-pointer disabled:cursor-default disabled:border-transparent outline-none border p-2 rounded-lg"/>
+                                <div className = 'errorWrapper absolute -right-6 top-1/2 -translate-y-1/2'>
+                                    <ErrorMessage fieldHasError = {formik.touched['birthDate'] && formik.errors['birthDate']} errorMsg = {formik.errors['birthDate']}/>
+                                </div>
                             </div>
                             <div>
                                 <label className = "text-neutral-400">جنسیت : </label>
-                                <select name = "gender" id = "gender" disabled = {!isEditing} className = "bg-transparent outline-none cursor-pointer border rounded-lg p-1.5 disabled:border-transparent disabled:cursor-default disabled:appearance-none">
+                                <select name = "gender" id = "gender" disabled = {!isEditing} value = {gender} onChange = {genderChangeHandler} className = "bg-transparent outline-none cursor-pointer border rounded-lg p-1.5 disabled:border-transparent disabled:cursor-default disabled:appearance-none">
                                     <option value = "male">مرد</option>
                                     <option value = "female">زن</option>
                                 </select>
@@ -55,11 +71,11 @@ const AccountCard = ({ card , formik , user }) => {
                     }
                     <div className = "absolute max-[830px]:bottom-full min-[831px]:top-1/2 min-[831px]:-translate-y-1/2 left-0">
                         {
-                            isEditing && !fieldHasError ? 
+                            isEditing ? 
                             <button onClick = {toggleEdit} type = "submit" name = 'saveDataBtn' className = "flex justify-center items-center p-2 text-sky-500 hover:text-sky-700 gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
                                 <CheckIcon weight = "light"/> ذخیره
                             </button> :
-                            <button onClick = {toggleEdit} className = "flex justify-center items-center p-2 text-sky-500 hover:text-sky-700 gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                            <button onClick = {toggleEdit} className = "flex justify-center items-center p-2 text-sky-500 hover:text-sky-700 disabled:text-sky-400 disabled:cursor-default gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
                                 <PencilSimpleLineIcon weight = "light"/> ویرایش
                             </button>
                         }
