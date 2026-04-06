@@ -55,4 +55,10 @@ const getNewTokens = async () => {
     }
 };
 
+const updateUserProfile = async data => {
+    const res = await api.put('/user/profile' , ...data);
+    return res.data;
+}
+
+export { updateUserProfile };
 export default api;

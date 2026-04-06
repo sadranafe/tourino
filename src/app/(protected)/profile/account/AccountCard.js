@@ -1,14 +1,12 @@
 'use client';
 import { useState } from "react";
-import { useFormik } from "formik";
-import DatePicker, { DateObject } from "react-multi-date-picker";
+import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian"
 import persian_en from "react-date-object/locales/persian_en"
-import { CheckIcon, PencilSimpleLineIcon } from "@phosphor-icons/react";
-import { UserAccountSchema } from "@/utils/UserAccountSchema";
 import ErrorMessage from "@/components/ErrorMessage";
+import { ArrowClockwiseIcon, CheckIcon, PencilSimpleLineIcon } from "@phosphor-icons/react";
 
-const AccountCard = ({ card , formik , user , onSave }) => {
+const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) => {
     const [isEditing , setIsEditing] = useState(false);
     const [selectedDate , setSelectedDate] = useState(user?.birthDate || null);
     const [gender , setGender] = useState(user?.gender || 'male');
@@ -24,13 +22,44 @@ const AccountCard = ({ card , formik , user , onSave }) => {
         formik.setFieldValue('gender' , value);
     }
 
-    const toggleEdit = async (ev) => {
+    const toggleEdit = async ev => {
         if(ev.target.name === 'saveDataBtn'){
-            const isValid = await onSave();
-            if(isValid) setIsEditing(false)
+            const result = await onSave();
+            if(result?.success) setIsEditing(false)
         } else {
             setIsEditing(!isEditing)
         }
+    }
+
+    const renderSaveButton = () => {
+        if(loading) {
+            return (
+                <button disabled className = "flex justify-center items-center p-2 text-gray-400 gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                    <span className = "animate-spin">⏳</span> درحال ذخیره . . .
+                </button>
+            )
+        }
+        if(saveStatus === 'success') {
+            return(
+                <button disabled className = "flex justify-center items-center p-2 text-green-500 gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                    <CheckIcon weight = "fill"/> ذخیره شد
+                </button>
+            )
+        }
+
+        if(saveStatus === 'error') {
+            return(
+                <button onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-red-500 hover:text-red-700 gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                    <ArrowClockwiseIcon weight = "light"/> تلاش مجدد
+                </button>
+            )
+        }
+
+        return(
+            <button type = "button" onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-sky-500 hover:text-sky-700 gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                <CheckIcon weight = "light"/> ذخیره
+            </button>
+        )
     }
     return (
         <>
@@ -71,11 +100,9 @@ const AccountCard = ({ card , formik , user , onSave }) => {
                     }
                     <div className = "absolute max-[830px]:bottom-full min-[831px]:top-1/2 min-[831px]:-translate-y-1/2 left-0">
                         {
-                            isEditing ? 
-                            <button onClick = {toggleEdit} type = "submit" name = 'saveDataBtn' className = "flex justify-center items-center p-2 text-sky-500 hover:text-sky-700 gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
-                                <CheckIcon weight = "light"/> ذخیره
-                            </button> :
-                            <button onClick = {toggleEdit} className = "flex justify-center items-center p-2 text-sky-500 hover:text-sky-700 disabled:text-sky-400 disabled:cursor-default gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                            isEditing ?
+                            renderSaveButton() :
+                            <button  onClick = {toggleEdit} className = "flex justify-center items-center p-2 text-sky-500 hover:text-sky-700 disabled:text-sky-400 disabled:cursor-default gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
                                 <PencilSimpleLineIcon weight = "light"/> ویرایش
                             </button>
                         }

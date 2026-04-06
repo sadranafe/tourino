@@ -4,6 +4,9 @@ import { useFormik } from "formik";
 import { UserAccountSchema , UserAccountFullSchema } from "@/utils/UserAccountSchema";
 import AccountCard from "./AccountCard";
 import { PencilSimpleLineIcon } from "@phosphor-icons/react";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { updateUserProfile } from "@/lib/api";
 
 const DUMMY_ACCOUNT_CARD_INFO = [
     {
@@ -38,8 +41,16 @@ const DUMMY_ACCOUNT_CARD_INFO = [
     },
 ]
 
+const SECTION_FIELDS = {
+    contact: ['mobile', 'email'],
+    personal: ['fullname', 'nationalCode', 'birthDate', 'gender'],
+    banking: ['debitCardCode', 'shebaCode'],
+};
+
 const AccountProfilePage = () => {
     const { user } = useAuth();
+    const [loading , setLoading] = useState(false);
+    const [saveStatus , setSaveStatus] = useState({});
     const formik = useFormik({
         enableReinitialize : true,
         initialValues : {
@@ -53,16 +64,23 @@ const AccountProfilePage = () => {
             shebaCode : user?.shebaCode || '-'
         },
         validationSchema : UserAccountFullSchema,
-        onSubmit : val => {
-            console.log(val)
+        onSubmit : async val => {
+            try {
+                setLoading(true);
+                await updateUserProfile(val)
+                toast.success('پروفایل با موفقیت بروزرسانی شد')
+            } catch (err) {
+                console.error('Error updating profile : ' , err);
+                toast.error('خطا در بروزرسانی پروفایل')
+            } finally {
+                setLoading(false);
+            }
         },
     })
 
     const validateSection = async sectionKey => {
         const sectionSchema = UserAccountSchema[sectionKey];
-        console.log('sectionSchema : ' , sectionSchema)
         const sectionFields = Object.keys(sectionSchema.fields);
-        console.log('sectionFields : ' , sectionFields)
         const sectionValues = {};
         sectionFields.forEach(field => {
             sectionValues[field] = formik.values[field];
@@ -83,26 +101,43 @@ const AccountProfilePage = () => {
     const handleSectionSave = async sectionKey => {
         const { isValid , errors } = await validateSection(sectionKey);
 
-        if(isValid) {
-            const sectionSchema = UserAccountSchema[sectionKey];
-            const sectionFields = Object.keys(sectionSchema.fields);
-            const touched = {};
-            sectionFields.forEach(field => {
-                touched[field] = true;
-            })
-            formik.setTouched(touched);
-            console.log(`section ${sectionKey} saved : ${formik.values}`)
-        } else {
+        if(!isValid) {
             const touched = {};
             Object.keys(errors).forEach(field => {
                 touched[field] = true;
-            })
-
+            });
             formik.setTouched(touched);
             formik.setErrors(errors);
+            return { success : false , errors }
         }
 
-        return isValid;
+        const fields = SECTION_FIELDS[sectionKey];
+        const sectionData = {};
+        fields.forEach(field => {
+            sectionData[field] = formik.values[field];
+        });
+
+        try {
+            console.log(sectionData)
+            setLoading(true);
+            setSaveStatus(prev => ({...prev , [sectionKey] : 'loading'}));
+            await updateUserProfile({ ...sectionData })
+            setSaveStatus(prev => ({ ...prev, [sectionKey]: 'success' }));
+            const touched = {};
+            fields.forEach(field => touched[field] = true);
+            formik.setTouched(touched);
+
+            setTimeout(() => {
+                setSaveStatus(prev => ({ ...prev, [sectionKey]: null }));
+            }, 2000);
+            return { success : true };
+        } catch (err) {
+            console.error('Error saving section : ' , err);
+            setSaveStatus(prev => ({ ...prev , [sectionKey] : 'error' }))
+            return { success : false , error : err.message }
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -110,7 +145,7 @@ const AccountProfilePage = () => {
             {
                 DUMMY_ACCOUNT_CARD_INFO.map( card => {
                     return (
-                        <AccountCard key = { card.key } card = { card } formik = {formik} user = {user} onSave = {() => handleSectionSave(card.key)}/>
+                        <AccountCard key = { card.key } card = { card } formik = {formik} user = {user} onSave = {() => handleSectionSave(card.key)} loading = { loading || saveStatus[card.key] === 'loading' } saveStatus = {saveStatus[card.key]}/>
                     )
                 })
             }
