@@ -5,24 +5,32 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/provider/AuthProvider";
 import { getCookie } from "@/utils/cookie";
 import toast from "react-hot-toast";
+import { Skeleton } from "@/components/ui/skeleton";
 import UserIconComponent from "@/components/icons/userIcon";
 import { SunHorizonIcon, SwapIcon } from "@phosphor-icons/react";
 
 const ProtectedLayout = ({ children }) => {
-    const { user } = useAuth();
+    const { user , loading } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
         const token = getCookie('accessToken');
         if(!token) {
             router.replace('/');
-        } else {
-            if(!user?.firstName || !user?.lastName || !user?.nationalCode){
-                router.replace('/profile/account');
-                toast.error('برای ادامه فرایند باید اطلاعات  خود را کامل کنید')
-            }
+            return;
         }
-    },[ user ])
+
+        if(loading) return;
+        const hasFullname = !!user?.fullname;
+        const hasNationalCode = !!user?.nationalCode;
+        const hasEamil = !!user?.email;
+        const isProfileComplete  = hasFullname && hasNationalCode && hasEamil;
+
+        if(!isProfileComplete) {
+            router.replace('/profile/account');
+            toast.error('برای ادامه فرایند باید اطلاعات خود را کامل کنید')
+        }
+    },[ user , router , loading ])
 
     return(
         <div className = "flex justify-between max-[700px]:flex-wrap gap-5 p-5 px-10 max-lg:px-5 xl:w-[1280px] mx-auto">
@@ -43,7 +51,21 @@ const ProtectedLayout = ({ children }) => {
                 </Link>
             </div>
 
-            <div className = "w-10/12 max-[700px]:w-full">{ children }</div>
+            <div className = "w-10/12 max-[700px]:w-full">
+                {
+                    loading ?
+                    <div className = "w-full h-full p-5 border rounded-xl">
+                        <Skeleton className = "h-5 w-1/2 mb-3" />
+                        <div className = "w-full grid grid-cols-2 gap-2">
+                            <Skeleton className = "h-[35px] w-1/2" />
+                            <Skeleton className = "h-[35px] w-1/2" />
+                            <Skeleton className = "h-[35px] w-1/2" />
+                            <Skeleton className = "h-[35px] w-1/2" />
+                        </div>
+                    </div> :
+                    children
+                }
+            </div>
         </div>
     )
 }
