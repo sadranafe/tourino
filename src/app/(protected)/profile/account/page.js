@@ -56,7 +56,7 @@ const AccountProfilePage = () => {
         initialValues : {
             mobile : user?.mobile || '-',
             email : user?.email || '-',
-            fullname : user?.firstName && user?.lastName ? `${user?.firstName} ${user?.lastName}` : '-',
+            fullname : user?.fullname || '-',
             nationalCode : user?.nationalCode || '-',
             gender : user?.gender || 'male',
             birthDate : user?.birthDate || null,
@@ -118,7 +118,6 @@ const AccountProfilePage = () => {
         });
 
         try {
-            console.log(sectionData)
             setLoading(true);
             setSaveStatus(prev => ({...prev , [sectionKey] : 'loading'}));
             await updateUserProfile({ ...sectionData })
