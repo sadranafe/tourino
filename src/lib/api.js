@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getCookie, setCookie } from '@/utils/cookie.js'
+import { deleteCookie, getCookie, setCookie } from '@/utils/cookie.js'
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -35,8 +35,8 @@ api.interceptors.response.use(
             setCookie('refreshToken' , res?.response?.data?.refreshToken , 360);
             return api(originalRequest);
         } else {
-            setCookie('accessToken' , '' , 0);
-            setCookie('refreshToken' , '' , 0);
+            deleteCookie('accessToken')
+            deleteCookie('refreshToken')
         }
         return Promise.reject(err.response.data);
     }
