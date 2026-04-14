@@ -9,7 +9,6 @@ import { ArrowClockwiseIcon, CheckIcon, PencilSimpleLineIcon } from "@phosphor-i
 const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) => {
     const [isEditing , setIsEditing] = useState(false);
     const [selectedDate , setSelectedDate] = useState(user?.birthDate || null);
-    const [gender , setGender] = useState(user?.gender || 'male');
 
     const dateChangeHandler = date => {
         setSelectedDate(date);
@@ -18,7 +17,6 @@ const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) =
 
     const genderChangeHandler = ev => {
         const value = ev.target.value;
-        setGender(value);
         formik.setFieldValue('gender' , value);
     }
 
@@ -91,7 +89,7 @@ const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) =
                             </div>
                             <div>
                                 <label className = "text-neutral-400">جنسیت : </label>
-                                <select name = "gender" id = "gender" disabled = {!isEditing} value = {gender} onChange = {genderChangeHandler} className = "bg-transparent outline-none cursor-pointer border rounded-lg p-1.5 disabled:border-transparent disabled:cursor-default disabled:appearance-none">
+                                <select name = "gender" id = "gender" disabled = {!isEditing} value = {formik?.values?.gender} onChange = {genderChangeHandler} className = "bg-transparent outline-none cursor-pointer border rounded-lg p-1.5 disabled:border-transparent disabled:cursor-default disabled:appearance-none">
                                     <option value = "male">مرد</option>
                                     <option value = "female">زن</option>
                                 </select>
