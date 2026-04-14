@@ -49,23 +49,23 @@ const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) =
 
         if(saveStatus === 'error') {
             return(
-                <button onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-red-500 hover:text-red-700 gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                <button onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-red-500 hover:bg-red-50 transition-all gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
                     <ArrowClockwiseIcon weight = "light"/> تلاش مجدد
                 </button>
             )
         }
 
         return(
-            <button type = "button" onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-sky-500 hover:text-sky-700 gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+            <button type = "button" onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-sky-500 hover:text-sky-600 hover:bg-sky-100 transition-all gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
                 <CheckIcon weight = "light"/> ذخیره
             </button>
         )
     }
     return (
         <>
-            <div className = "account-card border rounded-xl p-5 my-3 bg-yellow-50">
+            <div className = {`${isEditing ? 'bg-neutral-50' : ''} account-card border rounded-xl p-7 px-10 my-3`}>
                 <h1 className = "text-xl">{card.title}</h1>
-                <div className = "relative w-full grid grid-cols-2 bg-red-50 max-[400px]:grid-cols-1 max-[400px]:gap-3 my-3 gap-y-3 max-[830px]:gap-x-3 items-center">
+                <div className = "relative w-full grid grid-cols-2 max-[400px]:grid-cols-1 max-[400px]:gap-3 my-3 gap-y-3 max-[830px]:gap-x-3 items-center px-5">
                     {
                         card?.inputs?.map((input , index) => {
                             return (
@@ -102,7 +102,7 @@ const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) =
                         {
                             isEditing ?
                             renderSaveButton() :
-                            <button  onClick = {toggleEdit} className = "flex justify-center items-center p-2 text-sky-500 hover:text-sky-700 disabled:text-sky-400 disabled:cursor-default gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                            <button  onClick = {toggleEdit} className = "flex justify-center items-center p-2 text-sky-600 hover:bg-sky-50 transition-all disabled:text-sky-400 disabled:hover:bg-transparent disabled:cursor-default gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
                                 <PencilSimpleLineIcon weight = "light"/> ویرایش
                             </button>
                         }
