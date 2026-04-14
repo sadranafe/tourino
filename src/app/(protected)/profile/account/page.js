@@ -33,8 +33,8 @@ const DUMMY_ACCOUNT_CARD_INFO = [
         key : 'banking',
         title : 'اطلاعات بانکی',
         inputs : [
-            { inputID : 1, label : 'شماره کارت', name : 'debitCardCode', type : 'text', placeholder : ''} ,
-            { inputID : 2, label : 'شماره شبا', name : 'shebaCode', type : 'text', placeholder : ''},
+            { inputID : 1, label : 'شماره کارت', name : 'debitCardCode', type : 'number', placeholder : ''} ,
+            { inputID : 2, label : 'شماره شبا', name : 'shebaCode', type : 'number', placeholder : ''},
         ] ,
         hasOptionTag : false,
         icon : <PencilSimpleLineIcon weight = "light"/>,
