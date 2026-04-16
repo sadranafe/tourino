@@ -15,17 +15,17 @@ const TourCard = ( props ) => {
             <div className = 'border rounded-xl'>
                 <Link href = {`/tour/${id}`}>
                     <div className = 'relative w-full aspect-[4/3] sm:aspect-[16/9]'>
-                        <Image src = {img} alt = {title} fill className = 'object-contain rounded-t-xl' sizes = "(max-width: 768px) 100vw, 25vw"/>
+                        <Image src = {img} alt = {title} fill className = 'object-cover rounded-t-xl' sizes = "(max-width: 768px) 100vw, 25vw"/>
                     </div>
 
-                    <div className = 'border-b p-2'>
+                    <div className = 'border-b p-4'>
                         <h2 className = 'text-lg'>{title}</h2>
                         <p className = 'text-neutral-500 text-xs'>{ `${tourMonth} ماه - ${tourDurationInDays} روزه - ${vehicleTypeTranslate[fleetVehicle]} - ${hotelRate}` }</p>
                     </div>
                 </Link>
 
-                <div className = 'flex justify-between items-center p-2'>
-                    <button className = 'bg-green-500 text-white p-1 px-5 rounded-md hover:bg-green-600 transition-all'>رزرو</button>
+                <div className = 'flex justify-between items-center p-4'>
+                    <button className = 'bg-green-500 text-white p-1.5 px-5 rounded-md hover:bg-green-600 transition-all'>رزرو</button>
                     <p><span className = 'text-blue-500 ml-0.5'>{ price.toLocaleString() }</span> تومان</p>
                 </div>
             </div>

@@ -101,7 +101,7 @@ const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) =
                         {
                             isEditing ?
                             renderSaveButton() :
-                            <button  onClick = {toggleEdit} className = "flex justify-center items-center p-2 text-sky-600 hover:bg-sky-50 transition-all disabled:text-sky-400 disabled:hover:bg-transparent disabled:cursor-default gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                            <button  onClick = {toggleEdit} className = "flex justify-center items-center p-2 text-sky-600 hover:bg-sky-50 transition-all disabled:text-sky-400 disabled:hover:bg-transparent disabled:cursor-default gap-1 max-sm:mt-2 max-md:bg-sky-50 max-md:hover:bg-sky-100 max-sm:w-full rounded-md">
                                 <PencilSimpleLineIcon weight = "light"/> ویرایش
                             </button>
                         }
