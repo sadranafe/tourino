@@ -32,14 +32,14 @@ const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) =
     const renderSaveButton = () => {
         if(loading) {
             return (
-                <button disabled className = "flex justify-center items-center p-2 text-gray-400 gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                <button disabled className = "flex justify-center items-center p-2 text-gray-400 gap-1 max-sm:mt-2 max-sm:w-full rounded-md">
                     <span className = "animate-spin">⏳</span> درحال ذخیره . . .
                 </button>
             )
         }
         if(saveStatus === 'success') {
             return(
-                <button disabled className = "flex justify-center items-center p-2 text-green-500 gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                <button disabled className = "flex justify-center items-center p-2 text-green-500 gap-1 max-sm:mt-2 max-sm:w-full rounded-md">
                     <CheckIcon weight = "fill"/> ذخیره شد
                 </button>
             )
@@ -47,14 +47,14 @@ const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) =
 
         if(saveStatus === 'error') {
             return(
-                <button onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-red-500 hover:bg-red-50 transition-all gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+                <button onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-red-500 hover:bg-red-50 transition-all gap-1 max-sm:mt-2 max-sm:w-full rounded-md">
                     <ArrowClockwiseIcon weight = "light"/> تلاش مجدد
                 </button>
             )
         }
 
         return(
-            <button type = "button" onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-sky-500 hover:text-white hover:bg-blue-500 transition-all gap-1 max-sm:border max-sm:mt-2 max-sm:hover:bg-neutral-50 border-neutral-100 max-sm:w-full rounded-md">
+            <button type = "button" onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-sky-500 hover:text-white hover:bg-blue-500 transition-all gap-1 max-sm:mt-2 max-sm:w-full rounded-md">
                 <CheckIcon weight = "light"/> ذخیره
             </button>
         )

@@ -1,7 +1,7 @@
 'use client';
-import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import ActiveLink from "@/components/ActiveLink";
 import { useAuth } from "@/provider/AuthProvider";
 import { getCookie } from "@/utils/cookie";
 import toast from "react-hot-toast";
@@ -33,27 +33,27 @@ const ProtectedLayout = ({ children }) => {
     },[ user , router , loading ])
 
     return(
-        <div className = "flex justify-between max-[700px]:flex-wrap gap-5 py-5 max-xl:px-10 max-lg:px-5 xl:max-w-[1150px] mx-auto">
-            <div className = "sticky max-[400px]:text-xs z-40 bg-white max-[700px]:w-full max-[700px]:flex max-[700px]:justify-center max-[700px]:items-center max-[700px]:shadow-lg max-[700px]:shadow-neutral-50 max-[700px]:top-[70px] top-[85px] border border-dashed rounded-xl overflow-hidden max-h-fit w-[200px]">
-                <Link href = '/profile/dashboard' className = "hover:bg-neutral-50 gap-1 hover:text-green-500 transition-all flex justify-start items-center p-3 border-b max-[700px]:border-l max-[700px]:border-b-0 w-full max-[700px]:justify-center">
+        <div className = "flex justify-between max-[700px]:flex-wrap gap-5 py-5 max-xl:px-10 max-lg:px-5 max-[320px]:px-2 xl:max-w-[1150px] mx-auto">
+            <div className = "sticky max-[400px]:text-xs z-40 bg-white max-[700px]:w-full max-[700px]:flex max-[480px]:flex-wrap max-[700px]:justify-center max-[700px]:items-center max-[700px]:shadow-lg max-[700px]:shadow-neutral-50 max-[700px]:top-[70px] top-[85px] border border-dashed overflow-hidden rounded-xl max-h-fit w-[200px]">
+                <ActiveLink href = '/profile/dashboard' activeClass = "text-green-600 bg-green-50" inactiveClass = "bg-transparent text-black hover:bg-neutral-50 hover:text-green-500" classLink = "gap-1 transition-all flex justify-start items-center p-3 border-b max-[700px]:border-l max-[480px]:border-b max-[700px]:border-b-0 w-full max-[700px]:justify-center max-[480px]:w-1/2">
                     <CirclesFourIcon weight = "light" size = {18} className = "w-[18px] text-[15px]"/>
                     داشبورد
-                </Link>
+                </ActiveLink>
 
-                <Link href = '/profile/account' className = "hover:bg-neutral-50 gap-1 hover:text-green-500 transition-all flex justify-start items-center p-3 border-b max-[700px]:border-l max-[700px]:border-b-0 w-full max-[700px]:justify-center">
+                <ActiveLink href = '/profile/account' activeClass = "text-green-600 bg-green-50" inactiveClass = "bg-transparent text-black hover:bg-neutral-50 hover:text-green-500" classLink = "gap-1 transition-all flex justify-start items-center p-3 border-b max-[700px]:border-l max-[480px]:border-b max-[480px]:border-l-0 max-[700px]:border-b-0 w-full max-[700px]:justify-center text-nowrap max-[480px]:w-1/2 max-[320px]:text-xs">
                     <UserIconComponent customClassName = 'w-[18px] text-[15px]'/>
-                    حساب کاربری
-                </Link>
+                    اطلاعات حساب کاربری
+                </ActiveLink>
 
-                <Link href = '/profile/my-tour' className = "hover:bg-neutral-50 gap-1 hover:text-green-500 transition-all flex justify-start items-center p-3 border-b max-[700px]:border-l max-[700px]:border-b-0 w-full max-[700px]:justify-center">
+                <ActiveLink href = '/profile/my-tour' activeClass = "text-green-600 bg-green-50" inactiveClass = "bg-transparent text-black hover:bg-neutral-50 hover:text-green-500" classLink = "gap-1 transition-all flex justify-start items-center p-3 border-b max-[700px]:border-l max-[700px]:border-b-0 w-full max-[700px]:justify-center max-[515px]:text-xs text-nowrap max-[480px]:w-1/2">
                     <SunHorizonIcon size = {18} weight = "light"/>
                     تور های من
-                </Link>
-                
-                <Link href = '/profile/transactions' className = "hover:bg-neutral-50 gap-1 hover:text-green-500 transition-all flex justify-start items-center p-3 w-full max-[700px]:justify-center">
+                </ActiveLink>
+
+                <ActiveLink href = '/profile/transactions' activeClass = "text-green-600 bg-green-50" inactiveClass = "bg-transparent text-black hover:bg-neutral-50 hover:text-green-500" classLink = "gap-1 transition-all flex justify-start items-center p-3 w-full max-[700px]:justify-center max-[515px]:text-xs text-nowrap max-[480px]:w-1/2">
                     <SwapIcon size = {18} weight = "light"/>
                     تراکنش ها
-                </Link>
+                </ActiveLink>
             </div>
 
             <div className = "w-10/12 max-[700px]:w-full">
