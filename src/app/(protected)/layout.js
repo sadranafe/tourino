@@ -34,7 +34,7 @@ const ProtectedLayout = ({ children }) => {
 
     return(
         <div className = "flex justify-between max-[700px]:flex-wrap gap-5 py-5 max-xl:px-10 max-lg:px-5 xl:max-w-[1150px] mx-auto">
-            <div className = "sticky max-[400px]:text-xs z-40 bg-white max-[700px]:w-full max-[700px]:flex max-[700px]:justify-center max-[700px]:items-center max-[700px]:shadow-lg max-[700px]:shadow-neutral-50 max-[700px]:top-[70px] top-20 border border-dashed rounded-xl overflow-hidden max-h-fit w-[200px]">
+            <div className = "sticky max-[400px]:text-xs z-40 bg-white max-[700px]:w-full max-[700px]:flex max-[700px]:justify-center max-[700px]:items-center max-[700px]:shadow-lg max-[700px]:shadow-neutral-50 max-[700px]:top-[70px] top-[85px] border border-dashed rounded-xl overflow-hidden max-h-fit w-[200px]">
                 <Link href = '/profile/dashboard' className = "hover:bg-neutral-50 gap-1 hover:text-green-500 transition-all flex justify-start items-center p-3 border-b max-[700px]:border-l max-[700px]:border-b-0 w-full max-[700px]:justify-center">
                     <CirclesFourIcon weight = "light" size = {18} className = "w-[18px] text-[15px]"/>
                     داشبورد

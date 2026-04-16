@@ -13,7 +13,7 @@ const Footer = () => {
 
     return (
         <>
-            <div className = "max-w-[1200px] p-3 mx-auto flex flex-wrap justify-between items-center border-t max-md:border-dashed max-md:gap-8">
+            <div className = "maxWidth p-3 pt-7 mx-auto flex flex-wrap justify-between items-center border-t max-md:border-dashed max-md:gap-8">
                
                 <div className =  "w-1/2 max-md:w-full max-md:justify-center flex justify-start items-baseline">
                     <div className = "flex justify-center items-center flex-wrap gap-2">
