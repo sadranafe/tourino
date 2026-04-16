@@ -6,10 +6,10 @@ import LoginSection from "../LoginSection";
 const Navbar = () => {
     return (
         <>
-            <nav className = "pt-2 max-xl:px-4 flex justify-between items-center max-w-[1200px] mx-auto">
+            <nav className = "sticky z-50 top-1.5 max-lg:top-0 p-3 px-4 flex justify-between items-center maxWidth rounded-xl backdrop-blur-md bg-white/50 shadow-[0_5px_10px_rgba(0,0,0,0.02)]">
                 <TourinoLogo linkClasses = 'max-md:hidden block'/>
 
-                <div className = "max-md:hidden flex gap-4 w-7/12 justify-start items-center">
+                <div className = "max-md:hidden flex gap-4 w-7/12 justify-start items-center font-bold">
                     <Link href = '/' className = "hover:text-green-500 transition-all p-2 px-3">صفحه اصلی</Link>
                     <Link href = '/tour-services' className = "hover:text-green-500 transition-all p-2 px-3">خدمات گردشگری</Link>
                     <Link href = '/about-us' className = "hover:text-green-500 transition-all p-2 px-3">درباره ما</Link>

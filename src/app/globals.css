@@ -7,8 +7,13 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+.maxWidth {
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
 .trustLogo {
-    width: clamp(40px, 15.3px + 7vw, 68px);;
+    width: clamp(40px, 15.3px + 7vw, 68px);
 }
 
 .CTAheaderContainer > h2 {
@@ -170,4 +175,8 @@ input::-webkit-inner-spin-button {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+}
+
+.focus\:text-accent-foreground:focus {
+    background-color: transparent !important;
 }
