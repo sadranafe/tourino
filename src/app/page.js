@@ -17,7 +17,7 @@ const Page = () => {
             <Image src = '/banner.png' alt = "تورینو | خرید آنلاین بلیط های تور خارجی و داخلی" fill priority className = "object-cover"/>
         </div>
 
-        <div className = "max-w-[1200px] mx-auto">
+        <div className = "maxWidth">
           <div className = "my-5">
             <SearchToursContainer/>
           </div>

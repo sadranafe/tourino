@@ -62,7 +62,7 @@ const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) =
     
     return (
         <>
-            <div className = {`${isEditing ? 'bg-blue-50 border-sky-200' : ''} account-card border border-neutral-100 rounded-xl p-7 px-10 my-3`}>
+            <div className = {`${isEditing ? 'bg-blue-50 border-sky-200' : ''} account-card border border-neutral-100 rounded-xl p-7 px-10 mb-5`}>
                 <h1 className = "text-xl">{card.title}</h1>
                 <div className = "relative w-full grid grid-cols-2 max-[400px]:grid-cols-1 max-[400px]:gap-3 my-3 gap-y-3 max-[830px]:gap-x-3 items-center px-5">
                     {
