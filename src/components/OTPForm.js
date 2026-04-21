@@ -8,9 +8,9 @@ import api from "@/lib/api";
 import { setCookie } from "@/utils/cookie";
 import { getHttpErrorMessage } from "@/helper/helper";
 import { useAuth } from "@/provider/AuthProvider";
-// import { useAuth } from "@/context/AuthContext";
+import { PencilSimpleIcon } from "@phosphor-icons/react";
 
-const OTPForm = ({ phoneNum , timer , setTimer }) => {
+const OTPForm = ({ phoneNum , timer , time , setTimer , setFormStep }) => {
     const { login } = useAuth();
     const [otp , setOtp] = useState('');
     const [error , setError] = useState('')
@@ -18,7 +18,7 @@ const OTPForm = ({ phoneNum , timer , setTimer }) => {
 
     const resendOtpHandler = () => {
         api.post('/auth/send-otp' , { mobile : phoneNum });
-        setTimer(12);
+        setTimer(time);
     }
 
     const loginBtnHandler = async () => {
@@ -26,7 +26,7 @@ const OTPForm = ({ phoneNum , timer , setTimer }) => {
         .then(res => {
             const { accessToken , refreshToken , user } = res.data
             setCookie('accessToken' , accessToken , 1);
-            setCookie('refreshToken' , refreshToken , 7);
+            setCookie('refreshToken' , refreshToken , 14);
             login(user);
             router.replace('/profile');
             setError('')
@@ -47,7 +47,8 @@ const OTPForm = ({ phoneNum , timer , setTimer }) => {
             <DialogDescription asChild>
                 <div className = "w-full">
                     <div className = "flex flex-col justify-center items-center mb-5 text-neutral-500 text-xs">
-                        <p>کد تایید به شماره <span className = "text-base mx-1">{phoneNum}</span> ارسال شد</p>
+                        <button onClick = { () => setFormStep('phone') } className = "flex justify-center items-center p-1 my-1.5 px-3 gap-1 hover:text-green-500 transition-all"><PencilSimpleIcon weight = "light" /> ویرایش شماره موبایل </button>
+                        <p className = "text-sm">کد تایید به شماره <span className = "text-base mx-1">{phoneNum}</span> ارسال شد</p>
 
                         <div dir = "ltr">
                             <OTPInput value = {otp} onChange = {setOtp} numInputs = {6} shouldAutoFocus renderInput = { props => <input { ...props } /> } containerStyle = 'flex justify-center gap-2 w-full p-2' inputStyle = {`block w-[45px] max-[450px]:w-2/12 h-[45px] max-[450px]:h-[40px] border rounded-lg text-center text-lg border ${error ? 'border-red-500' : 'border-neutral-500'} focus:outline focus:outline-green-500`} skipDefaultStyles/>
@@ -55,7 +56,7 @@ const OTPForm = ({ phoneNum , timer , setTimer }) => {
                         {
                             timer ? 
                             <p>ارسال مجدد تا {timer} ثانیه دیگر</p> : 
-                            <button onClick = {resendOtpHandler}>ارسال مجدد کد</button>
+                            <button onClick = {resendOtpHandler} className = "hover:text-green-500 transition-all p-1 px-3">ارسال مجدد کد</button>
                         }
                     </div>
 

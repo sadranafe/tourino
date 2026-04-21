@@ -12,10 +12,11 @@ import LoginIcon from "./icons/loginIcon";
 import UserIconComponent from "./icons/userIcon";
 
 const LoginSection = () => {
-    const [formStep , setFormStep] = useState('phone');
+    const [formStep , setFormStep] = useState('phone'); // phone - otp
     const [phoneNum , setPhoneNum] = useState('');
     const [timer , setTimer] = useState(0);
     const {isAuthenticated , logout} = useAuth();
+    const TIME = 120;
 
     useEffect(() => {
         if(timer <= 0) return;
@@ -37,7 +38,7 @@ const LoginSection = () => {
                 await api.post('/auth/send-otp' , { mobile : val.phoneNumber });
                 setFormStep('otp');
                 setPhoneNum(val.phoneNumber);
-                setTimer(12);
+                setTimer(TIME);
             } catch (err){
                 console.log(err)
             } finally {
@@ -60,9 +61,9 @@ const LoginSection = () => {
                             <LoginIcon customClasses = 'max-md:inline-block hidden'/>
                         </button>
                     </DialogTrigger>
-                    <DialogContent className = 'bg-neutral-50 rounded-3xl w-[500px] h-[350px] max-sm:w-9/12 outline-none'>
+                    <DialogContent className = 'bg-neutral-50 w-[500px] h-[350px] max-sm:w-9/12 outline-none' style = {{ borderRadius : '20px' }}>
                         {
-                            formStep === 'otp' ? <OTPForm timer = {timer} setTimer = {setTimer} phoneNum = {phoneNum}/> : <LoginForm timer = {timer} formik = {formik}/>
+                            formStep === 'otp' ? <OTPForm timer = {timer} time = {TIME} setTimer = { setTimer } setFormStep = { setFormStep } phoneNum = {phoneNum}/> : <LoginForm timer = {timer} formik = {formik}/>
                         }
                     </DialogContent>
                 </Dialog>
