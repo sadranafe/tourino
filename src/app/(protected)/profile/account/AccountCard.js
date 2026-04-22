@@ -4,9 +4,9 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian"
 import persian_en from "react-date-object/locales/persian_en"
 import ErrorMessage from "@/components/ErrorMessage";
-import { ArrowClockwiseIcon, CheckIcon, PencilSimpleLineIcon } from "@phosphor-icons/react";
+import { ArrowClockwiseIcon, CheckIcon, PencilSimpleLineIcon, XIcon } from "@phosphor-icons/react";
 
-const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) => {
+const AccountCard = ({ card , formik , user , onSave , onCancel , loading , saveStatus }) => {
     const [isEditing , setIsEditing] = useState(false);
     const [selectedDate , setSelectedDate] = useState(user?.birthDate || null);
 
@@ -29,17 +29,23 @@ const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) =
         }
     }
 
+    const cancelHandler = () => {
+        setSelectedDate(user?.birthDate || null);
+        onCancel();
+        setIsEditing(false);
+    }
+
     const renderSaveButton = () => {
         if(loading) {
             return (
-                <button disabled className = "flex justify-center items-center p-2 text-gray-400 gap-1 max-sm:mt-2 max-sm:w-full rounded-md">
+                <button disabled className = "flex justify-center items-center p-2 text-gray-400 gap-1 max-sm:w-full rounded-md">
                     <span className = "animate-spin">⏳</span> درحال ذخیره . . .
                 </button>
             )
         }
         if(saveStatus === 'success') {
             return(
-                <button disabled className = "flex justify-center items-center p-2 text-green-500 gap-1 max-sm:mt-2 max-sm:w-full rounded-md">
+                <button disabled className = "flex justify-center items-center p-2 text-green-500 gap-1 max-sm:w-full rounded-md">
                     <CheckIcon weight = "fill"/> ذخیره شد
                 </button>
             )
@@ -47,14 +53,14 @@ const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) =
 
         if(saveStatus === 'error') {
             return(
-                <button onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-red-500 hover:bg-red-50 transition-all gap-1 max-sm:mt-2 max-sm:w-full rounded-md">
+                <button onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-red-500 hover:bg-red-50 transition-all gap-1 max-sm:w-full rounded-md">
                     <ArrowClockwiseIcon weight = "light"/> تلاش مجدد
                 </button>
             )
         }
 
         return(
-            <button type = "button" onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-sky-500 hover:text-white hover:bg-blue-500 transition-all gap-1 max-sm:mt-2 max-sm:w-full rounded-md">
+            <button type = "button" onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-sky-500 hover:text-white hover:bg-blue-500 transition-all gap-1 max-sm:w-full rounded-md">
                 <CheckIcon weight = "light"/> ذخیره
             </button>
         )
@@ -97,10 +103,16 @@ const AccountCard = ({ card , formik , user , onSave , loading , saveStatus }) =
                             </div>
                         </>
                     }
-                    <div className = "absolute max-[830px]:bottom-full min-[831px]:top-1/2 min-[831px]:-translate-y-1/2 left-0">
+                    <div className = "absolute gap-1 flex items-center justify-center flex-row max-[990px]:flex-col max-[990px]:-left-3.5 max-[360px]:-left-7 max-[300px]:text-xs max-[830px]:flex-row max-[830px]:left-0 max-[700px]:mb-1 max-[830px]:bottom-full min-[831px]:top-1/2 min-[831px]:-translate-y-1/2 left-0">
                         {
                             isEditing ?
-                            renderSaveButton() :
+                            <>
+                                { renderSaveButton() }
+                                <button onClick = {cancelHandler} className = "flex -order-1 justify-center items-center p-2 text-red-600 hover:bg-red-500 hover:text-white transition-all gap-1 max-sm:w-full rounded-md">
+                                    <XIcon weight = "light"/> لغو
+                                </button>
+                            </>
+                            :
                             <button  onClick = {toggleEdit} className = "flex justify-center items-center p-2 text-sky-600 hover:bg-sky-50 transition-all disabled:text-sky-400 disabled:hover:bg-transparent disabled:cursor-default gap-1 max-sm:mt-2 max-md:bg-sky-50 max-md:hover:bg-sky-100 max-sm:w-full rounded-md">
                                 <PencilSimpleLineIcon weight = "light"/> ویرایش
                             </button>

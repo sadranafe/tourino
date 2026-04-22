@@ -41,7 +41,7 @@ const DUMMY_ACCOUNT_CARD_INFO = [
     },
 ]
 
-const SECTION_FIELDS = {
+export const SECTION_FIELDS = {
     contact: ['mobile', 'email'],
     personal: ['fullname', 'nationalCode', 'birthDate', 'gender'],
     banking: ['debitCardCode', 'shebaCode'],
@@ -138,13 +138,23 @@ const AccountProfilePage = () => {
             setLoading(false);
         }
     }
+    
+    const cancelSectionHandler = sectionKey => {
+        const fields = SECTION_FIELDS[sectionKey];
+        fields.forEach(field => {
+            formik.setFieldValue(field?.user?.[field] ?? '-')
+            formik.setFieldTouched(field , false);
+            formik.setFieldError(field , undefined);
+        })
+        setSaveStatus(prev => ( { ...prev , [sectionKey] : null } ))
+    }
 
     return (
         <>
             {
                 DUMMY_ACCOUNT_CARD_INFO.map( card => {
                     return (
-                        <AccountCard key = { card.key } card = { card } formik = {formik} user = {user} onSave = {() => handleSectionSave(card.key)} loading = { loading || saveStatus[card.key] === 'loading' } saveStatus = {saveStatus[card.key]}/>
+                        <AccountCard key = { card.key } card = { card } formik = {formik} user = {user} onSave = {() => handleSectionSave(card.key)} onCancel = { () => cancelSectionHandler(card.key) } loading = { loading || saveStatus[card.key] === 'loading' } saveStatus = {saveStatus[card.key]}/>
                     )
                 })
             }
