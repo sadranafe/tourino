@@ -1,12 +1,12 @@
 'use client';
+import { useState } from "react";
+import { updateUserProfile } from "@/lib/api";
 import { useAuth } from "@/provider/AuthProvider";
 import { useFormik } from "formik";
 import { UserAccountSchema , UserAccountFullSchema } from "@/utils/UserAccountSchema";
 import AccountCard from "./AccountCard";
-import { PencilSimpleLineIcon } from "@phosphor-icons/react";
-import { useState } from "react";
 import toast from "react-hot-toast";
-import { updateUserProfile } from "@/lib/api";
+import { PencilSimpleLineIcon } from "@phosphor-icons/react";
 
 const DUMMY_ACCOUNT_CARD_INFO = [
     {
@@ -142,7 +142,7 @@ const AccountProfilePage = () => {
     const cancelSectionHandler = sectionKey => {
         const fields = SECTION_FIELDS[sectionKey];
         fields.forEach(field => {
-            formik.setFieldValue(field?.user?.[field] ?? '-')
+            formik.setFieldValue(field , user?.[field] ?? '-')
             formik.setFieldTouched(field , false);
             formik.setFieldError(field , undefined);
         })

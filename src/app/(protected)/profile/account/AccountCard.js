@@ -4,11 +4,14 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian"
 import persian_en from "react-date-object/locales/persian_en"
 import ErrorMessage from "@/components/ErrorMessage";
+import { SECTION_FIELDS } from "./page";
 import { ArrowClockwiseIcon, CheckIcon, PencilSimpleLineIcon, XIcon } from "@phosphor-icons/react";
 
 const AccountCard = ({ card , formik , user , onSave , onCancel , loading , saveStatus }) => {
     const [isEditing , setIsEditing] = useState(false);
     const [selectedDate , setSelectedDate] = useState(user?.birthDate || null);
+
+    const fields = SECTION_FIELDS[card.key];
 
     const dateChangeHandler = date => {
         setSelectedDate(date);
@@ -19,6 +22,21 @@ const AccountCard = ({ card , formik , user , onSave , onCancel , loading , save
         const value = ev.target.value;
         formik.setFieldValue('gender' , value);
     }
+
+    const isFormDirty = fields.some(field => {
+        const current = formik.values[field];
+        const initial = user?.[field];
+
+        if(field === 'birthDate'){
+            const currentStr = selectedDate ? selectedDate.toString() : '';
+            const initialStr = initial ? initial.toString() : '';
+            return currentStr !== initialStr;
+        }
+
+        if (current == null && initial == null) return false;
+        if (current == null || initial == null) return true;
+        return current !== initial;
+    })
 
     const toggleEdit = async ev => {
         if(ev.target.name === 'saveDataBtn'){
@@ -60,7 +78,7 @@ const AccountCard = ({ card , formik , user , onSave , onCancel , loading , save
         }
 
         return(
-            <button type = "button" onClick = {toggleEdit} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-sky-500 hover:text-white hover:bg-blue-500 transition-all gap-1 max-sm:w-full rounded-md">
+            <button type = "button" onClick = {toggleEdit} disabled = {!isFormDirty} name = "saveDataBtn" className = "flex justify-center items-center p-2 text-sky-500 hover:text-white hover:bg-blue-500 disabled:cursor-not-allowed disabled:text-gray-400 disabled:hover:bg-transparent transition-all gap-1 max-sm:w-full rounded-md">
                 <CheckIcon weight = "light"/> ذخیره
             </button>
         )
