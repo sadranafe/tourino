@@ -94,7 +94,11 @@ const AccountCard = ({ card , formik , user , onSave , onCancel , loading , save
                             return (
                                 <div key = {index} className = "relative account-card-input">
                                     <label htmlFor = {input.name} className = "text-neutral-400">{input.label}</label>
-                                    <input type = {input.type} name = {input.name} id = {input.name} {...formik.getFieldProps(input.name)} disabled = {!isEditing} placeholder = {input.placeholder} className = "outline-none p-2 mr-2 border rounded-lg disabled:bg-transparent disabled:border-transparent"/>
+                                    {
+                                        input.name === 'mobile' ?
+                                        <span className = "p-2 mr-2">{ formik.values[input.name] || '-' }</span> :
+                                        <input type = {input.type} name = {input.name} id = {input.name} {...formik.getFieldProps(input.name)} disabled = {!isEditing} placeholder = {input.placeholder} className = "outline-none p-2 mr-2 border rounded-lg disabled:bg-transparent disabled:border-transparent"/>
+                                    }
                                     <div className = 'errorWrapper absolute -right-6 top-1/2 -translate-y-1/2'>
                                         <ErrorMessage fieldHasError = {formik.touched[input.name] && formik.errors[input.name]} errorMsg = {formik.errors[input.name]}/>
                                     </div>

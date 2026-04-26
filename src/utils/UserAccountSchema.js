@@ -2,9 +2,7 @@ import * as yup from 'yup';
 
 const UserAccountSchema = {
     contact : yup.object().shape({
-        mobile : yup.string()
-            .required('شماره موبایل الزامی است')
-            .matches(/^[0-9]{10}$/,'شماره موبایل معتبر نیست'),
+        mobile : yup.string(),
         email : yup.string()
             .required('ایمیل الزامی است')
             .email('ایمیل نامعتبر است')
@@ -27,9 +25,7 @@ const UserAccountSchema = {
 }
 
 const UserAccountFullSchema = yup.object().shape({
-    mobile: yup.string()
-        .required('شماره موبایل الزامی است')
-        .matches(/^[0-9]{10}$/, 'شماره موبایل معتبر نیست'),
+    mobile: yup.string(),
     email: yup.string()
         .required('ایمیل الزامی است')
         .email('ایمیل معتبر نیست'),
