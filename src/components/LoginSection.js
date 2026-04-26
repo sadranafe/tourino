@@ -1,15 +1,17 @@
 'use client';
 import { useEffect, useState } from "react";
+import api from "@/lib/api";
+import { useAuth } from "@/provider/AuthProvider";
+import { useSendOTP } from "@/services/mutations";
 import { useFormik } from "formik";
 import { UserSchema } from "@/utils/UserSchema";
-import { useAuth } from "@/provider/AuthProvider";
-import api from "@/lib/api";
 import { Dialog , DialogContent , DialogTrigger } from "@/components/ui/dialog";
 import UserMenu from "./UserMenu";
 import LoginForm from "./LoginForm";
 import OTPForm from "./OTPForm";
 import LoginIcon from "./icons/loginIcon";
 import UserIconComponent from "./icons/userIcon";
+import toast from "react-hot-toast";
 
 const LoginSection = () => {
     const [formStep , setFormStep] = useState('phone'); // phone - otp
@@ -17,6 +19,8 @@ const LoginSection = () => {
     const [timer , setTimer] = useState(0);
     const {isAuthenticated , logout} = useAuth();
     const TIME = 120;
+
+    const { mutate , isPending } = useSendOTP();
 
     useEffect(() => {
         if(timer <= 0) return;
@@ -33,17 +37,30 @@ const LoginSection = () => {
         },
         validationSchema : UserSchema,
         validateOnMount : true,
-        onSubmit : async (val , { setSubmitting }) => {
-            try{
-                await api.post('/auth/send-otp' , { mobile : val.phoneNumber });
-                setFormStep('otp');
-                setPhoneNum(val.phoneNumber);
-                setTimer(TIME);
-            } catch (err){
-                console.log(err)
-            } finally {
-                setSubmitting(false);
-            }
+        onSubmit : (val) => {
+            mutate(val.phoneNumber , {
+                onSuccess : (data) => {
+                    setPhoneNum(val.phoneNumber);
+                    setFormStep('otp');
+                    setTimer(TIME)
+                    toast.success('کد ورود : ' +  data?.data?.code)
+                },
+                onError : err => {
+                    toast.error('خطا')
+                    console.error('error : ' , err)
+                }
+            })
+
+            // try{
+            //     await api.post('/auth/send-otp' , { mobile : val.phoneNumber });
+            //     setFormStep('otp');
+            //     setPhoneNum(val.phoneNumber);
+            //     setTimer(TIME);
+            // } catch (err){
+            //     console.log(err)
+            // } finally {
+            //     setSubmitting(false);
+            // }
         }
     })
 
@@ -63,7 +80,7 @@ const LoginSection = () => {
                     </DialogTrigger>
                     <DialogContent className = 'bg-neutral-50 w-[500px] h-[350px] max-sm:w-9/12 outline-none' style = {{ borderRadius : '20px' }}>
                         {
-                            formStep === 'otp' ? <OTPForm timer = {timer} time = {TIME} setTimer = { setTimer } setFormStep = { setFormStep } phoneNum = {phoneNum}/> : <LoginForm timer = {timer} formik = {formik}/>
+                            formStep === 'otp' ? <OTPForm timer = {timer} time = {TIME} setTimer = { setTimer } setFormStep = { setFormStep } phoneNum = {phoneNum}/> : <LoginForm isPending = {isPending} timer = {timer} formik = {formik}/>
                         }
                     </DialogContent>
                 </Dialog>

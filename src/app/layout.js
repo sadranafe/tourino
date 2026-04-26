@@ -1,10 +1,11 @@
-import localFont from "next/font/local";
 import AuthProvider from "@/provider/AuthProvider";
+import localFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
+import TanstackQueryProvider from "@/provider/TanstackQueryProvider";
 
 const yekan = localFont({
   src: "./fonts/yekanBakh-Regular.ttf",
@@ -23,14 +24,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang = "fa" dir = "rtl">
       <body className = {`${yekan.className} text-sm select-none antialiased`}>
-        <AuthProvider>
-          <TooltipProvider>
-            <Navbar/>
-            <Toaster position = "top-left"/>
-            <main className = "my-3">{ children }</main>
-            <Footer/>
-          </TooltipProvider>
-        </AuthProvider>
+        <TanstackQueryProvider>
+          <AuthProvider>
+            <TooltipProvider>
+              <Navbar/>
+              <Toaster position = "top-left"/>
+              <main className = "my-3">{ children }</main>
+              <Footer/>
+            </TooltipProvider>
+          </AuthProvider>
+        </TanstackQueryProvider>
       </body>
     </html>
   );
