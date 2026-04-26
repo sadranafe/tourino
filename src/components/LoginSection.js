@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from "react";
-import api from "@/lib/api";
 import { useAuth } from "@/provider/AuthProvider";
 import { useSendOTP } from "@/services/mutations";
 import { useFormik } from "formik";
@@ -17,7 +16,7 @@ const LoginSection = () => {
     const [formStep , setFormStep] = useState('phone'); // phone - otp
     const [phoneNum , setPhoneNum] = useState('');
     const [timer , setTimer] = useState(0);
-    const {isAuthenticated , logout} = useAuth();
+    const {isAuthenticated} = useAuth();
     const TIME = 120;
 
     const { mutate , isPending } = useSendOTP();
@@ -37,30 +36,20 @@ const LoginSection = () => {
         },
         validationSchema : UserSchema,
         validateOnMount : true,
-        onSubmit : (val) => {
+        onSubmit : val => {
             mutate(val.phoneNumber , {
                 onSuccess : (data) => {
                     setPhoneNum(val.phoneNumber);
                     setFormStep('otp');
                     setTimer(TIME)
-                    toast.success('کد ورود : ' +  data?.data?.code)
+                    toast.success(`کد ورود  : ${data?.data?.code}` , { duration : 5000 })
+                    
                 },
                 onError : err => {
                     toast.error('خطا')
                     console.error('error : ' , err)
                 }
             })
-
-            // try{
-            //     await api.post('/auth/send-otp' , { mobile : val.phoneNumber });
-            //     setFormStep('otp');
-            //     setPhoneNum(val.phoneNumber);
-            //     setTimer(TIME);
-            // } catch (err){
-            //     console.log(err)
-            // } finally {
-            //     setSubmitting(false);
-            // }
         }
     })
 

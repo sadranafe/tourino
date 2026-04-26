@@ -1,42 +1,28 @@
 'use client';
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useSendOTP, useVerifyOTP } from "@/services/mutations";
 import toast from "react-hot-toast";
 import OTPInput from "react-otp-input";
 import { DialogDescription , DialogTitle } from "@/components/ui/dialog";
-import api from "@/lib/api";
-import { setCookie } from "@/utils/cookie";
-import { getHttpErrorMessage } from "@/helper/helper";
-import { useAuth } from "@/provider/AuthProvider";
 import { PencilSimpleIcon } from "@phosphor-icons/react";
 
 const OTPForm = ({ phoneNum , timer , time , setTimer , setFormStep }) => {
-    const { login } = useAuth();
     const [otp , setOtp] = useState('');
-    const [error , setError] = useState('')
-    const router = useRouter();
+    const { mutate : resendOTP , isPending : isResending } = useSendOTP();
+    const { mutate : verifyOTP , isPending : isVerifying } = useVerifyOTP();
 
     const resendOtpHandler = () => {
-        api.post('/auth/send-otp' , { mobile : phoneNum });
-        setTimer(time);
+        resendOTP(phoneNum , {
+            onSuccess : (data) => {
+                setTimer(time)
+                toast.success(`کد ورود  : ${data?.data?.code}` , { duration : 5000 })
+            }
+        })
     }
 
-    const loginBtnHandler = async () => {
-        await api.post('/auth/check-otp' , { mobile : phoneNum , code : otp })
-        .then(res => {
-            const { accessToken , refreshToken , user } = res.data
-            setCookie('accessToken' , accessToken , 1);
-            setCookie('refreshToken' , refreshToken , 14);
-            login(user);
-            router.replace('/profile');
-            setError('')
-        })
-        .catch(err => {
-            const customError = getHttpErrorMessage(err?.status , { 400 : 'کد ورود اشتباه میباشد'});
-            setError(err);
-            toast.error(customError)
-            console.log(customError)
-        })
+    const loginBtnHandler = () => {
+        if(otp.length !== 6) return;
+        verifyOTP({ mobile : phoneNum , code : otp });
     }
     return (
         <>
@@ -51,17 +37,17 @@ const OTPForm = ({ phoneNum , timer , time , setTimer , setFormStep }) => {
                         <p className = "text-sm">کد تایید به شماره <span className = "text-base mx-1">{phoneNum}</span> ارسال شد</p>
 
                         <div dir = "ltr">
-                            <OTPInput value = {otp} onChange = {setOtp} numInputs = {6} shouldAutoFocus renderInput = { props => <input { ...props } /> } containerStyle = 'flex justify-center gap-2 w-full p-2' inputStyle = {`block w-[45px] max-[450px]:w-2/12 h-[45px] max-[450px]:h-[40px] border rounded-lg text-center text-lg border ${error ? 'border-red-500' : 'border-neutral-500'} focus:outline focus:outline-green-500`} skipDefaultStyles/>
+                            <OTPInput value = {otp} onChange = {setOtp} numInputs = {6} shouldAutoFocus renderInput = { props => <input { ...props } /> } containerStyle = 'flex justify-center gap-2 w-full p-2' inputStyle = {`block w-[45px] max-[450px]:w-2/12 h-[45px] max-[450px]:h-[40px] border rounded-lg text-center text-lg border ${isVerifying ? 'border-red-500' : 'border-neutral-500'} focus:outline focus:outline-green-500`} skipDefaultStyles/>
                         </div>
                         {
                             timer ? 
                             <p>ارسال مجدد تا {timer} ثانیه دیگر</p> : 
-                            <button onClick = {resendOtpHandler} className = "hover:text-green-500 transition-all p-1 px-3">ارسال مجدد کد</button>
+                            <button onClick = {resendOtpHandler} disabled = { isResending } className = "hover:text-green-500 transition-all p-1 px-3">{ isResending ? 'درحال ارسال . . .' : 'ارسال مجدد کد' }</button>
                         }
                     </div>
 
                     <div className = "w-9/12 max-[500px]:w-full mx-auto">
-                        <button onClick = {loginBtnHandler} disabled = {otp.length !== 6 ? true : false} className = "disabled:bg-green-400 disabled:cursor-not-allowed outline-none w-full bg-green-500 hover:bg-green-600 transition-all rounded-md p-2.5 text-white">ورود به تورینو</button>
+                        <button onClick = {loginBtnHandler} disabled = {otp.length !== 6 || isVerifying} className = "disabled:bg-green-400 disabled:cursor-not-allowed outline-none w-full bg-green-500 hover:bg-green-600 transition-all rounded-md p-2.5 text-white">{ isVerifying ? 'درحال بررسی . . .' : 'ورود به تورینو' }</button>
                     </div>
                 </div>
             </DialogDescription>
