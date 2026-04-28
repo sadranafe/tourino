@@ -30,9 +30,9 @@ api.interceptors.response.use(
         }
 
         const res = await getNewTokens();
-        if(res?.response?.status === 201) {
+        if(res?.response?.status === 200) {
             setCookie('accessToken' , res?.response?.data?.accessToken , 30);
-            setCookie('refreshToken' , res?.response?.data?.refreshToken , 360);
+            // setCookie('refreshToken' , res?.response?.data?.refreshToken , 360);
             return api(originalRequest);
         } else {
             deleteCookie('accessToken')
