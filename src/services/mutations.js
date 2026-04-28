@@ -1,7 +1,6 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import api from "@/lib/api"
-import { useAuth } from "@/provider/AuthProvider";
 import { setCookie } from "@/utils/cookie";
 import toast from "react-hot-toast";
 
@@ -18,19 +17,23 @@ export const useSendOTP = () => {
 }
 
 export const useVerifyOTP = () => {
-    const { login } = useAuth();
+    const queryClient = useQueryClient();
     const router = useRouter();
+    const login = userData => {
+        queryClient.setQueryData(['user-data'] , userData);
+    }
 
     const mutationFn = ({ mobile , code }) => api.post('/auth/check-otp' , { mobile , code });
 
     return useMutation({
         mutationFn,
         onSuccess : res => {
-            const { accessToken,  refreshToken , user } = res.data;
+            const { accessToken,  refreshToken , user } = res?.data;
             setCookie('accessToken' , accessToken , 30);
             setCookie('refreshToken' , refreshToken , 365);
-            login(user);
-            router.replace('/profile');
+            login(user)
+            queryClient.invalidateQueries({ queryKey : ['user-data'] });
+            router.replace('/profile/account');
             toast.success('با موفقیت وارد شدید');
         },
         onError : err => {

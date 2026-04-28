@@ -1,4 +1,3 @@
-import AuthProvider from "@/provider/AuthProvider";
 import localFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -25,14 +24,12 @@ export default function RootLayout({ children }) {
     <html lang = "fa" dir = "rtl">
       <body className = {`${yekan.className} text-sm select-none antialiased`}>
         <TanstackQueryProvider>
-          <AuthProvider>
-            <TooltipProvider>
-              <Navbar/>
-              <Toaster position = "top-left"/>
-              <main className = "my-3">{ children }</main>
-              <Footer/>
-            </TooltipProvider>
-          </AuthProvider>
+          <TooltipProvider>
+            <Navbar/>
+            <Toaster position = "top-left"/>
+            <main className = "my-3">{ children }</main>
+            <Footer/>
+          </TooltipProvider>
         </TanstackQueryProvider>
       </body>
     </html>

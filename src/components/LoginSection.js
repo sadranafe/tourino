@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from "react";
-import { useAuth } from "@/provider/AuthProvider";
 import { useSendOTP } from "@/services/mutations";
 import { useFormik } from "formik";
 import { UserSchema } from "@/utils/UserSchema";
@@ -11,12 +10,14 @@ import OTPForm from "./OTPForm";
 import LoginIcon from "./icons/loginIcon";
 import UserIconComponent from "./icons/userIcon";
 import toast from "react-hot-toast";
+import { useGetUserData } from "@/services/queries";
 
 const LoginSection = () => {
     const [formStep , setFormStep] = useState('phone'); // phone - otp
     const [phoneNum , setPhoneNum] = useState('');
     const [timer , setTimer] = useState(0);
-    const {isAuthenticated} = useAuth();
+    const { data } = useGetUserData();
+    const isAuthenticated = !!data?.data
     const TIME = 120;
 
     const { mutate , isPending } = useSendOTP();
@@ -41,9 +42,7 @@ const LoginSection = () => {
                 onSuccess : (data) => {
                     setPhoneNum(val.phoneNumber);
                     setFormStep('otp');
-                    setTimer(TIME)
                     toast.success(`کد ورود  : ${data?.data?.code}` , { duration : 5000 })
-                    
                 },
                 onError : err => {
                     toast.error('خطا')

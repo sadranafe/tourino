@@ -1,12 +1,24 @@
 'use client';
 import Link from 'next/link';
-import { useAuth } from '@/provider/AuthProvider';
+import { useQueryClient } from '@tanstack/react-query';
+import { useGetUserData } from '@/services/queries';
+import { deleteCookie } from '@/utils/cookie';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { LogOutIcon, UserIcon } from 'lucide-react';
 import { CaretDownIcon, CirclesFourIcon } from '@phosphor-icons/react';
 
 const UserMenu = () => {
-    const { isAuthenticated , logout , user } = useAuth();
+    const queryClient = useQueryClient();
+    const { data } = useGetUserData();
+    const user = data?.data;
+
+    const logout = () => {
+        deleteCookie('accessToken');
+        deleteCookie('refreshToken');
+        queryClient.setQueryData(['user-data'] , null)
+        queryClient.removeQueries({ queryKey : ['user-data'] });
+        window.location.href = '/';
+    }
     return (
         <div>
             <DropdownMenu dir = 'rtl'>

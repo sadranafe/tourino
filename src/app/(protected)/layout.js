@@ -2,35 +2,31 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ActiveLink from "@/components/ActiveLink";
-import { useAuth } from "@/provider/AuthProvider";
 import { getCookie } from "@/utils/cookie";
 import toast from "react-hot-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import UserIconComponent from "@/components/icons/userIcon";
 import { CirclesFourIcon , SunHorizonIcon , SwapIcon } from "@phosphor-icons/react";
+import { useGetUserData } from "@/services/queries";
 
 const ProtectedLayout = ({ children }) => {
-    const { user , loading } = useAuth();
+    const { data , isLoading } = useGetUserData();
+    const user = data?.data;
     const router = useRouter();
 
     useEffect(() => {
-        const token = getCookie('accessToken');
-        if(!token) {
-            router.replace('/');
+        if(!user){
+            router.replace('/')
             return;
         }
 
-        if(loading) return;
-        const hasFullname = !!user?.fullname;
-        const hasNationalCode = !!user?.nationalCode;
-        const hasEamil = !!user?.email;
-        const isProfileComplete  = hasFullname && hasNationalCode && hasEamil;
+        const profileIsCompleted = user?.fullname && user?.nationalCode && user?.email
 
-        if(!isProfileComplete) {
+        if(!profileIsCompleted) {
             router.replace('/profile/account');
             toast.error('برای ادامه فرایند باید اطلاعات خود را کامل کنید')
         }
-    },[ user , router , loading ])
+    },[ user , router ])
 
     return(
         <div className = "flex justify-between max-[700px]:flex-wrap gap-5 py-5 max-xl:px-10 max-lg:px-5 max-[320px]:px-2 xl:max-w-[1150px] mx-auto">
@@ -58,7 +54,7 @@ const ProtectedLayout = ({ children }) => {
 
             <div className = "w-10/12 max-[700px]:w-full">
                 {
-                    loading ?
+                    isLoading ?
                     <div className = "w-full h-full p-5 border rounded-xl">
                         <Skeleton className = "h-5 w-1/2 mb-3" />
                         <div className = "w-full grid grid-cols-2 gap-2">

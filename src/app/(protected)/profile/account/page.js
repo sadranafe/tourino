@@ -1,12 +1,12 @@
 'use client';
 import { useState } from "react";
 import { updateUserProfile } from "@/lib/api";
-import { useAuth } from "@/provider/AuthProvider";
 import { useFormik } from "formik";
 import { UserAccountSchema , UserAccountFullSchema } from "@/utils/UserAccountSchema";
 import AccountCard from "./AccountCard";
 import toast from "react-hot-toast";
 import { PencilSimpleLineIcon } from "@phosphor-icons/react";
+import { useGetUserData } from "@/services/queries";
 
 const DUMMY_ACCOUNT_CARD_INFO = [
     {
@@ -48,7 +48,10 @@ export const SECTION_FIELDS = {
 };
 
 const AccountProfilePage = () => {
-    const { user } = useAuth();
+    const { data } = useGetUserData();
+    const user = data?.data;
+
+
     const [loading , setLoading] = useState(false);
     const [saveStatus , setSaveStatus] = useState({});
     const formik = useFormik({

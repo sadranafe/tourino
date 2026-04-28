@@ -22,6 +22,7 @@ const OTPForm = ({ phoneNum , timer , time , setTimer , setFormStep }) => {
 
     const loginBtnHandler = () => {
         if(otp.length !== 6) return;
+        setTimer(0);
         verifyOTP({ mobile : phoneNum , code : otp });
     }
     return (
