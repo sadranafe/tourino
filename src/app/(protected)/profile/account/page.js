@@ -47,7 +47,7 @@ const AccountProfilePage = () => {
     const { data } = useGetUserData();
     const user = data?.data;
     const queryClient = useQueryClient();
-    const { mutate , isPending } = useMutation({
+    const { mutate } = useMutation({
         mutationFn : updateUserProfile,
         onSuccess: res => {
             queryClient.invalidateQueries({ queryKey :['user-data'] })
@@ -148,7 +148,7 @@ const AccountProfilePage = () => {
             {
                 DUMMY_ACCOUNT_CARD_INFO.map( card => {
                     return (
-                        <AccountCard key = { card.key } card = { card } isPending = {isPending} formik = {formik} user = {user} onSave = {() => handleSectionSave(card.key)} onCancel = { () => cancelSectionHandler(card.key) } loading = { loading || saveStatus[card.key] === 'loading' } saveStatus = {saveStatus[card.key]}/>
+                        <AccountCard key = { card.key } card = { card } formik = {formik} user = {user} onSave = {() => handleSectionSave(card.key)} onCancel = { () => cancelSectionHandler(card.key) } loading = { loading || saveStatus[card.key] === 'loading' } saveStatus = {saveStatus[card.key]}/>
                     )
                 })
             }
