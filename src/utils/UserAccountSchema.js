@@ -20,7 +20,7 @@ const UserAccountSchema = {
     }),
     banking : yup.object().shape({
         debitCardCode : yup.string().matches(/^\d{16}$/ , 'شماره کارت باید 16 رقم باشد'),
-        shebaCode : yup.string().matches(/^\d{24}$/ , 'شماره شبا معتبر نیست')
+        shebaCode : yup.string()
     }),
 }
 
@@ -41,7 +41,6 @@ const UserAccountFullSchema = yup.object().shape({
     debitCardCode: yup.string()
         .matches(/^\d{16}$/, 'شماره کارت باید 16 رقم باشد'),
     shebaCode: yup.string()
-        .matches(/^\d{24}$/, 'شماره شبا معتبر نیست'),
 })
 
 export { UserAccountSchema , UserAccountFullSchema };
