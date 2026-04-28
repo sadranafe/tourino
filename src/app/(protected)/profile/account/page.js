@@ -8,6 +8,7 @@ import { SECTION_FIELDS } from "@/helper/helper";
 import AccountCard from "./AccountCard";
 import toast from "react-hot-toast";
 import { PencilSimpleLineIcon } from "@phosphor-icons/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const DUMMY_ACCOUNT_CARD_INFO = [
     {
@@ -45,7 +46,14 @@ const DUMMY_ACCOUNT_CARD_INFO = [
 const AccountProfilePage = () => {
     const { data } = useGetUserData();
     const user = data?.data;
-
+    const queryClient = useQueryClient();
+    const { mutate , isPending } = useMutation({
+        mutationFn : updateUserProfile,
+        onSuccess: res => {
+            queryClient.invalidateQueries({ queryKey :['user-data'] })
+            toast.success(res?.message || 'تغییرات با موفقیت ذخیره شد ')
+        }
+    })
 
     const [loading , setLoading] = useState(false);
     const [saveStatus , setSaveStatus] = useState({});
@@ -62,18 +70,6 @@ const AccountProfilePage = () => {
             shebaCode : user?.shebaCode || '-'
         },
         validationSchema : UserAccountFullSchema,
-        onSubmit : async val => {
-            try {
-                setLoading(true);
-                await updateUserProfile(val)
-                toast.success('پروفایل با موفقیت بروزرسانی شد')
-            } catch (err) {
-                console.error('Error updating profile : ' , err);
-                toast.error('خطا در بروزرسانی پروفایل')
-            } finally {
-                setLoading(false);
-            }
-        },
     })
 
     const validateSection = async sectionKey => {
@@ -118,7 +114,7 @@ const AccountProfilePage = () => {
         try {
             setLoading(true);
             setSaveStatus(prev => ({...prev , [sectionKey] : 'loading'}));
-            await updateUserProfile({ ...sectionData })
+            mutate({ ...sectionData })
             setSaveStatus(prev => ({ ...prev, [sectionKey]: 'success' }));
             const touched = {};
             fields.forEach(field => touched[field] = true);
@@ -152,7 +148,7 @@ const AccountProfilePage = () => {
             {
                 DUMMY_ACCOUNT_CARD_INFO.map( card => {
                     return (
-                        <AccountCard key = { card.key } card = { card } formik = {formik} user = {user} onSave = {() => handleSectionSave(card.key)} onCancel = { () => cancelSectionHandler(card.key) } loading = { loading || saveStatus[card.key] === 'loading' } saveStatus = {saveStatus[card.key]}/>
+                        <AccountCard key = { card.key } card = { card } isPending = {isPending} formik = {formik} user = {user} onSave = {() => handleSectionSave(card.key)} onCancel = { () => cancelSectionHandler(card.key) } loading = { loading || saveStatus[card.key] === 'loading' } saveStatus = {saveStatus[card.key]}/>
                     )
                 })
             }

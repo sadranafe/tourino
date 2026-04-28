@@ -19,9 +19,6 @@ export const useSendOTP = () => {
 export const useVerifyOTP = () => {
     const queryClient = useQueryClient();
     const router = useRouter();
-    const login = userData => {
-        queryClient.setQueryData(['user-data'] , userData);
-    }
 
     const mutationFn = ({ mobile , code }) => api.post('/auth/check-otp' , { mobile , code });
 
@@ -31,7 +28,7 @@ export const useVerifyOTP = () => {
             const { accessToken,  refreshToken , user } = res?.data;
             setCookie('accessToken' , accessToken , 30);
             setCookie('refreshToken' , refreshToken , 365);
-            login(user)
+            queryClient.setQueryData(['user-data'] , user);
             queryClient.invalidateQueries({ queryKey : ['user-data'] });
             router.replace('/profile/account');
             toast.success('با موفقیت وارد شدید');

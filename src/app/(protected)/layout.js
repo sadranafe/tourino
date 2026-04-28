@@ -9,7 +9,7 @@ import UserIconComponent from "@/components/icons/userIcon";
 import { CirclesFourIcon , SunHorizonIcon , SwapIcon } from "@phosphor-icons/react";
 
 const ProtectedLayout = ({ children }) => {
-    const { data , isLoading } = useGetUserData();
+    const { data , isLoading , isPending } = useGetUserData();
     const user = data?.data;
     const router = useRouter();
 
@@ -18,13 +18,11 @@ const ProtectedLayout = ({ children }) => {
             router.replace('/')
             return;
         }
-
         const profileIsCompleted = user?.fullname && user?.nationalCode && user?.email
+        
+        if(!profileIsCompleted) toast.error('برای ادامه فرایند باید اطلاعات خود را کامل کنید');
 
-        if(!profileIsCompleted) {
-            router.replace('/profile/account');
-            toast.error('برای ادامه فرایند باید اطلاعات خود را کامل کنید')
-        }
+        router.replace('/profile/account');
     },[ user , router ])
 
     return(
@@ -53,7 +51,7 @@ const ProtectedLayout = ({ children }) => {
 
             <div className = "w-10/12 max-[700px]:w-full">
                 {
-                    isLoading ?
+                    isLoading && isPending ?
                     <div className = "w-full h-full p-5 border rounded-xl">
                         <Skeleton className = "h-5 w-1/2 mb-3" />
                         <div className = "w-full grid grid-cols-2 gap-2">
