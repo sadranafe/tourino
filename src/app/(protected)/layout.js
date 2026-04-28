@@ -1,13 +1,12 @@
 'use client';
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useGetUserData } from "@/services/queries";
 import ActiveLink from "@/components/ActiveLink";
-import { getCookie } from "@/utils/cookie";
 import toast from "react-hot-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import UserIconComponent from "@/components/icons/userIcon";
 import { CirclesFourIcon , SunHorizonIcon , SwapIcon } from "@phosphor-icons/react";
-import { useGetUserData } from "@/services/queries";
 
 const ProtectedLayout = ({ children }) => {
     const { data , isLoading } = useGetUserData();

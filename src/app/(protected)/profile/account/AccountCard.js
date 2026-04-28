@@ -3,8 +3,8 @@ import { useState } from "react";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian"
 import persian_en from "react-date-object/locales/persian_en"
+import { SECTION_FIELDS } from "@/helper/helper";
 import ErrorMessage from "@/components/ErrorMessage";
-import { SECTION_FIELDS } from "./page";
 import { ArrowClockwiseIcon, CheckIcon, PencilSimpleLineIcon, XIcon } from "@phosphor-icons/react";
 
 const AccountCard = ({ card , formik , user , onSave , onCancel , loading , saveStatus }) => {

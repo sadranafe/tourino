@@ -1,10 +1,10 @@
 import localFont from "next/font/local";
+import TanstackQueryProvider from "@/provider/TanstackQueryProvider";
 import { Toaster } from "react-hot-toast";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
-import TanstackQueryProvider from "@/provider/TanstackQueryProvider";
 
 const yekan = localFont({
   src: "./fonts/yekanBakh-Regular.ttf",

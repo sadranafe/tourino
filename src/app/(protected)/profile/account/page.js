@@ -1,12 +1,13 @@
 'use client';
 import { useState } from "react";
 import { updateUserProfile } from "@/lib/api";
+import { useGetUserData } from "@/services/queries";
 import { useFormik } from "formik";
 import { UserAccountSchema , UserAccountFullSchema } from "@/utils/UserAccountSchema";
+import { SECTION_FIELDS } from "@/helper/helper";
 import AccountCard from "./AccountCard";
 import toast from "react-hot-toast";
 import { PencilSimpleLineIcon } from "@phosphor-icons/react";
-import { useGetUserData } from "@/services/queries";
 
 const DUMMY_ACCOUNT_CARD_INFO = [
     {
@@ -40,12 +41,6 @@ const DUMMY_ACCOUNT_CARD_INFO = [
         icon : <PencilSimpleLineIcon weight = "light"/>,
     },
 ]
-
-export const SECTION_FIELDS = {
-    contact: ['mobile', 'email'],
-    personal: ['fullname', 'nationalCode', 'birthDate', 'gender'],
-    banking: ['debitCardCode', 'shebaCode'],
-};
 
 const AccountProfilePage = () => {
     const { data } = useGetUserData();

@@ -23,6 +23,12 @@ export const getHttpErrorMessage = (statusCode , customMessage = {}) => {
     return merged[statusCode] || 'خطای ناشناخته ای رخ داده !'
 }
 
+export const SECTION_FIELDS = {
+    contact: ['mobile', 'email'],
+    personal: ['fullname', 'nationalCode', 'birthDate', 'gender'],
+    banking: ['debitCardCode', 'shebaCode'],
+};
+
 const dateConvertorToGregorian = ( date , format = 'YYYY/MM/DD' , calendar = persian , locale = persian_en ) => {
     if(!date) return null;
     return new DateObject({ date , format , calendar , locale }).convert().format();

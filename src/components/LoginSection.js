@@ -1,16 +1,16 @@
 'use client';
 import { useEffect, useState } from "react";
+import { useGetUserData } from "@/services/queries";
 import { useSendOTP } from "@/services/mutations";
 import { useFormik } from "formik";
 import { UserSchema } from "@/utils/UserSchema";
+import toast from "react-hot-toast";
 import { Dialog , DialogContent , DialogTrigger } from "@/components/ui/dialog";
 import UserMenu from "./UserMenu";
 import LoginForm from "./LoginForm";
 import OTPForm from "./OTPForm";
 import LoginIcon from "./icons/loginIcon";
 import UserIconComponent from "./icons/userIcon";
-import toast from "react-hot-toast";
-import { useGetUserData } from "@/services/queries";
 
 const LoginSection = () => {
     const [formStep , setFormStep] = useState('phone'); // phone - otp
