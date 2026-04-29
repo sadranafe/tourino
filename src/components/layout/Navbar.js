@@ -10,19 +10,19 @@ const Navbar = () => {
                 <TourinoLogo linkClasses = 'max-md:hidden block'/>
 
                 <div className = "max-md:hidden flex gap-4 w-7/12 justify-start items-center">
-                    <ActiveLink href = '/' activeBullet = { true } classLink = "relative hover:text-green-500 rounded-md transition-all p-2 px-3" activeClass = 'text-green-500'>
+                    <ActiveLink href = '/' classLink = "relative hover:text-green-500 rounded-md transition-all p-2 px-3" activeClass = 'text-green-500'>
                         صفحه اصلی
                     </ActiveLink>
 
-                    <ActiveLink href = '/tour-services' activeBullet = { true } classLink = 'relative hover:text-green-500 rounded-md transition-all p-2 px-3' activeClass = "text-green-500">
+                    <ActiveLink href = '/tour-services' classLink = 'relative hover:text-green-500 rounded-md transition-all p-2 px-3' activeClass = "text-green-500">
                         خدمات گردشگری
                     </ActiveLink>
 
-                    <ActiveLink href = '/about-us' activeBullet = { true } classLink = 'relative hover:text-green-500 rounded-md transition-all p-2 px-3' activeClass = "text-green-500">
+                    <ActiveLink href = '/about-us' classLink = 'relative hover:text-green-500 rounded-md transition-all p-2 px-3' activeClass = "text-green-500">
                         درباره ما
                     </ActiveLink>
 
-                    <ActiveLink href = '/contact-us' activeBullet = { true } classLink = 'relative hover:text-green-500 rounded-md transition-all p-2 px-3' activeClass = "text-green-500">
+                    <ActiveLink href = '/contact-us' classLink = 'relative hover:text-green-500 rounded-md transition-all p-2 px-3' activeClass = "text-green-500">
                         تماس با ما
                     </ActiveLink>
                 </div>
