@@ -5,17 +5,19 @@ import toast from "react-hot-toast";
 import OTPInput from "react-otp-input";
 import { DialogDescription , DialogTitle } from "@/components/ui/dialog";
 import { PencilSimpleIcon } from "@phosphor-icons/react";
+import { useTimer } from "@/hooks/useTimer";
 
-const OTPForm = ({ phoneNum , timer , time , setTimer , setFormStep }) => {
+const OTPForm = ({ phoneNum , timer , setFormStep }) => {
     const [otp , setOtp] = useState('');
     const [isRedirecting , setIsRedirecting] = useState(false);
     const { mutate : resendOTP , isPending : isResending } = useSendOTP();
     const { mutate : verifyOTP , isPending : isVerifying , isError } = useVerifyOTP();
+    const { startTimer } = useTimer()
 
     const resendOtpHandler = () => {
         resendOTP(phoneNum , {
             onSuccess : (data) => {
-                setTimer(time)
+                startTimer()
                 toast.success(`کد ورود  : ${data?.data?.code}` , { duration : 5000 })
             }
         })
@@ -23,7 +25,6 @@ const OTPForm = ({ phoneNum , timer , time , setTimer , setFormStep }) => {
 
     const loginBtnHandler = () => {
         if(otp.length !== 6) return;
-        setTimer(0);
         setIsRedirecting(true);
         verifyOTP({ mobile : phoneNum , code : otp } , {
             onError : () => setIsRedirecting(false)

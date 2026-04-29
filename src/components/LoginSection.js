@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useUser from "@/hooks/useUser";
 import { useSendOTP } from "@/services/mutations";
 import { useFormik } from "formik";
@@ -11,25 +11,16 @@ import LoginForm from "./LoginForm";
 import OTPForm from "./OTPForm";
 import LoginIcon from "./icons/loginIcon";
 import UserIconComponent from "./icons/userIcon";
+import { useTimer } from "@/hooks/useTimer";
 
 const LoginSection = () => {
     const [formStep , setFormStep] = useState('phone'); // phone - otp
     const [phoneNum , setPhoneNum] = useState('');
-    const [timer , setTimer] = useState(0);
     const { user } = useUser();
     const isAuthenticated = !!user
-    const TIME = 120;
+    const { timer , startTimer } = useTimer()
 
     const { mutate , isPending } = useSendOTP();
-
-    useEffect(() => {
-        if(timer <= 0) return;
-        const interval = setInterval(() => {
-            setTimer(prev => prev - 1);
-        },1000)
-
-        return () => clearInterval(interval)
-    },[timer]);
 
     const formik = useFormik({
         initialValues : {
@@ -42,6 +33,7 @@ const LoginSection = () => {
                 onSuccess : (data) => {
                     setPhoneNum(val.phoneNumber);
                     setFormStep('otp');
+                    startTimer()
                     toast.success(`کد ورود  : ${data?.data?.code}` , { duration : 5000 })
                 },
                 onError : err => {
@@ -68,7 +60,7 @@ const LoginSection = () => {
                     </DialogTrigger>
                     <DialogContent className = 'bg-neutral-50 w-[500px] h-[350px] max-sm:w-9/12 outline-none' style = {{ borderRadius : '20px' }}>
                         {
-                            formStep === 'otp' ? <OTPForm timer = {timer} time = {TIME} setTimer = { setTimer } setFormStep = { setFormStep } phoneNum = {phoneNum}/> : <LoginForm isPending = {isPending} timer = {timer} formik = {formik}/>
+                            formStep === 'otp' ? <OTPForm timer = {timer} setFormStep = { setFormStep } phoneNum = {phoneNum}/> : <LoginForm isPending = {isPending} timer = {timer} formik = {formik}/>
                         }
                     </DialogContent>
                 </Dialog>
