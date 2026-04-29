@@ -16,7 +16,7 @@ import { useTimer } from "@/hooks/useTimer";
 const LoginSection = () => {
     const [formStep , setFormStep] = useState('phone'); // phone - otp
     const [phoneNum , setPhoneNum] = useState('');
-    const { user } = useUser();
+    const { user , isLoading } = useUser();
     const isAuthenticated = !!user
     const { timer , startTimer } = useTimer()
 
@@ -47,6 +47,7 @@ const LoginSection = () => {
     return (
         <>
             {
+                isLoading ? <p>loading . . . </p> :
                 isAuthenticated ? 
                 <UserMenu/> :
                 <Dialog>

@@ -8,5 +8,10 @@ export const useGetUserData = () => {
     const queryFn = () => api.get('/user/profile');
     const queryKey = ['user-data']
 
-    return useQuery({ queryKey , queryFn , enabled : hasToken , refetchOnWindowFocus : false })
+    return useQuery({ queryKey,
+        queryFn,
+        enabled : hasToken,
+        staleTime : 5 * 60 * 1000,
+        refetchOnWindowFocus : false,
+    })
 }
