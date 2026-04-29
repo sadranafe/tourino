@@ -46,15 +46,9 @@ const DUMMY_ACCOUNT_CARD_INFO = [
 const AccountProfilePage = () => {
     const { user } = useUser();
     const queryClient = useQueryClient();
-    const { mutate , isPending } = useMutation({
+    const { mutate } = useMutation({
         mutationFn : updateUserProfile,
-        onSuccess: (res , variables) => {
-            // queryClient.setQueryData(['user-data' , old => {
-            //     if(!old) return old;
-            //     return {
-            //         ...old , data : { ...old.data , ...variables }
-            //     }
-            // }])
+        onSuccess: res => {
             queryClient.setQueryData(['user-data'] , res.data)
             queryClient.invalidateQueries({ queryKey :['user-data'] })
             toast.success(res?.message || 'تغییرات با موفقیت ذخیره شد ')

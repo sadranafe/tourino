@@ -12,6 +12,7 @@ import OTPForm from "./OTPForm";
 import LoginIcon from "./icons/loginIcon";
 import UserIconComponent from "./icons/userIcon";
 import { useTimer } from "@/hooks/useTimer";
+import { Skeleton } from "./ui/skeleton";
 
 const LoginSection = () => {
     const [formStep , setFormStep] = useState('phone'); // phone - otp
@@ -47,7 +48,9 @@ const LoginSection = () => {
     return (
         <>
             {
-                isLoading ? <p>loading . . . </p> :
+                isLoading ? 
+                <Skeleton className = "h-[35px] w-[140px] rounded-sm"/>
+                :
                 isAuthenticated ? 
                 <UserMenu/> :
                 <Dialog>
