@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import { updateUserProfile } from "@/lib/api";
-import { useGetUserData } from "@/services/queries";
+import useUser from "@/hooks/useUser";
 import { useFormik } from "formik";
 import { UserAccountSchema , UserAccountFullSchema } from "@/utils/UserAccountSchema";
 import { SECTION_FIELDS } from "@/helper/helper";
@@ -44,8 +44,7 @@ const DUMMY_ACCOUNT_CARD_INFO = [
 ]
 
 const AccountProfilePage = () => {
-    const { data } = useGetUserData();
-    const user = data?.data;
+    const { user } = useUser();
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
         mutationFn : updateUserProfile,

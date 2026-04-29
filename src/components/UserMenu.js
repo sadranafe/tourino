@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useQueryClient } from '@tanstack/react-query';
-import { useGetUserData } from '@/services/queries';
+import useUser from '@/hooks/useUser';
 import { deleteCookie } from '@/utils/cookie';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { LogOutIcon, UserIcon } from 'lucide-react';
@@ -9,8 +9,7 @@ import { CaretDownIcon, CirclesFourIcon } from '@phosphor-icons/react';
 
 const UserMenu = () => {
     const queryClient = useQueryClient();
-    const { data } = useGetUserData();
-    const user = data?.data;
+    const { user } = useUser()
 
     const logout = () => {
         deleteCookie('accessToken');

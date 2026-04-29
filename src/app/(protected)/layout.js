@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useGetUserData } from "@/services/queries";
+import useUser from "@/hooks/useUser";
 import ActiveLink from "@/components/ActiveLink";
 import toast from "react-hot-toast";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -9,8 +9,7 @@ import UserIconComponent from "@/components/icons/userIcon";
 import { CirclesFourIcon , SunHorizonIcon , SwapIcon } from "@phosphor-icons/react";
 
 const ProtectedLayout = ({ children }) => {
-    const { data , isLoading , isPending } = useGetUserData();
-    const user = data?.data;
+    const { user , isLoading , isPending } = useUser()
     const router = useRouter();
 
     useEffect(() => {

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
-import { useGetUserData } from "@/services/queries";
+import useUser from "@/hooks/useUser";
 import { useSendOTP } from "@/services/mutations";
 import { useFormik } from "formik";
 import { UserSchema } from "@/utils/UserSchema";
@@ -16,8 +16,8 @@ const LoginSection = () => {
     const [formStep , setFormStep] = useState('phone'); // phone - otp
     const [phoneNum , setPhoneNum] = useState('');
     const [timer , setTimer] = useState(0);
-    const { data } = useGetUserData();
-    const isAuthenticated = !!data?.data
+    const { user } = useUser();
+    const isAuthenticated = !!user
     const TIME = 120;
 
     const { mutate , isPending } = useSendOTP();
