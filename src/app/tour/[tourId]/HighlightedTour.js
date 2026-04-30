@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { calclateTourDuration, vehicleTypeTranslate } from "@/helper/helper";
+import { calculateTourDuration, vehicleTypeTranslate } from "@/helper/helper";
 import { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
@@ -23,7 +23,7 @@ import ChevronLeftIcon from "@/components/icons/ChevLeftIcon";
 
 const HighlightedTour = props => {
     const { id , image : img , title , startDate , endDate , origin , fleetVehicle , price , availableSeats , capacity , insurance , options } = props;
-    const tourDuration = calclateTourDuration(startDate , endDate);
+    const tourDuration = calculateTourDuration(startDate , endDate);
 
     const tourKeyFeatures = [
         { icon : <UserIconComponent/> , title : 'تورلیدر از مبدا' },
@@ -42,7 +42,7 @@ const HighlightedTour = props => {
     return (
         <>
             <div className = "relative border border-dashed w-11/12 mx-auto rounded-xl p-5 my-10">
-                <Link href = '/' className = "bg-re d-100 p-1 absolute max-md:top-2 max-md:left-1.5 max-[500px]:left-1 left-5 text-2xl text-neutral-400 hover:text-neutral-600 transition-all">
+                <Link href = '/' className = "p-1 absolute max-md:top-2 max-md:left-1.5 max-[500px]:left-1 left-5 text-2xl text-neutral-400 hover:text-neutral-600 transition-all">
                     <ChevronLeftIcon/>
                 </Link>
 
