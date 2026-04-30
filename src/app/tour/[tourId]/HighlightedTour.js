@@ -23,6 +23,7 @@ import ChevronLeftIcon from "@/components/icons/ChevLeftIcon";
 
 const HighlightedTour = props => {
     const { id , image : img , title , startDate , endDate , origin , fleetVehicle , price , availableSeats , capacity , insurance , options } = props;
+    console.log(fleetVehicle)
     const tourDuration = calculateTourDuration(startDate , endDate);
 
     const tourKeyFeatures = [
@@ -35,7 +36,7 @@ const HighlightedTour = props => {
         { title : 'مبدا' , value : origin?.name , icon : <PathIconComponent customClasses = 'text-xl'/> },
         { title : 'تاریخ رفت' , value : new DateObject({ date : startDate , format : 'YYYY/MM/DD' , calendar : persian , locale : persian_fa }).format('DD  MMMM YYYY') , icon : <CalendarDots customClasses = 'text-xl'/> },
         { title : 'تاریخ برگشت' , value : new DateObject({ date : endDate , format : 'YYYY/MM/DD' , calendar : persian , locale : persian_fa }).format('DD  MMMM YYYY') , icon : <CalendarDots customClasses = 'text-xl'/> },
-        { title : 'حمل و نقل' , value : vehicleTypeTranslate[fleetVehicle] , icon : fleetVehicle === 'bus' ? <BusIconComponent customClasses = 'text-xl'/> : fleetVehicle === 'train' ? <TrainIconComponent customClasses = 'text-xl'/> :  fleetVehicle === 'ship' ? <ShipIcon customClasses = 'text-xl'/> :  fleetVehicle === 'SUV' ? <CarIcon customClasses = 'text-xl'/> : <AirplaneIconComponent customClasses = 'text-xl'/> },
+        { title : 'حمل و نقل' , value : vehicleTypeTranslate[fleetVehicle.toLowerCase()] , icon : fleetVehicle === 'bus' ? <BusIconComponent customClasses = 'text-xl'/> : fleetVehicle === 'train' ? <TrainIconComponent customClasses = 'text-xl'/> :  fleetVehicle === 'ship' ? <ShipIcon customClasses = 'text-xl'/> :  fleetVehicle === 'SUV' ? <CarIcon customClasses = 'text-xl'/> : <AirplaneIconComponent customClasses = 'text-xl'/> },
         { title : 'ظرفیت' , value : capacity , icon : <UsersIconComponent customClasses = 'text-xl'/> },
         { title : 'بیمه' , value : insurance ? 'دارد ✅' : ' ندارد ❌' , icon : <ShieldIconComponent customClasses = 'text-xl'/> },
     ]

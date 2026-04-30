@@ -7,7 +7,7 @@ export const vehicleTypeTranslate =  {
     bus : 'اتوبوس',
     train : 'قطار',
     airplane : 'هواپیما',
-    SUV : 'سواری شاسی بلند'
+    suv : 'سواری شاسی بلند'
 };
 
 export const getHttpErrorMessage = (statusCode , customMessage = {}) => {

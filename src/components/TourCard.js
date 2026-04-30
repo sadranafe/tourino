@@ -20,7 +20,7 @@ const TourCard = ( props ) => {
 
                     <div className = 'border-b p-4'>
                         <h2 className = 'text-lg'>{title}</h2>
-                        <p className = 'text-neutral-500 text-xs'>{ `${tourMonth} ماه - ${tourDurationInDays} روزه - ${vehicleTypeTranslate[fleetVehicle]} - ${hotelRate}` }</p>
+                        <p className = 'text-neutral-500 text-xs'>{ `${tourMonth} ماه - ${tourDurationInDays} روزه - ${vehicleTypeTranslate[fleetVehicle.toLowerCase()] ? vehicleTypeTranslate[fleetVehicle.toLowerCase()] + ' - ' : ''} ${hotelRate}` }</p>
                     </div>
                 </Link>
 
