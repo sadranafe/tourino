@@ -43,7 +43,7 @@ export const isDateInRange = ( selectedDate , startDate , endDate ) => {
     return selected >= start && selected <= end;
 };
 
-export const calclateTourDuration = ( startDate , endDate ) => {
+export const calculateTourDuration = ( startDate , endDate ) => {
     if(!startDate || !endDate) return null;
     const start = new DateObject(startDate).day;
     const end = new DateObject(endDate).day;
