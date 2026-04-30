@@ -19,9 +19,11 @@ const ProtectedLayout = ({ children }) => {
         }
         const profileIsCompleted = user?.fullname && user?.nationalCode && user?.email
         
-        if(!profileIsCompleted) toast.error('برای ادامه فرایند باید اطلاعات خود را کامل کنید');
+        if(!profileIsCompleted){
+            toast.error('برای ادامه فرایند باید اطلاعات خود را کامل کنید');
+            router.replace('/profile/account');
+        }
 
-        router.replace('/profile/account');
     },[ user , router ])
 
     return(
