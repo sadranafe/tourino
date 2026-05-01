@@ -1,13 +1,22 @@
+import UserIconComponent from "@/components/icons/userIcon";
+import PassengerInfo from "@/components/PassengerInfo";
 import { calculateTourDuration } from "@/helper/helper";
 
 const Basket = props => {
-    const { id , image : img , title , price , startDate , endDate } = props;
+    const { id , image : img , title , price , startDate , endDate , user } = props;
     const tourDuration = calculateTourDuration(startDate , endDate);
 
     return (
-        <>
-            <div className = "">
-                test
+        <div className = "flex justify-between items-start gap-2">
+            <div className = "w-9/12 border rounded-xl p-5">
+                <div className = "flex justify-normal items-center gap-2 mb-5">
+                    <UserIconComponent customClassName = 'text-2xl' weight = "light"/>
+                    <h1 className = "text-2xl">مشخصات مسافر</h1>
+                </div>
+
+                <div className = "grid grid-cols-2 items-center justify-items-center gap-y-2">
+                    <PassengerInfo { ...user } />
+                </div>
             </div>
 
             <div className = "border rounded-xl w-3/12">
@@ -34,7 +43,7 @@ const Basket = props => {
                 </div>
 
             </div>
-        </>
+        </div>
     );
 };
 

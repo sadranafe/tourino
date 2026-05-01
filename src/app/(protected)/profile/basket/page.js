@@ -1,34 +1,28 @@
+'use client'
+import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
-import { getCookie } from "@/utils/cookie";
-import axios from "axios";
-import { cookies } from "next/headers";
+import useUser from "@/hooks/useUser";
 import Basket from "./basket";
+import ToursLoading from "@/components/ToursLoading";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-
-export const dynamic = 'force-dynamic';
-
-const getServerToken = () => {
-    const cookieStore = cookies();
-    return cookieStore.get('accessToken')?.value
-}
-
-const page = async () => {
-    const accessToken = getServerToken()
-    const data = await fetch(`${BASE_URL}/basket` , {
-        headers: {
-            Authorization : `Bearer ${ accessToken }`
-        },
-        cache : 'no-store',
+const BasketPage = () => {
+    const { user } = useUser();
+    const { data: basketData , isPending } = useQuery({
+        queryKey : ['basket'],
+        queryFn : () => api.get('/basket'),
+        refetchOnWindowFocus : false,
     })
-    const res = await data.json();
-    console.log(res)
+    const res = basketData?.data;
     
     return (
-        <div className = "bg-bl ue-50">
-            <Basket { ...res } />
-        </div>
+        <>
+            {
+                isPending ? 
+                <ToursLoading/> :
+                <Basket { ...res } user = { user } />
+            }
+        </>
     );
 };
 
-export default page;
+export default BasketPage;
