@@ -12,13 +12,13 @@ const ReserveLink = ({ availableSeats , tourId }) => {
 
     const { mutate , isPending } = useMutation({
         mutationFn : () => api.put(`/basket/${tourId}`),
-        onSuccess : () => {
+        onSuccess : (res) => {
             queryClient.invalidateQueries({ queryKey : ['basket'] })
-            router.replace('/profile/basket');
-            router.refresh()
+            toast.success(res?.data?.message || 'تور به سبد خرید اضافه شد')
+            router.push('/profile/basket');
         },
-        onError : err => {
-            toast.error(err?.response?.data?.message || 'خطا در افزودن به سبد خرید')
+        onError : () => {
+            toast.error('وارد حساب کاربری خود شوید')
         }
     })
     
