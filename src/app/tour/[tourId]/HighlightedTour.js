@@ -23,7 +23,6 @@ import ChevronLeftIcon from "@/components/icons/ChevLeftIcon";
 
 const HighlightedTour = props => {
     const { id , image : img , title , startDate , endDate , origin , fleetVehicle , price , availableSeats , capacity , insurance , options } = props;
-    console.log(fleetVehicle)
     const tourDuration = calculateTourDuration(startDate , endDate);
 
     const tourKeyFeatures = [
