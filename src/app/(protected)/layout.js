@@ -1,6 +1,6 @@
 'use client';
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import useUser from "@/hooks/useUser";
 import ActiveLink from "@/components/ActiveLink";
 import toast from "react-hot-toast";
@@ -9,21 +9,26 @@ import UserIconComponent from "@/components/icons/userIcon";
 import { CirclesFourIcon , SunHorizonIcon , SwapIcon } from "@phosphor-icons/react";
 
 const ProtectedLayout = ({ children }) => {
-    const { user , isLoading , isPending , isFetching } = useUser()
+    const { user , isLoading , isPending , status } = useUser();
     const router = useRouter();
+    const pathName = usePathname();
 
     useEffect(() => {
-        if(!user && !isPending){
+        if(status === 'pending') return;
+
+        if(!user){
             router.replace('/')
             return;
         }
         const profileIsCompleted = user?.fullname && user?.nationalCode && user?.email
         
-        if(!profileIsCompleted && !isPending){
-            toast.error('برای ادامه فرایند باید اطلاعات خود را کامل کنید');
+        if(pathName === '/profile/account'){
+            if(!profileIsCompleted){
+                toast.error('برای ادامه فرایند باید اطلاعات خود را کامل کنید');
+            }
             router.replace('/profile/account');
         }
-    },[ user , isPending ])
+    },[ user , status , pathName ])
 
     return(
         <div className = "flex justify-between max-[700px]:flex-wrap gap-5 py-5 max-xl:px-10 max-lg:px-5 max-[320px]:px-2 xl:max-w-[1150px] mx-auto">

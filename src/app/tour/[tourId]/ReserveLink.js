@@ -1,9 +1,8 @@
 'use client';
-import Link from 'next/link';
-import { Tooltip , TooltipContent , TooltipTrigger } from '@/components/ui/tooltip';
+import api from '@/lib/api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import api from '@/lib/api';
+import { Tooltip , TooltipContent , TooltipTrigger } from '@/components/ui/tooltip';
 import toast from 'react-hot-toast';
 
 const ReserveLink = ({ availableSeats , tourId }) => {
