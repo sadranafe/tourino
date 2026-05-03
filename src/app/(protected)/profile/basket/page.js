@@ -10,6 +10,7 @@ const BasketPage = () => {
     const { data: basketData , isPending } = useQuery({
         queryKey : ['basket'],
         queryFn : () => api.get('/basket'),
+        retry : 5,
         refetchOnWindowFocus : false,
     })
     const res = basketData?.data;
@@ -17,8 +18,9 @@ const BasketPage = () => {
     return (
         <>
             {
-                isPending ? 
+                isPending ?
                 <ToursLoading/> :
+                res.length === 0 ? <p>سبد خالیه !</p> :
                 <Basket { ...res } user = { user } />
             }
         </>
