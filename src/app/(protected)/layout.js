@@ -9,22 +9,21 @@ import UserIconComponent from "@/components/icons/userIcon";
 import { CirclesFourIcon , SunHorizonIcon , SwapIcon } from "@phosphor-icons/react";
 
 const ProtectedLayout = ({ children }) => {
-    const { user , isLoading , isPending } = useUser()
+    const { user , isLoading , isPending , isFetching } = useUser()
     const router = useRouter();
 
     useEffect(() => {
-        if(!user){
+        if(!user && !isPending){
             router.replace('/')
             return;
         }
         const profileIsCompleted = user?.fullname && user?.nationalCode && user?.email
         
-        if(!profileIsCompleted){
+        if(!profileIsCompleted && !isPending){
             toast.error('برای ادامه فرایند باید اطلاعات خود را کامل کنید');
             router.replace('/profile/account');
         }
-
-    },[ user , router ])
+    },[ user , isPending ])
 
     return(
         <div className = "flex justify-between max-[700px]:flex-wrap gap-5 py-5 max-xl:px-10 max-lg:px-5 max-[320px]:px-2 xl:max-w-[1150px] mx-auto">
