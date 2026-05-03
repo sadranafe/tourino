@@ -180,3 +180,7 @@ input::-webkit-inner-spin-button {
 .focus\:text-accent-foreground:focus {
     background-color: transparent !important;
 }
+
+.passenger-birthDate > .rmdp-container{
+    width: 100%;
+}
