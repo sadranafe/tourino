@@ -1,13 +1,13 @@
-import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useMutation } from "@tanstack/react-query";
 import api from "@/lib/api";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import useRedirecting from "@/hooks/useRedirecting";
 import { calculateTourDuration } from "@/helper/helper";
 import toast from "react-hot-toast";
 import PassengerInfo from "@/components/PassengerInfo";
 import ChevronLeftIcon from "@/components/icons/ChevLeftIcon";
 import UserIconComponent from "@/components/icons/userIcon";
-import useRedirecting from "@/hooks/useRedirecting";
 
 const Basket = props => {
     const { image : img , title , price , startDate , endDate , user } = props;
@@ -27,8 +27,6 @@ const Basket = props => {
             toast.success(res?.data?.message)
             startRedirecting();
             router.replace('/profile/transactions')
-            // we have to redirect the user to the /profile/transactions and show the user's submitted tours
-            // add a loader to the button 
         },
         onError : err => {
             stopRedirecting();
