@@ -7,26 +7,32 @@ import toast from "react-hot-toast";
 import PassengerInfo from "@/components/PassengerInfo";
 import ChevronLeftIcon from "@/components/icons/ChevLeftIcon";
 import UserIconComponent from "@/components/icons/userIcon";
+import useRedirecting from "@/hooks/useRedirecting";
 
 const Basket = props => {
     const { image : img , title , price , startDate , endDate , user } = props;
     const tourDuration = calculateTourDuration(startDate , endDate);
     const router = useRouter();
+    const { isRedirecting , startRedirecting , stopRedirecting } = useRedirecting()
     
     const mutationFn = () => {
         const { fullname , nationalCode , birthDate , gender } = user;
         return api.post('/order' , { fullName : fullname, nationalCode , gender , birthDate })
     }
 
-    const { mutate } = useMutation({
+    const { mutate , isPending } = useMutation({
         mutationKey : ['order'],
         mutationFn,
         onSuccess : res => {
             toast.success(res?.data?.message)
+            startRedirecting();
+            router.replace('/profile/transactions')
             // we have to redirect the user to the /profile/transactions and show the user's submitted tours
+            // add a loader to the button 
         },
         onError : err => {
-            console.dir('error : ' + err)
+            stopRedirecting();
+            console.log('error : ' + err)
         }
     })
 
@@ -65,7 +71,9 @@ const Basket = props => {
                     </div>
 
                     <div>
-                        <button onClick = { () => mutate() } className = "w-full bg-green-500 hover:bg-green-600 transition-all text-white rounded-md p-2 py-3">ثبت و خرید نهایی</button>
+                        <button onClick = { () => mutate() } disabled = { isPending || isRedirecting } className = "w-full bg-green-500 hover:bg-green-600 disabled:bg-green-400 disabled:cursor-not-allowed transition-all text-white rounded-md p-2 py-3">
+                            { isPending ? 'درحال بررسی . . . ' : isRedirecting ? 'درحال انتقال . . .' :  'ثبت و خرید نهایی' }
+                        </button>
                     </div>
                 </div>
 

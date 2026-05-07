@@ -6,10 +6,11 @@ import OTPInput from "react-otp-input";
 import { DialogDescription , DialogTitle } from "@/components/ui/dialog";
 import { PencilSimpleIcon } from "@phosphor-icons/react";
 import { useTimer } from "@/hooks/useTimer";
+import useRedirecting from "@/hooks/useRedirecting";
 
 const OTPForm = ({ phoneNum , timer , setFormStep }) => {
     const [otp , setOtp] = useState('');
-    const [isRedirecting , setIsRedirecting] = useState(false);
+    const { isRedirecting , startRedirecting , stopRedirecting } = useRedirecting()
     const { mutate : resendOTP , isPending : isResending } = useSendOTP();
     const { mutate : verifyOTP , isPending : isVerifying , isError } = useVerifyOTP();
     const { startTimer } = useTimer()
@@ -25,9 +26,9 @@ const OTPForm = ({ phoneNum , timer , setFormStep }) => {
 
     const loginBtnHandler = () => {
         if(otp.length !== 6) return;
-        setIsRedirecting(true);
+        startRedirecting()
         verifyOTP({ mobile : phoneNum , code : otp } , {
-            onError : () => setIsRedirecting(false)
+            onError : () => stopRedirecting()
         });
     }
     return (
