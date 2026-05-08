@@ -181,6 +181,15 @@ input::-webkit-inner-spin-button {
     background-color: transparent !important;
 }
 
-.passenger-birthDate > .rmdp-container{
+.passenger-birthDate > .rmdp-container {
     width: 100%;
+}
+
+.transactions-birthDate > .rmdp-container > .rmdp-input {
+    border: none;
+}
+
+.transaction-id::-webkit-scrollbar{
+    display: none;
+    appearance: none;
 }

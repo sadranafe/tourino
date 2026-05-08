@@ -15,7 +15,7 @@ const PassengerInfo = props => {
             </div>
 
             <div className = "passenger-birthDate w-8/12 max-lg:w-10/12">
-                <DatePicker name = "birthDate" id = 'birthDate' placeholder = "تاریخ تولد" value = {birthDate} disabled calendarPosition = "bottom-center" calendar = {persian} locale = {persian_en} inputClass = 'bg-transparent disabled:cursor-not-allowed outline-none outline-none border border-neutral-200 py-3 rounded-md w-full text-center'/>
+                <DatePicker name = "birthDate" id = 'birthDate' placeholder = "تاریخ تولد" value = {birthDate} disabled calendarPosition = "bottom-center" calendar = {persian} locale = {persian_en} inputClass = 'bg-transparent disabled:cursor-not-allowed outline-none border border-neutral-200 py-3 rounded-md w-full text-center'/>
             </div>
 
             <div className = "w-8/12 max-lg:w-10/12">

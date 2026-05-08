@@ -1,0 +1,52 @@
+'use client';
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import api from '@/lib/api';
+import Transactions from './Transactions';
+
+const TransactionPage = () => {
+    const { data , isPending } = useQuery({
+        queryKey : ['trans'],
+        queryFn : () => api.get('/user/transactions'),
+        retry : 5,
+        refetchOnWindowFocus : false,
+    })
+
+    return (
+        <>
+            <div className = 'border rounded-xl overflow-hidden'>
+                <div className = 'bg-neutral-100 py-2.5 text-base max-[450px]:text-sm grid grid-cols-7 justify-items-center items-center'>
+                    <div className = 'col-span-2 max-[800px]:col-span-2 max-[450px]:col-span-3'>
+                        <p>تاریخ و ساعت</p>
+                    </div>
+                    <div className = 'col-span-1 max-[800px]:col-span-2 max-[450px]:col-span-2'>
+                        <p>مبلغ (تومان)</p>
+                    </div>
+                    <div className = 'col-span-2 max-[800px]:hidden'>
+                        <p>نوع تراکنش</p>
+                    </div>
+                    <div className = 'col-span-2 max-[800px]:col-span-3 max-[450px]:col-span-2'>
+                        <p>شماره سفارش</p>
+                    </div>
+                </div>
+
+                {
+                    isPending ? 
+                    <p className = 'flex justify-center items-center py-3'>
+                        <span className = 'w-5 h-5 inline-block border border-neutral-400 border-b-0 border-r-0 animate-spin rounded-full'></span>
+                    </p>
+                    :
+                    <div className = 'grid grid-cols-7 justify-items-center items-center gap-y-2 px-3 max-[500px]:pr-5 max-[450px]:pr-1 max-[390px]:pr-5 py-4'>
+                        {
+                            data?.data.map((trans , index) => (
+                                <Transactions data = {trans} key = { index }/>
+                            ))
+                        }
+                    </div>
+                }
+            </div>
+        </>
+    );
+};
+
+export default TransactionPage;
