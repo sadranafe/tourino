@@ -60,3 +60,14 @@ export const formatDate = date => {
     const formatted = new DateObject({ date , calendar : persian , locale : persian_fa })
     return { formattedDate : formatted.format('DD MMMM YYYY') , weekDay : formatted?.weekDay?.name };
 }
+
+export const tourStatus = (startDate , endDate) => {
+    if(!startDate || !endDate) return null;
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const today = new Date();
+
+    if( today < start ) return { status : 'upComing' , msg : 'برگزار نشده' }
+    if( today > end ) return { status : 'completed' , msg : 'به اتمام رسیده' }
+    return { status : 'ongoing' , msg : 'درحال برگزاری' }
+}

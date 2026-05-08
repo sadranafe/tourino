@@ -1,4 +1,4 @@
-import { formatDate, vehicleTypeTranslate } from "@/helper/helper";
+import { formatDate, tourStatus, vehicleTypeTranslate } from "@/helper/helper";
 import AirplaneIconComponent from "@/components/icons/AirplaneIcon";
 import BusIconComponent from "@/components/icons/BusIcon";
 import CarIcon from "@/components/icons/CarIcon";
@@ -12,7 +12,7 @@ const MyTours = ({ tour }) => {
     const fleet = fleetVehicle.toLowerCase()
     const { formattedDate : formattedStartDate , weekDay : startDateWeekDay } = formatDate(startDate);
     const { formattedDate : formattedEndDate , weekDay : endDateWeekDay } = formatDate(endDate);
-    // create a funciton that detemines the status of the tour => hasEnded - isWorking
+    const { status , msg : tourMsg } = tourStatus(startDate , endDate)
 
     return (
         <>
@@ -35,7 +35,7 @@ const MyTours = ({ tour }) => {
                     </div>
                     
                     <div>
-                        <p className = "relative max-[500px]:absolute max-[500px]:top-2 max-[500px]:left-2.5 max-[500px]:text-nowrap rounded-lg text-xs p-0.5 px-3 max-w-fit text-green-700 bg-green-400/50">به اتمام رسیده</p>
+                        <p className = {`relative max-[500px]:absolute max-[500px]:top-2 max-[500px]:left-2.5 max-[500px]:text-nowrap rounded-lg text-xs p-1 px-3 max-w-fit ${ status === 'completed' ? 'text-green-700 bg-green-400/50' : status === 'ongoing'  ? 'bg-yellow-100 text-yellow-600' : 'bg-neutral-100'}`}>{ tourMsg }</p>
                     </div>
                 </div>
 
@@ -59,7 +59,7 @@ const MyTours = ({ tour }) => {
                     </div>
                 </div>
 
-                <div className = "w-full h-[1px] bg-neutral-300"></div>
+                <div className = "w-full h-[1px] bg-neutral-200"></div>
 
                 <div className = "flex justify-start items-center gap-3 p-7 max-[400px]:flex-wrap">
                     <div>

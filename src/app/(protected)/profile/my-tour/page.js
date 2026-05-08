@@ -13,7 +13,7 @@ const MyTourPage = () => {
     })
 
     return (
-        <div className = "flex flex-wrap justify-center items-center border rounded-lg p-5 gap-5">
+        <div className = "flex flex-wrap justify-center items-center border rounded-3xl p-5 gap-5">
             {
                 isPending ? 
                 <LoadingSpinner/> :
