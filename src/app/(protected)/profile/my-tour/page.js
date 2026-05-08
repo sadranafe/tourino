@@ -17,7 +17,7 @@ const MyTourPage = () => {
             {
                 isPending ? 
                 <LoadingSpinner/> :
-                data?.data.map((tour , index) => {
+                data?.data?.map((tour , index) => {
                     return (
                         <MyTours key = {index} tour = {tour}/>
                     )

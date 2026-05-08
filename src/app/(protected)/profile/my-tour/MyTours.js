@@ -9,10 +9,10 @@ import DotIconComponent from "@/components/icons/DotIconComponent";
 
 const MyTours = ({ tour }) => {
     const { origin , destination , startDate , endDate , fleetVehicle , id , price , title } = tour;
-    const fleet = fleetVehicle.toLowerCase()
-    const { formattedDate : formattedStartDate , weekDay : startDateWeekDay } = formatDate(startDate);
-    const { formattedDate : formattedEndDate , weekDay : endDateWeekDay } = formatDate(endDate);
-    const { status , msg : tourMsg } = tourStatus(startDate , endDate)
+    const fleet = fleetVehicle?.toLowerCase()
+    const formattedStartDate = formatDate(startDate);
+    const formattedEndDate = formatDate(startDate);
+    const tourSt = tourStatus(startDate , endDate);
 
     return (
         <>
@@ -29,13 +29,13 @@ const MyTours = ({ tour }) => {
                         <div>
                             <p className = "flex justify-start items-center gap-2">
                                 { fleet === 'bus' ? <BusIconComponent customClasses = 'text-xl' weight = "light"/> : fleet === 'train' ? <TrainIconComponent weight = "light" customClasses = 'text-xl'/> :  fleet === 'ship' ? <ShipIcon weight = "light" customClasses = 'text-xl'/> :  fleet === 'suv' ? <CarIcon weight = "light" customClasses = 'text-xl'/> : <AirplaneIconComponent weight = "light" customClasses = 'text-xl'/> }
-                                <span>سفر با { vehicleTypeTranslate[fleetVehicle.toLowerCase()] }</span>
+                                <span>سفر با { vehicleTypeTranslate[fleet] }</span>
                             </p>
                         </div>
                     </div>
                     
                     <div>
-                        <p className = {`relative max-[500px]:absolute max-[500px]:top-2 max-[500px]:left-2.5 max-[500px]:text-nowrap rounded-lg text-xs p-1 px-3 max-w-fit ${ status === 'completed' ? 'text-green-700 bg-green-400/50' : status === 'ongoing'  ? 'bg-yellow-100 text-yellow-600' : 'bg-neutral-100'}`}>{ tourMsg }</p>
+                        <p className = {`relative max-[500px]:absolute max-[500px]:top-2 max-[500px]:left-2.5 max-[500px]:text-nowrap rounded-lg text-xs p-1 px-3 max-w-fit ${ tourSt?.status === 'completed' ? 'text-green-700 bg-green-400/50' : tourSt?.status === 'ongoing'  ? 'bg-yellow-100 text-yellow-600' : 'bg-neutral-100'}`}>{ tourSt?.msg }</p>
                     </div>
                 </div>
 
@@ -45,7 +45,7 @@ const MyTours = ({ tour }) => {
                         
                         <p className = "text-neutral-500 flex items-center justify-start max-[800px]:text-xs">
                             <DotIconComponent weight = "light"/>
-                            {startDateWeekDay + ' ' + formattedStartDate}
+                            {formattedStartDate?.weekDay + ' ' + formattedStartDate?.formattedDate}
                         </p>
                     </div>
 
@@ -54,7 +54,7 @@ const MyTours = ({ tour }) => {
                         
                         <p className = "text-neutral-500 flex items-center justify-start max-[800px]:text-xs">
                             <DotIconComponent weight = "light"/>
-                            { endDateWeekDay + ' ' + formattedEndDate }
+                            { formattedEndDate?.weekDay + ' ' + formattedEndDate?.formattedDate }
                         </p>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ const MyTours = ({ tour }) => {
                     <div className = "border-r pr-3">
                         <p>
                             <span className = "text-neutral-500">مبلغ پرداخت شده </span>
-                            <span className = "font-bold ml-2 mr-1.5">{ price.toLocaleString() }</span>
+                            <span className = "font-bold ml-2 mr-1.5">{ price?.toLocaleString() }</span>
                             <span className = "text-neutral-500">تومان</span>
                         </p>
                     </div>

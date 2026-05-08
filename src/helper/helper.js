@@ -58,7 +58,7 @@ export const calculateTourDuration = ( startDate , endDate ) => {
 export const formatDate = date => {
     if( !date ) return null;
     const formatted = new DateObject({ date , calendar : persian , locale : persian_fa })
-    return { formattedDate : formatted.format('DD MMMM YYYY') , weekDay : formatted?.weekDay?.name };
+    return { formattedDate : formatted.format('DD MMMM YYYY') , weekDay : formatted.weekDay.name };
 }
 
 export const tourStatus = (startDate , endDate) => {

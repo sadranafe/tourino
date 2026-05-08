@@ -3,7 +3,7 @@ import persian from "react-date-object/calendars/persian"
 import persian_en from "react-date-object/locales/persian_en"
 
 const Transactions = ({ data }) => {
-    const { amount , id , createdAt } = data;
+    const { id , createdAt } = data;
     return (
         <>
             <div className = "transactions-birthDate max-[800px]:col-span-2 max-[450px]:col-span-3 col-span-2 flex justify-center items-center">
@@ -13,7 +13,7 @@ const Transactions = ({ data }) => {
             </div>
 
             <div className = "col-span-1 max-[800px]:col-span-2 max-[450px]:col-span-2">
-                <p>{amount.toLocaleString()}</p>
+                <p>{data?.amount?.toLocaleString()}</p>
             </div>
 
             <div className = "col-span-2 max-[800px]:hidden">
