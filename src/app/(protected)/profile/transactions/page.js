@@ -3,6 +3,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
 import Transactions from './Transactions';
+import LoadingSpinner from '@/components/loadingSpinner';
 
 const TransactionPage = () => {
     const { data , isPending } = useQuery({
@@ -32,9 +33,7 @@ const TransactionPage = () => {
 
                 {
                     isPending ? 
-                    <p className = 'flex justify-center items-center py-3'>
-                        <span className = 'w-5 h-5 inline-block border border-neutral-400 border-b-0 border-r-0 animate-spin rounded-full'></span>
-                    </p>
+                    <LoadingSpinner/>
                     :
                     <div className = 'grid grid-cols-7 justify-items-center items-center gap-y-2 px-3 max-[500px]:pr-5 max-[450px]:pr-1 max-[390px]:pr-5 py-4'>
                         {

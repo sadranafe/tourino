@@ -1,6 +1,7 @@
 import { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian"
 import persian_en from "react-date-object/locales/persian_en"
+import persian_fa from "react-date-object/locales/persian_fa"
 
 export const vehicleTypeTranslate =  {
     ship : 'کشتی',
@@ -52,4 +53,10 @@ export const calculateTourDuration = ( startDate , endDate ) => {
     const day = (end - start) + 1
 
     return { night , day };
+}
+
+export const formatDate = date => {
+    if( !date ) return null;
+    const formatted = new DateObject({ date , calendar : persian , locale : persian_fa })
+    return { formattedDate : formatted.format('DD MMMM YYYY') , weekDay : formatted?.weekDay?.name };
 }
