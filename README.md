@@ -25,7 +25,6 @@ It offers the best travel experiences with seamless online booking , an intuitiv
 - 🎨 **Professional UI**  
     Built with Shadcn/ui components, Phosphor icons, and subtle animations for a premium user experience.
 
----
 
 ## tech stack
 -  [Next.js](https://nextjs.org) App Router ( v14 )
@@ -38,7 +37,6 @@ It offers the best travel experiences with seamless online booking , an intuitiv
 -  [react‑hot‑toast](https://react-hot-toast.com/)
 -  [Phosphor Icons](https://phosphoricons.com/)
 
----
 
 ## 🔐 Authentication Flow
 1. Phone Number Submission – User enters mobile number.
@@ -49,7 +47,6 @@ It offers the best travel experiences with seamless online booking , an intuitiv
 6. Route Protection – Middleware checks for the `accessToken` cookie; unauthenticated users are redirected to `/`.
 7. Token Refresh – Axios interceptors automatically refresh the token when a 401 response is detected.
 
----
 
 ## 🔐 Security & API Client
 Tourino implements a layered security model to protect user data and ensure safe communication with the backend. The key components are :
@@ -60,7 +57,6 @@ Tourino implements a layered security model to protect user data and ensure safe
 3. Axios client with automatic token Refresh
     - The project uses a custom axios instance that acts as a central HTTP client.
 
----
 
 ## 🧹 Code Quality & Reusability
 Tourino is built with maintainability and scalability at its core. Every piece of logic is carefully placed following modern best practices:
@@ -69,27 +65,44 @@ Tourino is built with maintainability and scalability at its core. Every piece o
 - Centralized Validation
 - Robust HTTP layer
 
----
+
+## Architecture Overview
+comming soon . . .
 
 ## 📦 Installation
-```bash
-- Node.js ≥ 18
-- npm or yarn
-- A running instance of the Tourino backend
+first you have to download the [Tourino-API](https://github.com/milad-azami/travel-agency-api-torino)  
 
-# Clone this repo
+1. Clone this repo
+```
 git clone https://github.com/sadranafe/tourino.git
 cd tourino-app
 npm install
-
-# Environment Variables
+```
+2. Environment Variables
 create a .env.local file in the project root :
-NEXT_PUBLIC_BASE_URL=http://localhost:6500
+`NEXT_PUBLIC_BASE_URL=http://localhost:6500`
 
+3. setup API
+```
+git clone https://github.com/milad-azami/travel-agency-api-torino.git
+```
+```
+npm start
+```
+
+4. after starting the API, now you can start the project : 
+```
 npm run dev
 ```
 
-## Architecture Overview
+## Contributing
+I welcome contributions to make Tourino even more awesome! Whether it's bug fixes, feature additions, or improvements to the documentation, your help is highly appreciated.
+> [!Tip]
+> Email : [sadranafe7@gmail.com]
 
+
+## Acknowledgements
+- special thanks to the **Milad azami** for his invaluable mentorship and guidance throughout the development of this project.  
+- Gratitude also goes to the **Boto Start Bootcamp** for providing the structured learning environment and support that made Tourino possible.
 
 built with ❤️ by sadra nafe
