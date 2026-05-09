@@ -175,6 +175,8 @@ first you have to download the [Tourino-API](https://github.com/milad-azami/trav
 1. Clone this repo
 ```
 git clone https://github.com/sadranafe/tourino.git
+```
+```
 cd tourino-app
 npm install
 ```
