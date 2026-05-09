@@ -13,19 +13,17 @@ const DashboardPage = () => {
     
     return (
         <>
-            <div className = "rounded-xl p-10 bg-neutral-50/70 max-[400px]:p-7">
-                {
-                    userPending || transPending || toursPending ? 
-                    <LoadingSpinner /> : 
-                    <>
-                        <DashboardUserSection user = {user}/>
-                        <div className = "grid grid-cols-3 max-lg:grid-cols-2 max-[550px]:grid-cols-1 gap-5 my-10">
-                            <DashboardTransactionBox data = {transactionsData}/>
-                            <DashboardUserToursBox tours = {toursData}/>
-                        </div>
-                    </>
-                }
-            </div>
+            {
+                userPending || transPending || toursPending ? 
+                <LoadingSpinner /> : 
+                <>
+                    <DashboardUserSection user = {user}/>
+                    <div className = "grid grid-cols-3 max-lg:grid-cols-2 max-[550px]:grid-cols-1 gap-5 my-10">
+                        <DashboardTransactionBox data = {transactionsData}/>
+                        <DashboardUserToursBox tours = {toursData}/>
+                    </div>
+                </>
+            }
         </>
     );
 };

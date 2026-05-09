@@ -4,7 +4,7 @@ export async function generateMetadata({ params }){
     const data = await fetch(`http://localhost:6500/tour/${params.tourId}`);
     const res = await data.json();
     return{
-        title : `${res.title} | `
+        title : res.title
     }
 }
 
