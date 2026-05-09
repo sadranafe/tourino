@@ -3,7 +3,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
 import Transactions from './Transactions';
-import LoadingSpinner from '@/components/loadingSpinner';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 const TransactionPage = () => {
     const { data , isPending } = useQuery({
