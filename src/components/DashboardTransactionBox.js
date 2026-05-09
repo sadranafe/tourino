@@ -21,14 +21,14 @@ const DashboardTransactionBox = ({ data }) => {
             </div>
 
             <div className = "bg-sky-300 rounded-xl p-5 flex flex-wrap justify-center items-center">
-                <p className = "text-3xl text-center w-full">
+                <p className = "text-3xl text-center w-full max-[400px]:text-2xl">
                     { sumPriceCalc()?.toLocaleString() }
                     <span className = "text-xs text-neutral-500 mr-1">تومان</span>
                 </p>
                
                 <p className = "flex justify-start items-center gap-3">
                     <WalletIconComponent customClasses = 'text-2xl'/>
-                    <span className = "text-base">ارزش کل تور های من</span>
+                    <span className = "text-base max-[400px]:text-sm">ارزش کل تور های من</span>
                 </p>
             </div>
         </>
