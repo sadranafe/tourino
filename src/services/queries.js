@@ -15,3 +15,14 @@ export const useGetUserData = () => {
         refetchOnWindowFocus : false,
     })
 }
+
+export const useGetUserTours = () => {
+    const hasToken = useHasToken();
+    return useQuery({
+        queryKey : ['trans'],
+        queryFn : () => api.get('/user/tours'),
+        enabled : hasToken,
+        refetchOnWindowFocus : false,
+        retry : 3,
+    })
+}

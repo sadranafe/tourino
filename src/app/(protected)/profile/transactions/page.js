@@ -37,6 +37,8 @@ const TransactionPage = () => {
                     :
                     <div className = 'grid grid-cols-7 justify-items-center items-center gap-y-2 px-3 max-[500px]:pr-5 max-[450px]:pr-1 max-[390px]:pr-5 py-4'>
                         {
+                            data?.data?.length === 0 ?
+                            <p className = 'text-center col-span-7'>تراکنشی تا به حال انجام نشده 😮</p> :
                             data?.data.map((trans , index) => (
                                 <Transactions data = {trans} key = { index }/>
                             ))
