@@ -19,10 +19,21 @@ export const useGetUserData = () => {
 export const useGetUserTours = () => {
     const hasToken = useHasToken();
     return useQuery({
-        queryKey : ['trans'],
+        queryKey : ['my-tours'],
         queryFn : () => api.get('/user/tours'),
         enabled : hasToken,
         refetchOnWindowFocus : false,
         retry : 3,
+    })
+}
+
+export const useGetUserTransactions = () => {
+    const hasToken = useHasToken();
+    return useQuery({
+        queryKey : ['trans'],
+        queryFn : () => api.get('/user/transactions'),
+        enabled : hasToken,
+        retry : 5,
+        refetchOnWindowFocus : false,
     })
 }
