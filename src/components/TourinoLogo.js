@@ -5,7 +5,7 @@ const TourinoLogo = ({ linkClasses }) => {
     return (
         <>
             <Link href = '/' className = {linkClasses}>
-                <Image src = '/tourino-logo.png' alt = "tourino logo | تورینو" width = {130} height = {40} priority/>
+                <Image src = '/tourino-logo.png' alt = "tourino logo | تورینو" sizes = '130px' className = 'h-auto w-[130px]' width = {0} height = {0} priority/>
             </Link>
         </>
     );

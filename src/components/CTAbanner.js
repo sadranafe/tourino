@@ -14,7 +14,7 @@ const CTAbanner = () => {
             </div>
 
             <div className = "max-[350px]:w-full max-[350px]:flex max-[350px]:justify-center max-[350px]:order-1">
-                <Image src = '/professional-cartoon-man-talking-phone-icon-illustration.png' alt = "تورینو | خرید آنلاین تور" width = {260} height = {260} priority = {false} className = "h-auto w-auto max-w-[260px]"/>
+                <Image src = '/professional-cartoon-man-talking-phone-icon-illustration.png' alt = "تورینو | خرید آنلاین تور" sizes = "(max-width: 350px) 100vw, 260px" width = {0} height = {0} priority = {false} className = "max-w-[260px] w-full h-auto"/>
             </div>
         </div>
 
