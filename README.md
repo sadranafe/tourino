@@ -85,7 +85,84 @@ Tourino is built with maintainability and scalability at its core. Every piece o
 
 
 ## 🧠 Architecture Overview
-comming soon . . .
+```
+tourino-app/
+├── public/
+├── src/
+│ ├── app/ 
+│ │ ├── (protected)/
+│ | │ ├── profile/
+│ | │ | ├─── account/
+│ | │ | | ├──── AccountCard.js
+│ | │ | | ├──── layout.js
+│ | │ | | ├──── page.js
+│ | │ | ├─── basket/
+│ | │ | | ├──── basket.js
+│ | │ | | ├──── layout.js
+│ | │ | | ├──── page.js
+│ | │ | ├─── dashboard/
+│ | │ | | ├──── layout.js
+│ | │ | | ├──── page.js
+│ | │ | ├─── my-tour/
+│ | │ | | ├──── MyTours.js
+│ | │ | | ├──── layout.js
+│ | │ | | ├──── page.js
+│ | │ | ├─── transactions/
+│ | │ | | ├──── transactions.js
+│ | │ | | ├──── layout.js
+│ | │ | | ├──── page.js
+│ | │ | ├─── layout.js
+│ | │ | ├─── page.js
+│ | │ ├── layout.js
+│ │ ├── fonts/
+│ │ ├── tour/
+│ | │ ├── [tourId]/
+│ | │ | ├─── HighlightedTour.js
+│ | │ | ├─── loading.js
+│ | │ | ├─── page.js
+│ | │ | ├─── ReserveLink.js
+│ │ ├── error.js
+│ │ ├── layout.js
+│ │ ├── not-found.js
+│ │ ├── page.js
+│ │ ├── favicon.ico
+│ │ ├── globals.css
+│ │ 
+│ ├── components/
+│ │ ├── icons/
+│ │ ├── layout/
+│ │ ├── ui/
+│ │ ├── ...
+│ ├── helper/
+│ │ ├── helper.js
+│ ├── hooks/
+│ │ ├── useHasToken.js
+│ │ ├── useRedirecting.js
+│ │ ├── useTimer.js
+│ │ ├── useUser.js
+│ ├── lib/
+│ │ ├── api.js
+│ │ ├── utils.js (for shadcn-ui)
+│ ├── provider/
+│ │ ├── TanstackQueryProvider.js
+│ ├── services/
+│ │ ├── mutations.js
+│ │ ├── queries.js
+│ ├── utils/
+│ │ ├── cookie.js
+│ │ ├── UserAccountSchema.js
+│ │ ├── UserSchema.js
+│ └── middleware.js
+├── tailwind.config.js
+├── .env
+├── components.json
+├── jsconfig.json
+├── next.config.js
+└── package.json
+└── package-lock.json
+└── postcss.config.mjs
+└── tailwind.config.js
+```
 
 
 
