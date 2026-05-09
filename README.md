@@ -3,6 +3,9 @@
 **Tourino** is a moderen web application for discovering , browsing and booking domestic and international tours. 
 It offers the best travel experiences with seamless online booking , an intuitive user dashboard and responsive design.
 
+
+<br/>
+
 ## ✈️ Key Features
 - 🔎 **Tour Search & Filtering**
     Search tours by origin , destination and date.
@@ -26,7 +29,10 @@ It offers the best travel experiences with seamless online booking , an intuitiv
     Built with Shadcn/ui components, Phosphor icons, and subtle animations for a premium user experience.
 
 
-## tech stack
+<br/>
+
+
+## 🧱 tech stack
 -  [Next.js](https://nextjs.org) App Router ( v14 )
 -  [TailwindCSS](https://tailwindcss.com/) v4.1
 -  [Shadcn/ui](https://ui.shadcn.com/)
@@ -38,6 +44,9 @@ It offers the best travel experiences with seamless online booking , an intuitiv
 -  [Phosphor Icons](https://phosphoricons.com/)
 
 
+<br/>
+
+
 ## 🔐 Authentication Flow
 1. Phone Number Submission – User enters mobile number.
 2. OTP Request – A `POST /auth/send-otp` is sent.
@@ -46,6 +55,8 @@ It offers the best travel experiences with seamless online booking , an intuitiv
 5. Profile Retrieval – React Query fetches the full user profile (`/user/profile`) and caches it.
 6. Route Protection – Middleware checks for the `accessToken` cookie; unauthenticated users are redirected to `/`.
 7. Token Refresh – Axios interceptors automatically refresh the token when a 401 response is detected.
+
+<br/>
 
 
 ## 🔐 Security & API Client
@@ -58,6 +69,10 @@ Tourino implements a layered security model to protect user data and ensure safe
     - The project uses a custom axios instance that acts as a central HTTP client.
 
 
+<br/>
+
+
+
 ## 🧹 Code Quality & Reusability
 Tourino is built with maintainability and scalability at its core. Every piece of logic is carefully placed following modern best practices:
 - Custom Hooks
@@ -65,9 +80,17 @@ Tourino is built with maintainability and scalability at its core. Every piece o
 - Centralized Validation
 - Robust HTTP layer
 
+<br/>
 
-## Architecture Overview
+
+
+## 🧠 Architecture Overview
 comming soon . . .
+
+
+
+<br/>
+
 
 ## 📦 Installation
 first you have to download the [Tourino-API](https://github.com/milad-azami/travel-agency-api-torino)  
@@ -95,10 +118,18 @@ npm start
 npm run dev
 ```
 
+<br/>
+
+
 ## Contributing
 I welcome contributions to make Tourino even more awesome! Whether it's bug fixes, feature additions, or improvements to the documentation, your help is highly appreciated.
 > [!Tip]
 > Email : [sadranafe7@gmail.com]
+
+
+
+
+<br/>
 
 
 ## Acknowledgements
