@@ -1,5 +1,5 @@
 'use client';
-import LoadingSpinner from "@/components/loadingSpinner";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import MyTours from "./MyTours";
 import { useGetUserTours } from "@/services/queries";
 

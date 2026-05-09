@@ -1,17 +1,10 @@
 'use client';
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import api from '@/lib/api';
+import { useGetUserTransactions } from '@/services/queries';
 import Transactions from './Transactions';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
 const TransactionPage = () => {
-    const { data , isPending } = useQuery({
-        queryKey : ['trans'],
-        queryFn : () => api.get('/user/transactions'),
-        retry : 5,
-        refetchOnWindowFocus : false,
-    })
+    const { data , isPending } = useGetUserTransactions();
 
     return (
         <>
