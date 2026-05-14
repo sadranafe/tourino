@@ -212,7 +212,7 @@ I welcome contributions to make Tourino even more awesome! Whether it's bug fixe
 
 
 ## Acknowledgements
-- special thanks to the **Milad azami** for his invaluable mentorship and guidance throughout the development of this project.  
+- special thanks to **Milad azami** for his invaluable mentorship and guidance throughout the development of this project.  
 - Gratitude also goes to the **Boto Start Bootcamp** for providing the structured learning environment and support that made Tourino possible.
 
 built with ❤️ by sadra nafe
