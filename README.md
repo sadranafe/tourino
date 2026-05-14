@@ -7,25 +7,25 @@ It offers the best travel experiences with seamless online booking , an intuitiv
 <br/>
 
 ## ✈️ Key Features
-- 🔎 **Tour Search & Filtering** \n
+- 🔎 **Tour Search & Filtering** \
     Search tours by origin , destination and date.
 
-- 🛒 **Seamless Booking** \n
+- 🛒 **Seamless Booking** \
     One-click reservation with basket management.
 
-- 👤 **User Authentication & Profile** \n
+- 👤 **User Authentication & Profile** \
     Phone‑based OTP login (JWT access & refresh tokens). Complete profile with personal, contact, and banking info.
 
-- 📊 **User Dashboard** \n
+- 📊 **User Dashboard** \
     Overview of purchased tours , total spending and transaction history.
 
-- 📱 **Fully Responsive** \n
+- 📱 **Fully Responsive** \
     Mobile‑first design using Tailwind CSS. Optimised for all screen sizes from smartphones to desktops.
 
-- ⚡ **Modern Data Fetching** \n
+- ⚡ **Modern Data Fetching** \
     React Query (TanStack Query) for efficient server state management, caching, and automatic background updates.
 
-- 🎨 **Professional UI** \n
+- 🎨 **Professional UI** \
     Built with Shadcn/ui components, Phosphor icons, and subtle animations for a premium user experience.
 
 
