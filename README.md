@@ -1,6 +1,6 @@
 # Tourino - Tour booking platform
 
-**Tourino** is a moderen web application for discovering , browsing and booking domestic and international tours. 
+**Tourino** is a modern web application for discovering , browsing and booking domestic and international tours. 
 It offers the best travel experiences with seamless online booking , an intuitive user dashboard and responsive design.
 
 
@@ -32,7 +32,7 @@ It offers the best travel experiences with seamless online booking , an intuitiv
 <br/>
 
 
-## 🧱 tech stack
+## 🧱 Tech Stack
 -  [Next.js](https://nextjs.org) App Router ( v14 )
 -  [TailwindCSS](https://tailwindcss.com/) v4.1
 -  [Shadcn/ui](https://ui.shadcn.com/)
@@ -45,33 +45,6 @@ It offers the best travel experiences with seamless online booking , an intuitiv
 
 
 <br/>
-
-
-## 🔐 Authentication Flow
-1. Phone Number Submission – User enters mobile number.
-2. OTP Request – A `POST /auth/send-otp` is sent.
-3. OTP Verification – The 6‑digit code is verified via `POST /auth/check-otp`.
-4. Token Storage – On success, access and refresh tokens are stored in cookies.
-5. Profile Retrieval – React Query fetches the full user profile (`/user/profile`) and caches it.
-6. Route Protection – Middleware checks for the `accessToken` cookie; unauthenticated users are redirected to `/`.
-7. Token Refresh – Axios interceptors automatically refresh the token when a 401 response is detected.
-
-<br/>
-
-
-## 🔐 Security & API Client
-Tourino implements a layered security model to protect user data and ensure safe communication with the backend. The key components are :
-
-1. Middleware route protection
-   - Runs on every request and checks the presence of the `accessToken` cookie. if     missing, the user is immediately redirected to the homepage (`/`), preventing       any server-side rendering of protected pages
-2. JWT token strategy
-3. Axios client with automatic token Refresh
-    - The project uses a custom axios instance that acts as a central HTTP client.
-
-
-<br/>
-
-
 
 ## 🧹 Code Quality & Reusability
 Tourino is built with maintainability and scalability at its core. Every piece of logic is carefully placed following modern best practices:
@@ -167,6 +140,63 @@ tourino-app/
 
 
 <br/>
+
+## Performance Optimizations
+Tourino is optimized for high performance and smooth user experience.
+
+- Incremental Rendering with Server components :
+    Heavy data-driven pages use React Server Components for faster loading and reduced client bundle size.
+
+- Image optimization
+    All images are served through `next/image` for responsive delivery, automatic resizing, and web‑friendly compression.
+
+- Client-side Caching via React Query
+    Server state is cached and automatically updated in the background, eliminating unnecessary fetches and improving responsiveness.
+
+- Optimized Rendering Strategy
+    - SSR for SEO‑critical and data‑intensive routes
+    - CSR for interactive dashboard experiences
+    - Static Rendering (SSG) for rarely changing content
+
+
+<br/>
+
+## 🔐 Authentication Flow
+1. Phone Number Submission – User enters mobile number.
+2. OTP Request – A `POST /auth/send-otp` is sent.
+3. OTP Verification – The 6‑digit code is verified via `POST /auth/check-otp`.
+4. Token Storage – On success, access and refresh tokens are stored in cookies.
+5. Profile Retrieval – React Query fetches the full user profile (`/user/profile`) and caches it.
+6. Route Protection – Middleware checks for the `accessToken` cookie; unauthenticated users are redirected to `/`.
+7. Token Refresh – Axios interceptors automatically refresh the token when a 401 response is detected.
+
+<br/>
+
+
+## 🔐 Security & API Client
+Tourino implements a multi-layered security architecture to protect user data and ensure safe communication with the backend. The key components are :
+
+1. Server-Side Route Protection ( Middleware )
+   - Runs on every request and checks the presence of the `accessToken` cookie. if     missing, the user is immediately redirected to the homepage (`/`), preventing any server-side rendering of protected pages
+2. JWT token strategy
+3. Centralized HTTP Client ( Axios )
+    - The project uses a custom axios instance that manages all API communication. this pattern simulates real-world 'silent authentication' and keeps the user logged in seamlessly.
+4. Smooth login experience
+
+
+<br/>
+
+
+## Challenges & what I Learned
+Building Tourino taught me a lot about real‑world frontend projects.
+
+Some key challenges and takeaways :
+- Designing a secure authentication flow
+- Managing complex user data with React Query
+- Architecting a folder structure
+- Improving rendering performance
+- UI / UX at a professional level
+- Edge cases
 
 
 ## 📦 Installation
