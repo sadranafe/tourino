@@ -1,16 +1,10 @@
 import Link from 'next/link';
 import CaretDoubleDownComponent from '@/components/icons/CaretDoubleDown';
 import PhoneIconComponent from '@/components/icons/PhoneIconComponent';
-import QuestionMark from '@/components/icons/QuestionMark';
-import Suitcase from '@/components/icons/Suitcase';
-import TicketIconComponent from '@/components/icons/TickectIconComponent';
+import ContactIntentCard from './ContactIntentCard';
 
 const page = () => {
-    const dummyContacts = [
-        { title : 'میخوام تور رزرو کنم' , desc : 'برای خرید تور مناسب راهنمایی بگیر' , icon : <Suitcase/>, },
-        { title : 'درباره تورها سوال دارم' , desc : 'پاسخ سوالاتت درباره تورها رو از ما بگیر' , icon : <QuestionMark weight = 'light'/>, },
-        { title : 'مشکل در پرداخت / حساب کاربری دارم' , desc : 'پشتیبانی در هر مشکلی کنارته' , icon : <TicketIconComponent />, },
-    ]
+
     return (
         <div className = 'maxWidth'>
             <div className = 'hero h-[520px] flex flex-wrap justify-center items-center content-center gap-10'>
@@ -21,22 +15,7 @@ const page = () => {
             <div className = 'mb-28'>
                 <h2 className = 'text-center text-2xl mb-5'>دسترسی سریع</h2>
 
-                <div className = 'grid grid-cols-3 gap-3'>
-                    {
-                        dummyContacts.map((card , index) => {
-                            return(
-                                <div key = {index} className = 'flex items-center gap-1.5 p-4 cursor-pointer border border-neutral-100 hover:bg-green-50 hover:border-green-300 transition-all rounded-xl'>
-                                    <div className = 'w-1/12 text-xl'>{ card.icon }</div>
-                                    
-                                    <div>
-                                        <h3 className = 'text-base'>{ card.title }</h3>
-                                        <p className = 'text-neutral-400 text-xs'>{ card.desc }</p>
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+                <ContactIntentCard/>
             </div>
 
             <div className = 'flex justify-center items-center p-5 mb-10 border border-neutral-100 rounded-xl'>
