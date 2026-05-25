@@ -6,12 +6,15 @@ const SmartContactForm = ({ contactIntent }) => {
             {
                 contactIntent === 'booking' && 
                 <>
-                    <div>
-                        <input type = "text"  placeholder = 'نام و نام خانوادگی'/>
-                        <input type = "tel"  placeholder = 'شماره تماس'/>
-                        <input type = "text"  placeholder = 'مبدا'/>
-                        <input type = "text"  placeholder = 'مقصد'/>
-                        <textarea placeholder = 'توضیحات :'></textarea>
+                    <div className = 'grid grid-cols-9 gap-3 p-5 rounded-xl mt-5 items-center'>
+                        <div className = 'col-span-8 grid grid-cols-2 gap-2'>
+                            <input className = 'contactUsInput' type = "text"  placeholder = 'نام و نام خانوادگی'/>
+                            <input className = 'contactUsInput' type = "tel"  placeholder = 'شماره تماس'/>
+                            <input className = 'contactUsInput' type = "text"  placeholder = 'مبدا'/>
+                            <input className = 'contactUsInput' type = "text"  placeholder = 'مقصد'/>
+                            <textarea className = 'contactUsTextArea col-span-2' placeholder = 'توضیحات :'></textarea>
+                        </div>
+                        <button className = 'col-span-1 bg-green-500 text-white max-h-fit py-2 hover:bg-green-600 transition-all rounded-md'>ثبت درخواست</button>
                     </div>
                 </>
             }
@@ -20,9 +23,9 @@ const SmartContactForm = ({ contactIntent }) => {
                 contactIntent === 'tourFaq' &&
                 <>
                     <div>
-                        <input type = "text"  placeholder = 'نام و نام خانوادگی'/>
-                        <input type = "tel"  placeholder = 'شماره تماس'/>
-                        <textarea placeholder = 'سوال خود را بپرسید ؟ :'></textarea>
+                        <input type = "text" className = 'contactUsInput'  placeholder = 'نام و نام خانوادگی'/>
+                        <input type = "text" className = 'contactUsInput'  placeholder = 'شماره تماس'/>
+                        <textarea className = 'contactUsTextArea' placeholder = 'سوال خود را بپرسید ؟ :'></textarea>
                     </div>
                 </>
             }
@@ -31,8 +34,8 @@ const SmartContactForm = ({ contactIntent }) => {
                 contactIntent === 'support' &&
                 <>
                     <div>
-                        <input type = "text"  placeholder = 'نام و نام خانوادگی'/>
-                        <input type = "tel"  placeholder = 'شماره تماس'/>
+                        <input type = "text" className = 'contactUsInput' placeholder = 'نام و نام خانوادگی'/>
+                        <input type = "tel" className = 'contactUsInput' placeholder = 'شماره تماس'/>
                         <select name = "issues" id = "issues">
                             <option value = "login">ورود به حساب</option>
                             <option value = "signup">ثبت نام</option>
@@ -44,7 +47,7 @@ const SmartContactForm = ({ contactIntent }) => {
                             <option value = "cancellation">کنسلی / استرداد</option>
                             <option value = "others">موارد دیگر</option>
                         </select>
-                        <textarea cols = {50} placeholder = 'مشکل خود را با جزییات بیشتری توضیح دهید :'></textarea>
+                        <textarea cols = {50} className = 'contactUsTextArea' placeholder = 'مشکل خود را با جزییات بیشتری توضیح دهید :'></textarea>
                     </div>
                 </>
             }

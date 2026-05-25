@@ -12,6 +12,10 @@ input::-webkit-inner-spin-button {
     margin: 0 auto;
 }
 
+.contactUsTextArea , .contactUsInput {
+    @apply border rounded-md outline-none border-neutral-100 bg-transparent p-3 text-green-500 focus:border-green-400;
+}
+
 .trustLogo {
     width: clamp(40px, 15.3px + 7vw, 68px);
 }
