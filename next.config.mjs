@@ -9,6 +9,13 @@ const nextConfig = {
                 pathname : '/**',
             }
         ],
+        remotePatterns : [
+            {
+                protocol : 'https',
+                hostname : 'tourino-api-production.up.railway.app',
+                pathname : '/**',
+            }
+        ],
     },
 };
 
