@@ -11,7 +11,7 @@ const page = () => {
 
     return (
         <div className = 'maxWidth max-xl:px-5'>
-            <div className = 'hero h-[520px] flex flex-wrap justify-center items-center content-center gap-5'>
+            <div className = 'hero h-screen flex flex-wrap justify-center items-center content-center gap-5'>
                 <h1 className = 'text-5xl max-md:text-4xl max-[550px]:text-[30px] max-[450px]:hidden'>برای سفر بعدی ات ، با <span className = 'text-green-500 font-bold'> ما </span> در ارتباط باش</h1>
                 <h1 className = 'text-4xl max-[450px]:block max-[300px]:text-[27px] hidden text-center'>برای سفر بعدی ات <br/> با <span className = 'text-green-500 font-bold'> ما </span>  <br/> در ارتباط باش</h1>
                 <p className = 'text-neutral-400 w-full text-center max-sm:text-xs'>۷ روز هفته، از ساعت ۸ تا ۲۴، از طریق ایمیل و تماس تلفنی پاسخگوی شما هستیم.</p>
