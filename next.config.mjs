@@ -7,9 +7,7 @@ const nextConfig = {
                 hostname : 'localhost',
                 port : '6500',
                 pathname : '/**',
-            }
-        ],
-        remotePatterns : [
+            },
             {
                 protocol : 'https',
                 hostname : 'tourino-api-production.up.railway.app',
