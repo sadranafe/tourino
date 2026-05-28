@@ -17,7 +17,7 @@ const ContactIntentCard = () => {
 
     return (
         <>
-            <div className = 'relative grid grid-cols-3 gap-3'>
+            <div className = 'relative grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-3'>
                 <button onClick = {() => setContactIntent(null)} className = {`${ contactIntent ? 'visible opacity-100 hover:bg-neutral-50' : 'invisible opacity-0' } rounded-md p-2 absolute right-3 -bottom-9 transition-all`}>
                     <XIconComponent weight = "light"/>
                 </button>
@@ -28,7 +28,7 @@ const ContactIntentCard = () => {
                                 <div className = 'w-1/12 text-xl'>{ card.icon }</div>
                                 
                                 <div>
-                                    <h3 className = 'text-base'>{ card.title }</h3>
+                                    <h3 className = 'text-base max-[920px]:text-[12.5px] max-md:text-sm max-[330px]:text-sm'>{ card.title }</h3>
                                     <p className = 'text-neutral-400 text-xs'>{ card.desc }</p>
                                 </div>
 
