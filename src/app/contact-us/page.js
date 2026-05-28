@@ -3,6 +3,10 @@ import CaretDoubleDownComponent from '@/components/icons/CaretDoubleDown';
 import PhoneIconComponent from '@/components/icons/PhoneIconComponent';
 import ContactIntentCard from './ContactIntentCard';
 
+export const metadata = {
+    title : 'تماس با ما'
+}
+
 const page = () => {
 
     return (
