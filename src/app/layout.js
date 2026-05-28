@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 import "./globals.css";
 
 const yekan = localFont({
-  src: "./fonts/yekanBakh-Regular.ttf",
+  src: "./fonts/YekanBakh-Regular.ttf",
 });
 
 export const metadata = {
