@@ -1,7 +1,8 @@
 import TourList from "./TourList";
 
 async function ToursContainer() {
-    const data = await fetch('http://localhost:6500/tour');
+    // const data = await fetch('http://localhost:6500/tour');
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tour`)
     const res = await data.json();
 
     return (
