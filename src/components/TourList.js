@@ -11,9 +11,9 @@ const TourList = ({ DummyTours }) => {
         destination : searchParams.get('destination') || '',
     }
     
-    const filteredDummyData = DummyTours.filter(tour => {
-      if(origin && tour.origin.name.toLowerCase() !== origin.toLowerCase()) return false;
-      if(destination && tour.destination.name.toLowerCase() !== destination.toLowerCase()) return false;
+    const filteredDummyData = DummyTours?.filter(tour => {
+      if(origin && tour?.origin?.name?.toLowerCase() !== origin?.toLowerCase()) return false;
+      if(destination && tour?.destination?.name?.toLowerCase() !== destination?.toLowerCase()) return false;
       if(date && !isDateInRange(date , tour.startDate , tour.endDate)) return false;
 
       return true
@@ -21,9 +21,9 @@ const TourList = ({ DummyTours }) => {
     return (
         <>
             {
-                filteredDummyData.length === 0 ? 
+                filteredDummyData?.length === 0 ? 
                 <p className = "text-center text-base">متاسفیم ! 😔 توری با این جزئیات یافت نشد</p> :
-                filteredDummyData.map(data => {
+                filteredDummyData?.map(data => {
                     return(
                         <TourCard key = {data.id} { ...data }/>
                     )

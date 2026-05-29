@@ -5,6 +5,8 @@ async function ToursContainer() {
     const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tour`)
     const res = await data.json();
 
+    console.log(data)
+
     return (
         <>
             <div className = "grid grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2 max-[400px]:grid-cols-1 gap-3 p-5">
