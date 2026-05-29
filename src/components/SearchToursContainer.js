@@ -1,7 +1,9 @@
 import SearchTours from "./SearchTours";
 
 async function SearchToursContainer() {
-    const data = await fetch('http://localhost:6500/tour');
+    // const data = await fetch('http://localhost:6500/tour');
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tour`);
+
     const res = await data.json();
     const dummyCities = [...new Set([... new Set(res.map(item => item.origin.name))].concat([... new Set(res.map(item => item.destination.name))]))]
 
