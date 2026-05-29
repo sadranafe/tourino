@@ -50,7 +50,7 @@ const HighlightedTour = props => {
                     {
                         img && (
                             <div className = "overflow-hidden max-md:w-[94%] max-md:h-[350px] max-md:mx-auto max-sm:h-[300px] max-[400px]:h-[250px] relative w-[300px] h-[200px]">
-                                <Image src = {img} alt = {title} className = "object-cover rounded-3xl"  sizes = "(max-width: 768px) 94vw, 300px" priority fill/>
+                                {/* <Image src = {img} alt = {title} className = "object-cover rounded-3xl"  sizes = "(max-width: 768px) 94vw, 300px" priority fill/> */}
                             </div>
                         )
                     }
