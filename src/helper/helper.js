@@ -71,3 +71,8 @@ export const tourStatus = (startDate , endDate) => {
     if( today > end ) return { status : 'completed' , msg : 'به اتمام رسیده' }
     return { status : 'ongoing' , msg : 'درحال برگزاری' }
 }
+
+export const fixImgURL = url => {
+    if(!url) return;
+    return url.replace('http://localhost:8080' , process.env.NEXT_PUBLIC_BASE_URL)
+}
