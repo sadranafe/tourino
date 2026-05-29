@@ -2,10 +2,10 @@ import TourList from "./TourList";
 
 async function ToursContainer() {
     // const data = await fetch('http://localhost:6500/tour');
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tour`)
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tour`,{
+        next : { revalidate : 60 }
+    })
     const res = await data.json();
-
-    console.log(data)
 
     return (
         <>
