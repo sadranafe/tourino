@@ -3,7 +3,7 @@ import api from "@/lib/api";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import useRedirecting from "@/hooks/useRedirecting";
-import { calculateTourDuration } from "@/helper/helper";
+import { calculateTourDuration, fixImgURL } from "@/helper/helper";
 import toast from "react-hot-toast";
 import PassengerInfo from "@/components/PassengerInfo";
 import ChevronLeftIcon from "@/components/icons/ChevLeftIcon";
@@ -52,7 +52,7 @@ const Basket = props => {
 
             <div className = "border rounded-xl col-span-1">
                 <div className = "w-full relative aspect-[16/9]">
-                    <Image src = {img} alt = {title} priority fill sizes = "(max-width: 500px) 100vw, (max-width: 845px) 50vw, 33vw" className = "object-cover"/>
+                    <Image src = {fixImgURL(img)} alt = {title} priority fill sizes = "(max-width: 500px) 100vw, (max-width: 845px) 50vw, 33vw" className = "object-cover"/>
                 </div>
 
                 <div className = "p-2">
