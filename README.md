@@ -3,6 +3,13 @@
 **Tourino** is a modern web application for discovering , browsing and booking domestic and international tours. 
 It offers the best travel experiences with seamless online booking , an intuitive user dashboard and responsive design.
 
+[Live Demo](https://tourino-v1.vercel.app)
+
+## 📸 Screenshots
+
+| Homepage | Tour Detail | Dashboard |
+|----------|-------------|-----------|
+| ![home page](docs/screenshots/tourino-demo.png) | ![tour Detail](docs/screenshots/tourino-tour-details.png)| ![dashboard](docs/screenshots/tourino-dashboard.png)|
 
 <br/>
 
