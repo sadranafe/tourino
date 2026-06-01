@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { updateUserProfile } from "@/lib/api";
 import useUser from "@/hooks/useUser";
@@ -44,6 +45,7 @@ const DUMMY_ACCOUNT_CARD_INFO = [
 ]
 
 const AccountProfilePage = () => {
+    const router = useRouter();
     const { user } = useUser();
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
@@ -52,6 +54,7 @@ const AccountProfilePage = () => {
             queryClient.setQueryData(['user-data'] , res.data)
             queryClient.invalidateQueries({ queryKey :['user-data'] })
             toast.success(res?.message || 'تغییرات با موفقیت ذخیره شد ')
+            router.refresh()
         }
     })
 
