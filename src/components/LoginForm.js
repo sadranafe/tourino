@@ -9,7 +9,7 @@ const LoginForm = ({ formik , timer , isPending }) => {
             </DialogTitle>
             
             <DialogDescription asChild>
-                <div className = "w-full">
+                <div className = "w-full max-[500px]:px-5 max-[300px]:px-2">
                     <div className = "flex flex-col justify-center items-center">
                         <label htmlFor = "phoneNumber" className = "block w-full text-neutral-500">شماره موبایل خود را وارد کنید</label>
                         <div className = "relative flex flex-wrap justify-center items-center w-full">

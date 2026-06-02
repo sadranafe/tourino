@@ -80,7 +80,7 @@ const LoginSection = () => {
                             <LoginIcon customClasses = 'max-md:inline-block hidden'/>
                         </button>
                     </DialogTrigger>
-                    <DialogContent className = 'bg-neutral-50 w-[500px] h-[350px] max-sm:w-9/12 outline-none' style = {{ borderRadius : '20px' }} onPointerDownOutside = {e => {
+                    <DialogContent className = 'bg-neutral-50 w-[500px] h-[350px] max-sm:w-11/12 outline-none' style = {{ borderRadius : '15px' }} onPointerDownOutside = {e => {
                         if(e.target.closest('[role="status"]')){
                             e.preventDefault()
                         }
