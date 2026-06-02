@@ -8,12 +8,11 @@ import { PencilSimpleIcon } from "@phosphor-icons/react";
 import { useTimer } from "@/hooks/useTimer";
 import useRedirecting from "@/hooks/useRedirecting";
 
-const OTPForm = ({ phoneNum , timer , setFormStep }) => {
+const OTPForm = ({ phoneNum , timer , startTimer , setFormStep }) => {
     const [otp , setOtp] = useState('');
     const { isRedirecting , startRedirecting , stopRedirecting } = useRedirecting()
     const { mutate : resendOTP , isPending : isResending } = useSendOTP();
     const { mutate : verifyOTP , isPending : isVerifying , isError } = useVerifyOTP();
-    const { startTimer } = useTimer()
 
     const resendOtpHandler = () => {
         resendOTP(phoneNum , {

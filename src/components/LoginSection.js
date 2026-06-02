@@ -86,7 +86,7 @@ const LoginSection = () => {
                         }
                     }}>
                         {
-                            formStep === 'otp' ? <OTPForm timer = {timer} setFormStep = { setFormStep } phoneNum = {phoneNum}/> : <LoginForm isPending = {isPending} timer = {timer} formik = {formik}/>
+                            formStep === 'otp' ? <OTPForm timer = {timer} startTimer = {startTimer} setFormStep = { setFormStep } phoneNum = {phoneNum}/> : <LoginForm isPending = {isPending} timer = {timer} formik = {formik}/>
                         }
                     </DialogContent>
                 </Dialog>
