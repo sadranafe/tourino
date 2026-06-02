@@ -14,6 +14,7 @@ const DashboardUserToursBox = ({ tours }) => {
 
                 <div className = "pr-5">
                     {
+                        data?.length === 0 ? <p>سفری یافت نشد 🥲</p> :
                         data?.map((tour , index) => {
                             return(
                                 <p className = "flex justify-start items-center gap-1" key = {index}>
