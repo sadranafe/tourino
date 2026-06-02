@@ -18,8 +18,26 @@ const OTPForm = ({ phoneNum , timer , setFormStep }) => {
     const resendOtpHandler = () => {
         resendOTP(phoneNum , {
             onSuccess : (data) => {
+                const code = data?.data?.code
                 startTimer()
-                toast.success(`کد ورود  : ${data?.data?.code}` , { duration : 5000 })
+                toast.success(
+                    (t) => (
+                        <div className = "flex items-center gap-3">
+                            <span className = "text-base">کد ورود : <strong>{code}</strong></span>
+                            <button
+                                onClick = { (e) => {
+                                    e.stopPropagation();
+                                    navigator.clipboard.writeText(code);
+                                    toast.dismiss(t.id);
+                                    toast.success('کد کپی شد!');
+                                }}
+                                className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-md hover:bg-green-200 transition-all"
+                            >
+                                کپی
+                            </button>
+                        </div>
+                    ) , { duration : 7000 }
+                )
             }
         })
     }
@@ -44,7 +62,7 @@ const OTPForm = ({ phoneNum , timer , setFormStep }) => {
                         <p className = "text-sm">کد تایید به شماره <span className = "text-base mx-1">{phoneNum}</span> ارسال شد</p>
 
                         <div dir = "ltr">
-                            <OTPInput value = {otp} numInputs = {6} shouldAutoFocus onChange = { val => { if(!isVerifying && !isRedirecting) {setOtp(val)} } } renderInput = { props => <input { ...props } disabled = {isVerifying && isRedirecting} style = {{ ...props.style , opacity: isVerifying || isRedirecting ? 0.5 : 1 }}/> } containerStyle = 'flex justify-center gap-2 w-full p-2' inputStyle = {`block w-[45px] max-[450px]:w-2/12 h-[45px] max-[450px]:h-[40px] border rounded-lg text-center text-lg border ${isError ? 'border-red-500' : 'border-neutral-500'} focus:outline focus:outline-green-500`} skipDefaultStyles/>
+                            <OTPInput value = {otp} numInputs = {6} shouldAutoFocus inputType = "number" onChange = { val => { if(!isVerifying && !isRedirecting) {setOtp(val)} } } renderInput = { props => <input { ...props } disabled = {isVerifying && isRedirecting} style = {{ ...props.style , opacity: isVerifying || isRedirecting ? 0.5 : 1 }}/> } containerStyle = 'flex justify-center gap-2 w-full p-2' inputStyle = {`block w-[45px] max-[450px]:w-2/12 h-[45px] max-[450px]:h-[40px] border rounded-lg text-center text-lg border ${isError ? 'border-red-500' : 'border-neutral-500'} focus:outline focus:outline-green-500`} skipDefaultStyles/>
                         </div>
                         {
                             timer ? 

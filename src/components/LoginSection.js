@@ -32,10 +32,28 @@ const LoginSection = () => {
         onSubmit : val => {
             mutate(val.phoneNumber , {
                 onSuccess : (data) => {
+                    const code = data?.data?.code
                     setPhoneNum(val.phoneNumber);
                     setFormStep('otp');
                     startTimer()
-                    toast.success(`کد ورود  : ${data?.data?.code}` , { duration : 5000 })
+                    toast.success(
+                        (t) => (
+                            <div className = "flex items-center gap-3">
+                                <span className = "text-base">کد ورود : <strong>{code}</strong></span>
+                                <button
+                                    onClick = { (e) => {
+                                        e.stopPropagation();
+                                        navigator.clipboard.writeText(code);
+                                        toast.dismiss(t.id);
+                                        toast.success('کد کپی شد!');
+                                    }}
+                                    className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-md hover:bg-green-200 transition-all"
+                                >
+                                    کپی
+                                </button>
+                            </div>
+                        ) , { duration : 7000 }
+                    )
                 },
                 onError : err => {
                     toast.error('خطا')
@@ -62,7 +80,11 @@ const LoginSection = () => {
                             <LoginIcon customClasses = 'max-md:inline-block hidden'/>
                         </button>
                     </DialogTrigger>
-                    <DialogContent className = 'bg-neutral-50 w-[500px] h-[350px] max-sm:w-9/12 outline-none' style = {{ borderRadius : '20px' }}>
+                    <DialogContent className = 'bg-neutral-50 w-[500px] h-[350px] max-sm:w-9/12 outline-none' style = {{ borderRadius : '20px' }} onPointerDownOutside = {e => {
+                        if(e.target.closest('[role="status"]')){
+                            e.preventDefault()
+                        }
+                    }}>
                         {
                             formStep === 'otp' ? <OTPForm timer = {timer} setFormStep = { setFormStep } phoneNum = {phoneNum}/> : <LoginForm isPending = {isPending} timer = {timer} formik = {formik}/>
                         }
