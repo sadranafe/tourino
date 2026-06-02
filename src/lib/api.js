@@ -27,17 +27,16 @@ api.interceptors.response.use(
         const originalRequest = err.config;
         if(err?.response?.status === 401 && !originalRequest._retry){
             originalRequest._retry = true;
-            
-            const res = await getNewTokens();
-            
-            if(res?.response?.status === 200) {
-                setCookie('accessToken' , res?.response?.data?.accessToken , 30);
-                return api(originalRequest);
-            } else {
-                deleteCookie('accessToken')
-                deleteCookie('refreshToken')
-                window.location.href = '/';
-            }
+        }
+
+        const res = await getNewTokens();
+        if(res?.response?.status === 200) {
+            setCookie('accessToken' , res?.response?.data?.accessToken , 30);
+            return api(originalRequest);
+        } else {
+            deleteCookie('accessToken')
+            deleteCookie('refreshToken')
+            window.location.href = '/';
         }
         return Promise.reject(err?.response?.data || err);
     }
