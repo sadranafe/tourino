@@ -11,7 +11,7 @@ const MyTours = ({ tour }) => {
     const { origin , destination , startDate , endDate , fleetVehicle , id , price , title } = tour;
     const fleet = fleetVehicle?.toLowerCase()
     const formattedStartDate = formatDate(startDate);
-    const formattedEndDate = formatDate(startDate);
+    const formattedEndDate = formatDate(endDate);
     const tourSt = tourStatus(startDate , endDate);
 
     return (
@@ -35,7 +35,7 @@ const MyTours = ({ tour }) => {
                     </div>
                     
                     <div>
-                        <p className = {`relative max-[500px]:absolute max-[500px]:top-2 max-[500px]:left-2.5 max-[500px]:text-nowrap rounded-lg text-xs p-1 px-3 max-w-fit ${ tourSt?.status === 'completed' ? 'text-green-700 bg-green-400/50' : tourSt?.status === 'ongoing'  ? 'bg-yellow-100 text-yellow-600' : 'bg-neutral-100'}`}>{ tourSt?.msg }</p>
+                        <p className = {`relative max-[500px]:absolute max-[500px]:top-1.5 max-[500px]:left-1.5 max-[500px]:text-nowrap rounded-md text-xs max-[500px]:py-0.5 p-1 px-3 max-w-fit ${ tourSt?.status === 'completed' ? 'text-green-700 bg-green-400/50' : tourSt?.status === 'ongoing'  ? 'bg-yellow-100 text-yellow-600' : 'bg-neutral-100'}`}>{ tourSt?.msg }</p>
                     </div>
                 </div>
 
