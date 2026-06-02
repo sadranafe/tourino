@@ -19,7 +19,7 @@ const getUser = async () => {
         cache : 'no-store'
     })
 
-    if(res.status === 401 || res.status === 403) redirect('/');
+    if(res.status === 401) redirect('/');
     if(!res.ok) throw new Error('failed to fetch user profile')
     
     return res.json()
