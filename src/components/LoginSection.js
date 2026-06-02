@@ -56,7 +56,7 @@ const LoginSection = () => {
                     )
                 },
                 onError : err => {
-                    toast.error('خطا')
+                    toast.error('خطا در ارسال کد')
                     console.error('error : ' , err)
                 }
             })

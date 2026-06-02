@@ -20,6 +20,7 @@ const OTPForm = ({ phoneNum , timer , setFormStep }) => {
             onSuccess : (data) => {
                 const code = data?.data?.code
                 startTimer()
+                toast.dismiss()
                 toast.success(
                     (t) => (
                         <div className = "flex items-center gap-3">
@@ -38,6 +39,10 @@ const OTPForm = ({ phoneNum , timer , setFormStep }) => {
                         </div>
                     ) , { duration : 7000 }
                 )
+            },
+            onError : err => {
+                toast.error('خطا در ارسال کد')
+                console.error('error : ' , err)
             }
         })
     }
