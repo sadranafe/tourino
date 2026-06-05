@@ -24,9 +24,16 @@ api.interceptors.request.use(
 api.interceptors.response.use(
     res => { return res },
     async (err) => {
+        console.dir(err)
         const originalRequest = err.config;
         if(err?.response?.status === 401 && !originalRequest._retry){
             originalRequest._retry = true;
+        }
+
+        if(err?.status === 404){
+            deleteCookie('accessToken')
+            deleteCookie('refreshToken')
+            window.location.href = '/';
         }
 
         const res = await getNewTokens();
@@ -36,7 +43,6 @@ api.interceptors.response.use(
         } else {
             deleteCookie('accessToken')
             deleteCookie('refreshToken')
-            window.location.href = '/';
         }
         return Promise.reject(err?.response?.data || err);
     }
