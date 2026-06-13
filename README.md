@@ -7,7 +7,7 @@ It offers the best travel experiences with seamless online booking , an intuitiv
 
 ## 📸 Screenshots
 
-| Homepage | Tour Detail | Dashboard |
+| Homepage | Tour Details | Dashboard |
 |----------|-------------|-----------|
 | ![home page](docs/screenshots/tourino-demo.png) | ![tour Detail](docs/screenshots/tourino-tour-details.png)| ![dashboard](docs/screenshots/tourino-dashboard.png)|
 
